@@ -1,24 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, NavLink } from "react-router-dom";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/core/styles';
 import './App.css';
+import pages from "./pages";
+import {
+  Container,
+  AppBar,
+  Toolbar,
+  Button,
+  Typography,
+} from "@material-ui/core";
+import styles from "./styles.module.css";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.SwarmCity}>
+      {pages.map(({ path, exact, component }) => (
+        <Route key={path} {...{ path, exact, component }} />
+      ))}
     </div>
   );
 }

@@ -1,0 +1,94 @@
+.container {
+  display: block;
+  padding-top: 20px;
+}
+
+.paper {
+  padding: 25px;
+  background-color: white;
+  margin-top: 90px;
+}
+
+.fabSpace {
+  right: 40px;
+  bottom: 40px;
+  position: fixed;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.titlebox {
+  display: grid;
+  grid-template-columns: auto 50px;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "subtitle close"
+    "title title";
+}
+
+.subtitle {
+  grid-area: subtitle;
+  color: #555555;
+  font-size: 14px;
+}
+
+.close {
+  grid-area: close;
+  justify-self: right;
+  color: #333333;
+  text-decoration: none;
+}
+
+.info {
+  align-self: baseline;
+  text-decoration: none;
+margin-left: 8px;
+ }
+
+.margin {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.loading {
+  width: 95vw;
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center; 
+}
+
+.noTextdecoration {
+  text-decoration: none;
+}
+
+.link {
+  color: #333333
+}
+
+.textfield {
+  width: 100%;
+}
+
+.error {
+  font-size: 13px;
+  color: red;
+  margin-bottom: 16px;
+}
+
+.fileslist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.file {
+  margin: 32px;
+}
+
+.filepreview {
+  max-width: 200px;
+  max-height: 200px;
+}
+
