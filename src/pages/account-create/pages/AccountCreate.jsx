@@ -7,7 +7,7 @@ import { Button, Fab, Divider, Paper, TextField, Typography } from "@material-ui
 import { Done, Home } from "@material-ui/icons"
 import { Input } from "react-advanced-form-addons"
 
-import main from "../../../Main.module.css"
+import main from "../../../styles.module.css"
 import accountstyles from "../account-create.module.css"
 
 export function AccountCreate({ nextStage }) {

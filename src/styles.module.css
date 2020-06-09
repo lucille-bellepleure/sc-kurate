@@ -8,7 +8,6 @@ a {
 :root {
   /* Global color */
   background-color: #f2f2f2;
-
   /* users can not select unless we explicity allow */
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
@@ -122,12 +121,14 @@ a {
   letter-spacing: 0;
   line-height: 13px;
 }
-/* .blueLink: {
+
+.blueLink {
   composes: smallBold;
   cursor: pointer;
-  color: --sc-blue;
+  color: var(--sc-blue);
   border-bottom: 2px dotted blue;
-}  */
+}
+
 /*
 .greyLink: {
   composes: smallLight from './styles.module.css';
@@ -135,7 +136,8 @@ a {
   color: var(--sc-grey4);
   text-decoration: none;
   border-bottom: 1px dotted var(--sc-grey3b);
-} */
+}
+*/
 
 .baseShadow {
   box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
@@ -155,15 +157,22 @@ code {
 
 .backgroundImg {
   background-image: url("./images/bg-header3.png");
+  background-size: cover;
 }
 
-.swarm-city {
+.swarmcity {
   composes: backgroundImg;
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
   scroll-behavior: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .hashtagName {
@@ -198,7 +207,6 @@ code {
   width: 108px;
   height: 50px;
   background-position: -108px -108px;
-  margin-right: 40px;
 }
 
 .logotext {
@@ -209,16 +217,6 @@ code {
   margin-bottom: 5px;
 }
 
-.header {
-  composes: backgroundImg;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 30px 40px 30px;
-  width: 100vw;
-  height: 40px;
-}
 
 .item {
   background-color: white;
@@ -540,4 +538,123 @@ code {
 
 .blue {
   color: var(--sc-blue);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--sc-grey4);
+  height: 36px;
+  color: var(--sc-grey1b);
+  composes: mainTitle4;
+}
+
+.photoplace {
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--sc-grey3);
+}
+
+.photoplace:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.cropper {
+  width: 480px;
+  height: 480px;
+}
+.filterplace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--sc-grey4);
+}
+
+.textbutton {
+  composes: bodyDefault;
+  margin: 10px;
+  color: var(--sc-grey4);
+}
+
+.scroller {
+  overflow: scroll;
+  height: 100%;
+  background-color: var(--sc-grey4);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--sc-grey4);
+  height: 36px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.postHead {
+  display: grid;
+  grid-template-columns: 48px auto;
+  grid-template-rows: auto auto;
+  padding: 16px;
+  column-gap: 8px;
+  row-gap: 8px;
+  color: var(--sc-white);
+  align-items: center;
+}
+
+.postUsername {
+  composes: bodyBold;
+}
+
+.postLocation {
+composes: bodyDefault;
+font-size: 14px;
+}
+
+.postFooter {
+  display: grid;
+  padding: 16px;
+  composes: bodyDefault;
+  grid-template-rows: auto;
+  row-gap: 8px;
+  color: var(--sc-white);
+  font-size: 14px;
+}
+
+.feedEnd {
+  composes: bodyBold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 56px;
+  color: var(--sc-white);
+}
+
+.actionButton {
+  margin-top: -5px;
+  composes: bodyBold;
+  font-size: 14px;
+    align-items: center;
+  background-color: var(--sc-blue);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+color: var(--sc-white);
+padding: 16px;
 }
