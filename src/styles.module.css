@@ -7,7 +7,7 @@ a {
 
 :root {
   /* Global color */
-  background-color:#333333;
+  background-color:#121212;
   /* users can not select unless we explicity allow */
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
@@ -676,7 +676,7 @@ font-size: 12px;
   composes: bodyBold;
   font-size: 14px;
   align-items: center;
-  background-color: var(--sc-green);
+  background-color: var(--sc-yellow);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
