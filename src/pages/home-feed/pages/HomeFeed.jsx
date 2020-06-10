@@ -1,7 +1,8 @@
 import React, { useState, useRef, useCallback } from "react"
+import { useSelector } from "react-redux"
 import main from "../../../styles.module.css"
 import { Route, NavLink } from "react-router-dom";
-import { Home, Add, ArrowForwardIos, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons';
+import { Home, AddCircle, ArrowForwardIos, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Avatar, Divider } from "@material-ui/core"
 import ActionButton from "../../../components/ActionButton"
@@ -15,7 +16,14 @@ const theme = createMuiTheme({
     }
 });
 
+
+function getUser(state) {
+    return state.account
+}
+
 export function HomeFeed({ nextStage, homefeed }) {
+
+    const account = useSelector(state => getUser(state))
 
     return (
         <ThemeProvider theme={theme}>
@@ -57,12 +65,14 @@ export function HomeFeed({ nextStage, homefeed }) {
                 </div>
                 <div className={main.footer}>
                     <div className={main.textbutton}>
-                        <NavLink to="/"><Home color="primary" fontSize="medium"></Home></NavLink>
+                        <NavLink to="/"><Home color="primary" fontSize="large"></Home></NavLink>
                     </div>
                     <div className={main.textbutton}>
-                        <NavLink to="/post-item"><Add color="primary" fontSize="large"></Add></NavLink>
+                        <NavLink to="/post-item"><AddCircle color="primary" fontSize="large"></AddCircle></NavLink>
                     </div>
-                    <div className={main.textbutton}><Person color="primary" fontSize="medium"></Person></div>
+                    <div className={main.textbutton}>
+                        <Avatar color="primary" src={account.avatar} className={main.avatar}></Avatar>
+                    </div>
                 </div>
 
             </div>
