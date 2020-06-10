@@ -10,7 +10,8 @@ import PosterChild from "../../../components/PosterChild"
 const theme = createMuiTheme({
     // Style sheet name ⚛️
     palette: {
-        primary: { main: '#ffffff' }
+        primary: { main: '#ffffff' },
+        secondary: { main: '#666666' }
     }
 });
 
@@ -21,15 +22,13 @@ export function HomeFeed({ nextStage, homefeed }) {
 
             <div className={main.container}>
                 <div className={main.header}>
-                    <div className={main.textbutton}></div>
-                    <div>instaswarm</div>
-                    <div className={[main.blue, main.bodyBold, main.textbutton].join(" ")}></div>
+                    <img src={require("../../../images/logo-transparent-Y.png")}></img>
                 </div>
                 <div className={main.scroller}>
                     {homefeed.map((item) => (
                         <div>
                             <div className={main.postHead}>
-                                <Avatar>TM</Avatar>
+                                <Avatar src={require("../../../images/defaultAvatar.png")} className={main.avatar}></Avatar>
                                 <div>
                                     <div className={main.postUsername}><b>{item.user}</b></div>
                                     <div className={main.postLocation}>{item.location}</div>
@@ -39,8 +38,8 @@ export function HomeFeed({ nextStage, homefeed }) {
 
                             <ActionButton type={item.type}></ActionButton>
                             <div className={main.postFooter}>
-                                <FavoriteBorder fontSize="large"></FavoriteBorder>
-                                <div><b>{item.likes} likes</b></div>
+                                <div className={main.likes}><FavoriteBorder fontSize="small"></FavoriteBorder>&nbsp;
+                                    <b>{item.likes}</b></div>
                                 <div>{item.description}</div>
                             </div>
                         </div>
@@ -49,6 +48,7 @@ export function HomeFeed({ nextStage, homefeed }) {
 
                     <div>
                         <div className={main.feedEnd}>
+
                             <div>You're all caught up.</div>
                             <div className={main.yellow}>Discover more</div>
 

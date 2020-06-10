@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,700");
 
 /* DO THIS BETTER */
 a {
@@ -66,7 +66,7 @@ a {
 }
 .bodyDefault {
   font-family: Montserrat, sans-serif;
-  font-weight: 200;
+  font-weight: 500;
   font-size: 16px;
   letter-spacing: 0;
   line-height: 19px;
@@ -167,6 +167,7 @@ code {
   margin: 0;
   padding: 0;
   scroll-behavior: auto;
+  max-width: 520px;
 }
 
 .container {
@@ -542,14 +543,11 @@ code {
 
 .header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 16px;
-  background-color: var(--sc-grey4);
+  padding: 18px;
+  background-color:black;
   height: 36px;
-  color: var(--sc-grey1b);
-  composes: mainTitle4;
 }
 
 .photoplace {
@@ -576,7 +574,7 @@ code {
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: var(--sc-grey4);
+  background-color: black;
 }
 
 .textbutton {
@@ -588,7 +586,14 @@ code {
 .scroller {
   overflow: scroll;
   height: 100%;
-  background-color: var(--sc-grey4);
+  background-color: black;
+    -ms-overflow-style: none;
+
+  
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
 }
 
 .footer {
@@ -597,7 +602,7 @@ code {
   justify-content: space-evenly;
   align-items: center;
   padding: 16px;
-  background-color: var(--sc-grey4);
+  background-color: black;
   height: 36px;
 }
 
@@ -612,18 +617,22 @@ code {
   grid-template-rows: auto auto;
   padding: 16px;
   column-gap: 8px;
-  row-gap: 8px;
   color: var(--sc-white);
   align-items: center;
 }
 
 .postUsername {
   composes: bodyBold;
+  font-size: 14px;;
 }
 
 .postLocation {
 composes: bodyDefault;
-font-size: 14px;
+font-size: 12px;
+}
+
+.avatar {
+
 }
 
 .postFooter {
@@ -636,6 +645,13 @@ font-size: 14px;
   font-size: 14px;
 }
 
+.likes {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  font-size: 14px;
+}
+
 .feedEnd {
   composes: bodyBold;
   display: flex;
@@ -644,6 +660,8 @@ font-size: 14px;
   flex-direction: column;
   height: 56px;
   color: var(--sc-white);
+  margin: 40px 0px 40px 0px;
+
 }
 
 .actionButton {
