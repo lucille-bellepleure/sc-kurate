@@ -28,7 +28,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                     {homefeed.map((item) => (
                         <div>
                             <div className={main.postHead}>
-                                <Avatar src={require("../../../images/defaultAvatar.png")} className={main.avatar}></Avatar>
+                                <Avatar src={require("../../../images/" + item.avatar)} className={main.avatar}></Avatar>
                                 <div>
                                     <div className={main.postUsername}><b>{item.user}</b></div>
                                     <div className={main.postLocation}>{item.location}</div>

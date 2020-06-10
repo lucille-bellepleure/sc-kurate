@@ -19,7 +19,7 @@ const initialState = {}
 const store = configureStore({
     reducer: rootReducer,
     middleware: [sagaMiddleware, ...getDefaultMiddleware()],
-    enhancers: [pouchMiddleware],
+    // enhancers: [pouchMiddleware],
     preloadedState: initialState
 });
 
