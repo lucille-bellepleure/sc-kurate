@@ -1,12 +1,15 @@
 import React from "react";
 import main from "../styles.module.css"
+import { Player } from "video-react"
+
 
 function PosterChild({ image, format }) {
     console.log(image, format)
     switch (format) {
         case 'video':
             return (
-                <video src={require("../images/" + image)} autoplay type="video/mp4" controls width="100%" />
+                <Player autoPlay loop playsInline muted width="100%" src={require("../images/" + image)}>
+                </Player>
             )
         case 'image':
             return (
