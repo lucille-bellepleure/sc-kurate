@@ -7,7 +7,7 @@ a {
 
 :root {
   /* Global color */
-  background-color: #f2f2f2;
+  background-color:#333333;
   /* users can not select unless we explicity allow */
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
@@ -168,6 +168,7 @@ code {
   padding: 0;
   scroll-behavior: auto;
   max-width: 520px;
+  background-color: black;
 }
 
 .container {
@@ -545,9 +546,15 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 18px;
   background-color:black;
+  padding: 16px 0px 16px 0px;
   height: 36px;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  z-index: 10;
+  max-width: 520px;
 }
 
 .photoplace {
@@ -584,27 +591,27 @@ code {
 }
 
 .scroller {
-  overflow: scroll;
-  height: 100%;
-  background-color: black;
-    -ms-overflow-style: none;
-
-  
+background-color: black;
+width: 100%;
+margin-top: 68px;
 }
 
-.scroller::-webkit-scrollbar {
-  display: none;
-}
+
 
 .footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  padding: 16px;
+  padding: 16px 0px 16px 0px;
   background-color: black;
   height: 36px;
+  position: fixed;
+  width: 100%;
+  max-width: 520px;
+  bottom: 0;
 }
+
 
 .image {
   width: 100%;
