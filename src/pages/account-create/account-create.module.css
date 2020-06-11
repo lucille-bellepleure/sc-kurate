@@ -60,11 +60,12 @@
 }
 
 .subtitle {
-  composes: smallLight from "../../styles.module.css";
+  composes: bodyDefault from "../../styles.module.css";
   color: white;
   text-align: center;
   margin: 20px 0px 60px 0px;
   line-height: 18px;
+
 }
 
 .username {
@@ -228,6 +229,7 @@
 }
 
 .confirm {
+  margin-top: 60px;
   background-color: #ffffff !important;
 }
 
@@ -253,6 +255,14 @@
 
 .nextbuttonbox {
   margin-top: 60px;
+}
+
+.mnemonic {
+  margin-top: 60px;
+  composes: bodyBold from "../../styles.module.css";
+  line-height: 175%;
+  text-align: center;
+  color: var(--sc-grey4);
 }
 
 .fileinput {

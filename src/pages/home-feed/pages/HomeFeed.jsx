@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from "react"
+
 import { useSelector, useDispatch } from "react-redux"
 import main from "../../../styles.module.css"
 import { Route, NavLink } from "react-router-dom";
@@ -11,10 +12,11 @@ import PosterChild from "../../../components/PosterChild"
 const theme = createMuiTheme({
     // Style sheet name ⚛️
     palette: {
-        primary: { main: '#ffffff' },
+        primary: { main: '#333333' },
         secondary: { main: '#f55858' },
     }
 });
+
 
 
 function getUser(state) {
@@ -22,6 +24,7 @@ function getUser(state) {
 }
 
 export function HomeFeed({ nextStage, homefeed }) {
+
 
     const account = useSelector(state => getUser(state))
     const dispatch = useDispatch()
@@ -31,7 +34,8 @@ export function HomeFeed({ nextStage, homefeed }) {
 
             <div className={main.container}>
                 <div className={main.header}>
-                    <img src={require("../../../images/logo-transparent-Y.png")}></img>
+                    <img src={require("../../../images/logo-transparent-D.png")}></img>
+                    {/* <div className={main.logo}></div> */}
                 </div>
                 <div className={main.scroller}>
                     {homefeed.map((item) => (
@@ -43,7 +47,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                                     <div className={main.postLocation}>{item.location}</div>
                                 </div>
                             </div>
-                            <PosterChild format={item.format} image={item.image}></PosterChild>
+                            <PosterChild format={item.format} image={item.image} onDoubleClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}></PosterChild>
 
                             <ActionButton type={item.type}></ActionButton>
                             <div className={main.postFooter}>
@@ -77,10 +81,17 @@ export function HomeFeed({ nextStage, homefeed }) {
                         <NavLink to="/"><Home color="primary" fontSize="large"></Home></NavLink>
                     </div>
                     <div className={main.textbutton}>
-                        <NavLink to="/post-item"><AddCircle color="primary" fontSize="large"></AddCircle></NavLink>
+                        <NavLink to="/post-item">
+                            <AddCircle color="primary" fontSize="large"></AddCircle>
+                            {/* <div className={main.iconbuttonbig}>
+                                <div className={main.plusicon}></div>
+                            </div> */}
+                        </NavLink>
                     </div>
                     <div className={main.textbutton}>
-                        <Avatar color="primary" src={account.avatar} className={main.avatar}></Avatar>
+                        <NavLink to="create-account">
+                            <img className={main.avatarImage} src={account.avatar}></img>
+                        </NavLink>
                     </div>
                 </div>
 
