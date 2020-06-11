@@ -10,21 +10,21 @@ function ActionButton(props) {
             return (
                 <div className={main.actionButton}>
                     <div>Get rewarded 0.10 DAI</div>
-                    <div><ArrowForwardIos fontSize="small"></ArrowForwardIos></div>
+                    <div><ArrowForwardIos className={main.iconAdjust} fontSize="small"></ArrowForwardIos></div>
                 </div>
             )
         case 'fundraiser':
             return (
                 <div className={main.actionButton}>
                     <div>Donate</div>
-                    <div><ArrowForwardIos fontSize="small"></ArrowForwardIos></div>
+                    <div><ArrowForwardIos className={main.iconAdjust} fontSize="small"></ArrowForwardIos></div>
                 </div>
             )
         case 'shop':
             return (
                 <div className={main.actionButton}>
                     <div>Shop</div>
-                    <div><ArrowForwardIos fontSize="small"></ArrowForwardIos></div>
+                    <div><ArrowForwardIos className={main.iconAdjust} fontSize="small"></ArrowForwardIos></div>
                 </div>
             )
         default:

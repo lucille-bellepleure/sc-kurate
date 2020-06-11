@@ -8,8 +8,10 @@ function PosterChild({ image, format }) {
     switch (format) {
         case 'video':
             return (
-                <Player autoPlay loop playsInline muted width="100%" src={require("../images/" + image)}>
-                </Player>
+                <div className={main.video}>
+                    <Player autoPlay loop playsInline muted width="100%" src={require("../images/" + image)}>
+                    </Player>
+                </div>
             )
         case 'image':
             return (

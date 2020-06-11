@@ -668,7 +668,7 @@ font-size: 12px;
   flex-direction: column;
   height: 56px;
   color: var(--sc-white);
-  margin: 40px 0px 40px 0px;  
+  margin: 40px 0px 100px 0px;  
 }
 
 .actionButton {
@@ -683,4 +683,12 @@ font-size: 12px;
   color: var(--sc-grey4);
   z-index: 10;
   padding: 8px 16px 8px 16px;
+}
+
+.iconAdjust {
+  margin-top: 3px;
+}
+
+.video {
+  margin-bottom: 5px;
 }

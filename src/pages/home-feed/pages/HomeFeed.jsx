@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import main from "../../../styles.module.css"
 import { Route, NavLink } from "react-router-dom";
-import { Home, AddCircle, ArrowForwardIos, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons';
+import { Home, AddCircle, ArrowForwardIos, Favorite, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Avatar, Divider } from "@material-ui/core"
 import ActionButton from "../../../components/ActionButton"
@@ -12,7 +12,7 @@ const theme = createMuiTheme({
     // Style sheet name ⚛️
     palette: {
         primary: { main: '#ffffff' },
-        secondary: { main: '#666666' }
+        secondary: { main: '#f55858' },
     }
 });
 
@@ -24,6 +24,7 @@ function getUser(state) {
 export function HomeFeed({ nextStage, homefeed }) {
 
     const account = useSelector(state => getUser(state))
+    const dispatch = useDispatch()
 
     return (
         <ThemeProvider theme={theme}>
@@ -46,7 +47,15 @@ export function HomeFeed({ nextStage, homefeed }) {
 
                             <ActionButton type={item.type}></ActionButton>
                             <div className={main.postFooter}>
-                                <div className={main.likes}><FavoriteBorder fontSize="small"></FavoriteBorder>&nbsp;
+                                <div className={main.likes}>
+                                    {item.ilike
+                                        ? <Favorite
+                                            onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
+                                        : <FavoriteBorder
+                                            onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
+                                            color="primary" fontSize="small"></FavoriteBorder>
+                                    }
+                                    &nbsp;
                                     <b>{item.likes}</b></div>
                                 <div>{item.description}</div>
                             </div>
