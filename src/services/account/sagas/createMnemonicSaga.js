@@ -8,11 +8,13 @@ export default function* createMnemonicSaga(
 
     let wallet = ethers.Wallet.createRandom();
     let randomMnemonic = wallet.mnemonic;
-    console.log(wallet, randomMnemonic);
+    let mnemonicArray = randomMnemonic.split(" ");
+    console.log(wallet, randomMnemonic, mnemonicArray);
 
     const accountObj = {
         status: 'new',
-        mnemonic: randomMnemonic
+        wallet: wallet,
+        mnemonic: mnemonicArray
     }
 
     yield put({ type: "SET_ACCOUNT", data: accountObj })

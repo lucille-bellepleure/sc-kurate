@@ -85,7 +85,7 @@ const initialState = [
     },
 ];
 
-function homefeedState(state = initialState, action) {
+function homefeed(state = initialState, action) {
     switch (action.type) {
         case t.SET_LIKE:
             return state.map((item) =>
@@ -101,8 +101,8 @@ function homefeedState(state = initialState, action) {
     }
 }
 
-const homefeed = persistentReducer(homefeedState, {
-    name: "homefeed"
-});
+// const homefeed = persistentReducer(homefeedState, {
+//     name: "homefeed"
+// });
 
 export default homefeed

@@ -71,7 +71,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                         <div className={main.feedEnd}>
 
                             <div>You're all caught up.</div>
-                            <div className={main.yellow}>Discover more</div>
+                            <div className={main.blue}>Discover more topics</div>
 
                         </div>
                     </div>
@@ -89,9 +89,15 @@ export function HomeFeed({ nextStage, homefeed }) {
                         </NavLink>
                     </div>
                     <div className={main.textbutton}>
-                        <NavLink to="create-account">
-                            <img className={main.avatarImage} src={account.avatar}></img>
-                        </NavLink>
+                        {account.status === "noAccount" ?
+                            <NavLink to="create-account">
+                                <img className={main.avatarImage} src={account.avatar}></img>
+                            </NavLink>
+                            :
+                            <NavLink to="account">
+                                <img className={main.avatarImage} src={account.avatar}></img>
+                            </NavLink>
+                        }
                     </div>
                 </div>
 

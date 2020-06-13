@@ -4,7 +4,7 @@
   flex-direction: column;
   place-items: center flex-start;
   justify-items: stretch;
-  padding: 137px 40px 20px 40px;
+  padding: 100px 40px 20px 40px;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -204,7 +204,9 @@
   color: var(--sc-grey4);
   text-align: center;
   padding-bottom: 5px;
+  border: 0px;
   border-bottom: 1px solid var(--sc-grey4);
+  background-color: transparent;
 }
 
 .usernameinput:not(:placeholder-shown) {
@@ -224,6 +226,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-content: center;
   width: 75vw;
   margin-top: 20px;
 }
@@ -258,16 +261,33 @@
 }
 
 .mnemonic {
-  margin-top: 60px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
+  grid-auto-flow: column;
+  align-items: left;
+justify-items: left;
+  margin-top: 50px;
   composes: bodyBold from "../../styles.module.css";
   line-height: 175%;
   text-align: center;
   color: var(--sc-grey4);
+  column-gap: 45px;
+  row-gap: 6px;
+}
+
+.mnemoniccheck {
+  margin-top: 40px;
+  text-align: center;
 }
 
 .fileinput {
   display: hidden;
   opacity: 0;
+}
+
+.textField {
+  margin-bottom: 20px;
 }
 
 input[type="range"] {

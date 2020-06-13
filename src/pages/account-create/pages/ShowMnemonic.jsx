@@ -33,7 +33,11 @@ export function ShowMnemonic({
         Carefully write down these words:
     </div>
       <div className={createAccount.mnemonic}>
-        {mnemonic}
+        {mnemonic.map((word, index) => (
+          <div>
+            {index + 1 + ". " + word}
+          </div>
+        ))}
       </div>
       <div
         tabIndex="2"

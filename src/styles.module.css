@@ -279,10 +279,30 @@ code {
   color: #efd96f;
 }
 
+.button {
+  composes: bodyButton;
+  composes: baseShadow;
+  width: 75vw;
+  min-width: 200px;
+  max-width: 300px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 30px 42px;
+  border-radius: 2px;
+  cursor: pointer;
+  max-height: 82px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
+}
+
+.buttontext {
+  color: white;
+}
+
 .createaccountbutton {
   align-content: flex-start;
-  width: 90px;
-  height: 20px;
+  width: 146px;
+  height: 56px;
   text-align: center;
   border: 0;
   border-radius: 2px;
@@ -294,7 +314,7 @@ code {
   -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
   -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
   padding: 9px 14px;
-  composes: smallLight;
+  composes: bodyBold;
 }
 
 .baseshadow {
@@ -341,7 +361,6 @@ code {
 
 .iconbuttonbig {
   z-index: 100;
-  margin-top: -36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,8 +383,6 @@ code {
   background-size: 324px 324px;
   background-position: -108px -270px;
 }
-
-
 
 .plusblueicon {
   width: 54px;
@@ -561,7 +578,7 @@ code {
   color: var(--sc-yellow);
   composes: bodyBold;
   background-color: black;
-composes: baseShadow;
+  composes: baseShadow;
 }
 
 .photoplace {
@@ -583,6 +600,7 @@ composes: baseShadow;
   width: 480px;
   height: 480px;
 }
+
 .filterplace {
   display: flex;
   align-items: center;
@@ -601,8 +619,8 @@ composes: baseShadow;
 background-color:white;
   composes: backgroundImg;
 width: 100%;
-margin-top: 68px;
-margin-bottom: 68px;
+margin-top: 56px;
+margin-bottom: 52px;
 }
 
 .footer {
@@ -677,7 +695,7 @@ font-size: 12px;
   justify-content: center;
   flex-direction: column;
   height: 56px;
-  color: var(--sc-white);
+  color: var(--sc-grey4);
   margin: 40px 0px 100px 0px;  
 }
 
