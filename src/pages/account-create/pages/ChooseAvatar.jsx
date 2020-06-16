@@ -11,7 +11,7 @@ export default class ChooseAvatar extends React.Component {
   };
 
   state = {
-    image: defaultAvatar,
+    image: this.props.avatar,
     allowZoomOut: false,
     position: { x: 0.5, y: 0.5 },
     scale: 1.2,

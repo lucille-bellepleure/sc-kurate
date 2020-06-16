@@ -73,13 +73,16 @@ export function AccountCreateRoot() {
         case showMnemonic:
             return (
                 <ShowMnemonic
-                    nextStage={() => setStage(checkMnemonic)}>
+                    nextStage={() => setStage(checkMnemonic)}
+                    exitStage={() => setStage(createOrRestore)}>
                 </ ShowMnemonic>
             );
         case checkMnemonic:
             return (
                 <CheckMnemonic
-                    nextStage={() => setStage(chooseUsername)}>
+                    nextStage={() => setStage(chooseUsername)}
+                    exitStage={() => setStage(createOrRestore)}>
+                    >
                 </CheckMnemonic>
             );
         case chooseUsername:
@@ -89,12 +92,14 @@ export function AccountCreateRoot() {
                     setUsername={setUsername}
                     username={username}
                     nextStage={() => setStage(choosePassword)}
+                    exitStage={() => setStage(createOrRestore)}
                     avatarStage={() => setStage(chooseAvatar)}>
                 </ChooseUsername>
             );
         case chooseAvatar:
             return (
                 <ChooseAvatar
+                    avatar={defaultAvatar}
                     exitStage={() => setStage(chooseUsername)}
                     setAvatar={setAvatar}>
                 </ChooseAvatar>
@@ -103,16 +108,14 @@ export function AccountCreateRoot() {
             return (
                 <ChoosePassword
                     createAccount={createAccount}
-                    exitStage={() => setStage()}
+                    exitStage={() => setStage(createOrRestore)}
                     setPassword={setPassword}
                     password={password}
                 />
             );
         case successStage:
             return (
-                <SuccessEnter
-
-                />
+                <SuccessEnter />
             );
         case 'newAccount':
             return (

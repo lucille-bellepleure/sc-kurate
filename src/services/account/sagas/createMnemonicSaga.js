@@ -12,7 +12,6 @@ export default function* createMnemonicSaga(
     console.log(wallet, randomMnemonic, mnemonicArray);
 
     const accountObj = {
-        status: 'new',
         wallet: wallet,
         mnemonic: mnemonicArray
     }
