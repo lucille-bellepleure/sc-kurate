@@ -18,6 +18,11 @@ function accountState(state = initialState, action) {
                 ...action.data
             };
 
+        case t.RESET_ACCOUNT:
+            return {
+                ...initialState
+            }
+
         default:
             return state;
     }

@@ -1,15 +1,16 @@
 import React, { useState, useRef, useCallback } from "react"
-import Cropper from 'react-easy-crop'
+import Cropper from 'react-cropper'
+import 'cropperjs/dist/cropper.css';
 import main from "../../../styles.module.css"
 import { Route, NavLink } from "react-router-dom";
-
-export function UploadPhoto({ nextStage }) {
+import Placeholder from "../../../images/placeholder.png"
+export function UploadPhoto({ nextStage, setPhoto }) {
 
     const [filesState, setFilesState] = useState({
-        filedata: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAA…DYNAAGDSAQQNg0AAGDcCVBYT1Br02Pnj1AAAAAElFTkSuQmCC"
+        filedata: Placeholder
     });
     const fileUploadRef = useRef(null);
-    const cropperRef = useRef(null);
+    let cropperRef = useRef(null);
 
     console.log(filesState)
 
@@ -33,9 +34,9 @@ export function UploadPhoto({ nextStage }) {
     }
 
     const processImage = () => {
-        const canvas = cropperRef.current;
-        const ctx = canvas.getContext('2d')
-        console.log(ctx)
+        const photo = cropperRef.getCroppedCanvas({ maxWidth: 480, maxHeight: 480 }).toDataURL();
+        setPhoto(photo);
+        nextStage();
     }
 
     const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -50,34 +51,28 @@ export function UploadPhoto({ nextStage }) {
                 <div><NavLink className={main.textbutton} to="/">Cancel</NavLink></div>
                 <div onClick={() => processImage()} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>Next</div>
             </div>
+            <div className={main.photoplace}>
+                <Cropper
+                    ref={cropper => { cropperRef = cropper }}
+                    src={filesState.filedata}
+                    className={main.cropper}                    // Cropper.js options
+                    viewMode={3}
+                    aspectRatio={1 / 1}
+                    guides={true}
+                    cropBoxMovable={false}
+                    cropBoxResizable={false}
+                    dragMode="move"
+                    toggleDragModeOnDblclick={false}></Cropper>
+            </div>
             <label htmlFor="upload-button">
-                <div className={main.photoplace}>
-                    <Cropper
-                        ref={cropperRef}
-                        className={main.cropper}
-                        image={filesState.filedata}
-                        crop={crop}
-                        showGrid
-                        style={{ containerStyle: {} }}
-                        zoom={zoom}
-                        aspect={1 / 1}
-                        onCropChange={setCrop}
-                        onCropComplete={onCropComplete}
-                        onZoomChange={setZoom}
-                        cropSize={{ width: 480, height: 480 }}
-                        maxZoom={6}
-                    />
-                </div>
-                <div className={main.filterplace}>
-                    <div className={main.iconbuttonbig}>
-                        <div className={main.plusicon}></div>
-                    </div>
+                <div className={main.iconbuttonbig}>
+                    <div className={main.plusicon}></div>
                 </div>
             </label>
             <input type="file"
                 id="upload-button"
                 hidden onChange={handleFileUpload} />
-        </div>
+        </div >
     );
 }
 
