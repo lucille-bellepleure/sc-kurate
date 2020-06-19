@@ -1012,6 +1012,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.6.2":
+  version "7.10.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.2.tgz#d103f21f2602497d38348a32e008637d506db839"
+  integrity sha512-6sF3uQw2ivImfVIl62RZ7MXhO2tap69WeWK57vAaimT6AZbE4FbqjdEJIN1UqoD6wI6B+1n9UiagafH1sxjOtg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.10.1":
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.10.1.tgz#e167154a94cb5f14b28dc58f5356d2162f539811"
@@ -1105,6 +1112,177 @@
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
   integrity sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==
+
+"@erebos/bzz-browser@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@erebos/bzz-browser/-/bzz-browser-0.13.0.tgz#7dc77479aee2eebaa11ec0f4aff5ba646ed0269a"
+  integrity sha512-jlQiaacM5WeC7yuI6sq8A/2zBpFPKwCmxYPfpNO+eup5iZliqpBsIO8Pkw3BEMLE7FRmBXelUZCP8yRTfmIpQg==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@erebos/bzz" "^0.13.0"
+    tar-stream "^2.1.0"
+
+"@erebos/bzz-feed@^0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@erebos/bzz-feed/-/bzz-feed-0.13.2.tgz#9f5deb91e6c525caad4ca0da2b3d037439ef855d"
+  integrity sha512-7K4C4FkgKLmhxQPNA1cUe8nOrkKUYwxh2VZHQPXvi3nkr2W8zTGRTMSlDCxCCK5Sgxd0gMdqykDWzMsSfFP5qA==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@erebos/hex" "^0.13.0"
+    "@erebos/keccak256" "^0.13.1"
+    rxjs "^6.5.4"
+
+"@erebos/bzz-node@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@erebos/bzz-node/-/bzz-node-0.13.0.tgz#495240c8b4fa67fa920c52a2d8db2cf82e673e1a"
+  integrity sha512-Mmo9awJG/Agj6lPqicj8VRdUELoT9pP2xIVniaoUqIMMZkf+lswXFylkyH578ZCNaehyZTTttaXS5WA+T9UVyA==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@erebos/bzz" "^0.13.0"
+    form-data "^3.0.0"
+    node-fetch "^2.6.0"
+    tar-stream "^2.1.0"
+
+"@erebos/bzz@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@erebos/bzz/-/bzz-0.13.0.tgz#8ddd4e685c8ed53b5147653e041c21fc35553468"
+  integrity sha512-ETjXxeNzT7wGofz0CcrNEc/dLeLg0DALuxpMymrzK+AvLvP8PZUfiFn+tZoupSMGaLldfSLJXweOfs3BimVaRg==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+
+"@erebos/client-base@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@erebos/client-base/-/client-base-0.11.0.tgz#93e1e7c411ea02e407bad90f6377a37cfc9953ac"
+  integrity sha512-1w6BMRywAb6efrmFQY8plsYn+wOOJMdKuL2Jq7X87ssLFJHsBPy9+LDTKnx2ghaZxgUSXVoxzoZ23aiJH63AGw==
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@erebos/rpc-base" "^0.10.0"
+    "@erebos/rpc-stream" "^0.11.0"
+
+"@erebos/hex@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@erebos/hex/-/hex-0.13.0.tgz#20e72252720876ce5dac8e8a4667c65fce11cd34"
+  integrity sha512-aKHoLiWX+LeejzHrkM8I52G1EbZGqA/JgmqscrVDJAabjvXgDyaa7fES9218th0D9c115C4pv5mxxNKCoaADpA==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+
+"@erebos/keccak256@^0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@erebos/keccak256/-/keccak256-0.13.1.tgz#7e79d6a781664263fd757ec45f77075bfc8ff7d4"
+  integrity sha512-zeNl0p201iv39U9aBnqqV9I4SWvRjAZ8OiN78cemEBBouNvBFisrhurHE8/cOcuwAFQf+6Vfo07tnspQJcsTPQ==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@erebos/hex" "^0.13.0"
+    js-sha3 "^0.8.0"
+
+"@erebos/pss@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@erebos/pss/-/pss-0.13.0.tgz#e32ff184c600104ffbab24f8ce8cc473f639d732"
+  integrity sha512-+94j7oqf7GuSiI/VEwsXSuB/3JKplF7Kx5u31W/uIQiYuy4000WDMMlC7LPAi9Ns9E5e9pEkjN7ba9dO/JFlIw==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@erebos/hex" "^0.13.0"
+    "@erebos/rpc-stream" "^0.11.0"
+    rxjs "^6.5.4"
+
+"@erebos/rpc-base@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-base/-/rpc-base-0.10.0.tgz#f517a7911fa168c3c4ccb6cab25695bd56e2ee2c"
+  integrity sha512-cm+y5iILyDxkOhk+klnlCNRALYfWJhzaqKR2BqFZC4qjEmRQHukq7CmDhh+YF0aiFa1tfHF97/W+42+4vGXgJw==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    nanoid "^2.1.1"
+
+"@erebos/rpc-browser@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-browser/-/rpc-browser-0.11.0.tgz#15d48b0795f36426e98c2ca0cda5fc85b7d32d1c"
+  integrity sha512-oN3xX8lnnKCCQwCdDMLvYxCzRWbub/W7cwj+gc/s41s8xpgG3JgxoUo3XMG7pkrxkkFTcPQ0BwSnOazeuBmgww==
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@erebos/rpc-http-browser" "^0.11.0"
+    "@erebos/rpc-ws-browser" "^0.11.0"
+
+"@erebos/rpc-error@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-error/-/rpc-error-0.10.0.tgz#0f249c41ffbf1b2a6d099d3d45251d1858ecc9bc"
+  integrity sha512-w1nzVry+tKyM5mOFtY1fFf/z12N5gHdPWnlKr3QCPdH15gHZD9OhVlaioGRo/oUCbjPrrbdflkdAJMYZsu40tA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@erebos/rpc-base" "^0.10.0"
+
+"@erebos/rpc-http-browser@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-http-browser/-/rpc-http-browser-0.11.0.tgz#6824de80592c27c666dd33f580d7d7bd2dc48ff4"
+  integrity sha512-q8bNrOevmCKuLUEyNocIKVBMTJn6ffEwo4jjmRiE4YQCu+7/K4wv8faCPEpQJZXvSAai1j78BeSnSRLik5+HDQ==
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@erebos/rpc-request" "^0.11.0"
+    "@erebos/transport-http-browser" "^0.10.0"
+
+"@erebos/rpc-request@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-request/-/rpc-request-0.11.0.tgz#77287f8d07b1c77df7945a704404072984e84911"
+  integrity sha512-BqPilyIJTSsI+CSGupLNCs7qnz2gVSP36xhihCLzL597Nj+rqKJykNjMbYJ3aOTj0jW0gx6PdwgRwdd1wwNYoA==
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@erebos/rpc-base" "^0.10.0"
+    "@erebos/rpc-error" "^0.10.0"
+
+"@erebos/rpc-stream@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-stream/-/rpc-stream-0.11.0.tgz#dc38b44bf3cbe7f4c9491e00014bf871bbda87d9"
+  integrity sha512-duNWf6tDQ2gjqiLhGrL45nV6Zl0P3acQvtoDEVjQA8wchwCspc59Crq+IrJ2coVN7kOdgIKB9AqvSbGE+pPZEA==
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@erebos/rpc-base" "^0.10.0"
+    "@erebos/rpc-error" "^0.10.0"
+    rxjs "^6.5.3"
+
+"@erebos/rpc-ws-browser@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@erebos/rpc-ws-browser/-/rpc-ws-browser-0.11.0.tgz#8d8be1a884c8e31ea51a04f567761f31c187fbc6"
+  integrity sha512-yFw0s9jVWlJFEDPMymESVp/T91P67sq6MGTkxc1XKnt4fIP5nK/1Ctt+/wIM/DCynjx+EsYmv3OmnGbmp1z54Q==
+  dependencies:
+    "@babel/runtime" "^7.7.4"
+    "@erebos/rpc-stream" "^0.11.0"
+    "@erebos/transport-ws-browser" "^0.10.0"
+
+"@erebos/secp256k1@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@erebos/secp256k1/-/secp256k1-0.10.0.tgz#4003aae0e8c5d3ac197c576491f3cf15dff5c29a"
+  integrity sha512-0mGDq937uQiEE4tyEseEiW8b7ymX/m/ARrXSIyrsYPBJA89A2uj1hLbMQF8fwCBYSD7XA464g1JYQC2r//ZgHQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    elliptic "^6.5.1"
+
+"@erebos/swarm-browser@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@erebos/swarm-browser/-/swarm-browser-0.13.0.tgz#426833b1caeca6521467e3636dadda54197f4d0a"
+  integrity sha512-EwT818nALj525VB8SKNQBEN8BzgCq/QoAS828uY1MbwAtl0y+uzuCIDu6RD99yzztwR7zAhrhkkLtPspTjZhKw==
+  dependencies:
+    "@babel/runtime" "^7.8.3"
+    "@erebos/bzz" "^0.13.0"
+    "@erebos/bzz-browser" "^0.13.0"
+    "@erebos/client-base" "^0.11.0"
+    "@erebos/pss" "^0.13.0"
+    "@erebos/rpc-browser" "^0.11.0"
+    "@erebos/rpc-stream" "^0.11.0"
+    "@erebos/rpc-ws-browser" "^0.11.0"
+
+"@erebos/transport-http-browser@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@erebos/transport-http-browser/-/transport-http-browser-0.10.0.tgz#adcd0b7b3b9744961128e32b2a3f3ede7d66726d"
+  integrity sha512-uol+BBgd55MW71vqwCt0P1Fy8cOwAKkrf7j0S9sk0znQwS+MXGv9wy62RyHIRgRC22yYE1HQUe+CcxUB3DZV7g==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+
+"@erebos/transport-ws-browser@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@erebos/transport-ws-browser/-/transport-ws-browser-0.10.0.tgz#cb88b8b3ba822f880715f34d20924260dc085ae3"
+  integrity sha512-hsjLOOmLisHVighnqAYzNHUq648xpgxejDGpT47s3lbWKFYv7DZHJvwa4K+UeKaLOcSY/l6acZM440kYMunUog==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    rxjs "^6.5.3"
 
 "@ethersproject/abi@5.0.0-beta.153":
   version "5.0.0-beta.153"
@@ -2875,6 +3053,15 @@ bl@^1.0.0:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
+bl@^4.0.1:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/bl/-/bl-4.0.2.tgz#52b71e9088515d0606d9dd9cc7aa48dc1f98e73a"
+  integrity sha512-j4OH8f6Qg2bGuWfRiltT2HYGx0e1QcBTrK9KAHNMwMZdQnDZFk0ZSYIpADjYCB3U12nicC5tVJwSIhwOWjb4RQ==
+  dependencies:
+    buffer "^5.5.0"
+    inherits "^2.0.4"
+    readable-stream "^3.4.0"
+
 bluebird@^3.5.0, bluebird@^3.5.5:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
@@ -3574,7 +3761,7 @@ color@^3.0.0:
     color-convert "^1.9.1"
     color-string "^1.5.2"
 
-combined-stream@^1.0.6, combined-stream@~1.0.5, combined-stream@~1.0.6:
+combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.5, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
@@ -4567,7 +4754,7 @@ electron-to-chromium@^1.3.378:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.379.tgz#81dc5e82a3e72bbb830d93e15bc35eda2bbc910e"
   integrity sha512-NK9DBBYEBb5f9D7zXI0hiE941gq3wkBeQmXs1ingigA/jnTg5mhwY2Z5egwA+ZI8OLGKCx0h1Cl8/xeuIBuLlg==
 
-elliptic@6.5.2, elliptic@^6.0.0, elliptic@^6.4.0, elliptic@^6.5.2:
+elliptic@6.5.2, elliptic@^6.0.0, elliptic@^6.4.0, elliptic@^6.5.1, elliptic@^6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.2.tgz#05c5678d7173c049d8ca433552224a495d0e3762"
   integrity sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==
@@ -4625,7 +4812,7 @@ encoding-down@~4.0.0:
     level-errors "^1.0.4"
     xtend "^4.0.1"
 
-end-of-stream@^1.0.0, end-of-stream@^1.1.0:
+end-of-stream@^1.0.0, end-of-stream@^1.1.0, end-of-stream@^1.4.1:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.4.tgz#5ae64a5f45057baf3626ec14da0ca5e4b2431eb0"
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
@@ -5546,6 +5733,15 @@ fork-ts-checker-webpack-plugin@3.1.1:
     semver "^5.6.0"
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
+
+form-data@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
+  integrity sha512-CKMFDglpbMi6PyN+brwB9Q/GOw0eAnsrEZDgcsH5Krhz5Od/haKHAX0NmQfha2zPPz0JpWzA7GJHGSnvCRLWsg==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
 
 form-data@~2.3.1, form-data@~2.3.2:
   version "2.3.3"
@@ -8618,6 +8814,11 @@ nano-json-stream-parser@^0.1.2:
   resolved "https://registry.yarnpkg.com/nano-json-stream-parser/-/nano-json-stream-parser-0.1.2.tgz#0cc8f6d0e2b622b479c40d499c46d64b755c6f5f"
   integrity sha1-DMj20OK2IrR5xA1JnEbWS3Vcb18=
 
+nanoid@^2.1.1:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
+  integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -8684,6 +8885,11 @@ node-fetch@2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.4.1.tgz#b2e38f1117b8acbedbe0524f041fb3177188255d"
   integrity sha512-P9UbpFK87NyqBZzUuDBDz4f6Yiys8xm8j7ACDbi6usvFm6KItklQUKjeoqTrYS/S1k6I8oaOC2YLLDr/gg26Mw==
+
+node-fetch@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
 
 node-forge@0.9.0:
   version "0.9.0"
@@ -11322,7 +11528,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.5.1:
+rxjs@^6.5.1, rxjs@^6.5.4:
   version "6.5.5"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.5.tgz#c5c884e3094c8cfee31bf27eb87e54ccfc87f9ec"
   integrity sha512-WfQI+1gohdf0Dai/Bbmk5L5ItH5tYqm3ki2c5GdWhKjalzjg93N3avFjVStyZZz+A2Em+ZxKH5bNghw9UeylGQ==
@@ -12279,6 +12485,17 @@ tar-stream@^1.1.2:
     readable-stream "^2.3.0"
     to-buffer "^1.1.1"
     xtend "^4.0.0"
+
+tar-stream@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-2.1.2.tgz#6d5ef1a7e5783a95ff70b69b97455a5968dc1325"
+  integrity sha512-UaF6FoJ32WqALZGOIAApXx+OdxhekNMChu6axLJR85zMMjXKWFGjbIRe+J6P4UnRGg9rAwWvbTT0oI7hD/Un7Q==
+  dependencies:
+    bl "^4.0.1"
+    end-of-stream "^1.4.1"
+    fs-constants "^1.0.0"
+    inherits "^2.0.3"
+    readable-stream "^3.1.1"
 
 tar@^4.0.2:
   version "4.4.13"

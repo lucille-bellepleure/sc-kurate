@@ -17,14 +17,11 @@ const theme = createMuiTheme({
     }
 });
 
-
-
 function getUser(state) {
     return state.account
 }
 
 export function HomeFeed({ nextStage, homefeed }) {
-
 
     const account = useSelector(state => getUser(state))
     const dispatch = useDispatch()

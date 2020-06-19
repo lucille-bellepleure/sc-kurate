@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@erebos/bzz-feed": "^0.13.2",
+    "@erebos/bzz-node": "^0.13.0",
+    "@erebos/keccak256": "^0.13.1",
+    "@erebos/secp256k1": "^0.10.0",
+    "@erebos/swarm-browser": "^0.13.0",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.50",

@@ -44,20 +44,21 @@ export function AccountCreateRoot() {
     console.log(accountData)
 
     const createAccount = (password) => {
-        const encryptedPrivatekey = window.web3.eth.accounts.encrypt(accountData.wallet.signingKey.privateKey, password);
+        //const encryptedPrivatekey = window.web3.eth.accounts.encrypt(accountData.wallet.signingKey.privateKey, password);
 
         const accountObj = {
-            avatar: avatar,
+            //     avatar: avatar,
             username: username,
-            status: 'account',
-            mnemonic: [],
-            wallet: {},
-            address: accountData.wallet.signingKey.address,
-            publicKey: accountData.wallet.signingKey.publicKey,
-            privateKey: encryptedPrivatekey
+            password: password,
+            //     status: 'account',
+            //     mnemonic: [],
+            //     wallet: {},
+            //     address: accountData.wallet.signingKey.address,
+            //     publicKey: accountData.wallet.signingKey.publicKey,
+            //     privateKey: encryptedPrivatekey
         }
 
-        dispatch({ type: "SET_ACCOUNT", data: accountObj })
+        dispatch({ type: "CREATE_ACCOUNT", data: accountObj })
         setStage(successStage)
     }
 
@@ -66,7 +67,7 @@ export function AccountCreateRoot() {
         case createOrRestore:
             return (
                 <CreateOrRestore
-                    nextStage={() => setStage(showMnemonic)}
+                    nextStage={() => setStage(chooseUsername)}
                     exitStage={() => history.goBack()}
                 />
             );

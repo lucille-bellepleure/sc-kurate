@@ -12,7 +12,9 @@ export default function* createMnemonicSaga(
     console.log(wallet, randomMnemonic, mnemonicArray);
 
     const accountObj = {
-        wallet: wallet,
+        address: wallet.address,
+        publicKey: wallet.publicKey,
+        privateKey: wallet.privateKey,
         mnemonic: mnemonicArray
     }
 
