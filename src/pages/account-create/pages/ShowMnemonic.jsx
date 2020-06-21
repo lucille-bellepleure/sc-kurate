@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import styles from "../../../styles.module.css";
+import styles from "styles.module.css";
 import createAccount from "../account-create.module.css";
 import { useSelector, useDispatch } from "react-redux";
 
-import { createMnemonic } from '../../../services/account/actions'
+import { createMnemonic } from 'services/account/actions'
 function getMnemonic(state) {
   return state.account.mnemonic
 }

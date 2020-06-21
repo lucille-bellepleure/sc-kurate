@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import defaultAvatar from "../../images/defaultAvatar.png";
+import defaultAvatar from "images/defaultAvatar.png";
 
 // Sub-pages
 import CreateOrRestore from './pages/CreateOrRestore';
@@ -13,7 +13,7 @@ import ChooseAvatar from './pages/ChooseAvatar';
 import ChoosePassword from "./pages/ChoosePassword";
 import SuccessEnter from "./pages/SuccessEnter";
 
-import { createAccount } from "../../services/account/actions";
+import { createAccount } from "services/account/actions";
 
 // Ids
 const createOrRestore = 'createOrRestore';

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../../styles.module.css";
+import styles from "styles.module.css";
 import createAccount from "../account-create.module.css";
 
 const ChooseUsername = ({

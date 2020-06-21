@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import styles from "../../../styles.module.css";
+import styles from "styles.module.css";
 import createAccountStyles from "../account-create.module.css";
 import { Form, FormProvider } from 'react-advanced-form'
 import { Input } from 'react-advanced-form-addons'

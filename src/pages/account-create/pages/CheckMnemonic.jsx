@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Form, FormProvider } from 'react-advanced-form'
 import { Input } from 'react-advanced-form-addons'
-import styles from "../../../styles.module.css";
+import styles from "styles.module.css";
 import createAccount from "../account-create.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, InputAdornment, TextField } from "@material-ui/core";
 import { Check } from "@material-ui/icons"
 
-import { createMnemonic } from '../../../services/account/actions'
+import { createMnemonic } from 'services/account/actions'
 function getMnemonic(state) {
   return state.account.mnemonic
 }

@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Swarm City](https://github.com/swarmcity/sc-boardwalk-production/blob/master/images/icons/icon-48x48.png?raw=true "Swarm City")
+
+# Insta-Swarm (working title)
 
 ## Available Scripts
+- `yarn start`
+- `yarn test`
+- `yarn build`
 
-In the project directory, you can run:
+## At its core Swarm City is a blockchain based marketplace with a built in reputation system.
+### Swarm City uses blockchain technology and smart contracts to allow people to communicate and transact value, and earn contextual reputation.
 
-### `yarn start`
+**The blockchain provides transparency, so users can safely interact with people they don’t know, while keeping their private information to themselves. Smart contracts make sure interactions go as planned, and generate marketplace specific reputation for successful deals.**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Swarm City users can:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- buy and sell products and services in a decentralized way.
+- earn tokens by interacting with sponsored posts
+- spend tokens by purchasing items and sponsoring causes 
+- get rewarded for being a good actor by earning immutable reputation.
 
-### `yarn test`
+Find us on:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Slack](https://slackinvite.swarm.city/)
 
-### `yarn build`
+[Medium](https://medium.com/swarm-city-times)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Github](https://github.com/swarmcity)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+[Twitter](https://twitter.com/swarmcitydapp)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Youtube](https://www.youtube.com/channel/UCsHBWn_ytZ3xdMbTyYe5Ifg)
 
-### `yarn eject`
+[Facebook](https://www.facebook.com/groups/SwarmCity/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Reddit](https://www.reddit.com/r/SwarmCity/)

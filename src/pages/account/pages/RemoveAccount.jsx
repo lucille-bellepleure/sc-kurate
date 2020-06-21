@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../styles.module.css";
+import styles from "styles.module.css";
 import createAccount from "../account.module.css";
 
 const RemoveAccount = ({ nextStage, removeAccount }) => (

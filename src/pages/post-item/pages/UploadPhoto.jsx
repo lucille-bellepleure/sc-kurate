@@ -1,9 +1,9 @@
 import React, { useState, useRef, useCallback } from "react"
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
-import main from "../../../styles.module.css"
+import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
-import Placeholder from "../../../images/placeholder.png"
+import Placeholder from "images/placeholder.png"
 export function UploadPhoto({ nextStage, setPhoto }) {
 
     const [filesState, setFilesState] = useState({

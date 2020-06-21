@@ -1,13 +1,13 @@
 import React, { useState, useRef, useCallback } from "react"
 
 import { useSelector, useDispatch } from "react-redux"
-import main from "../../../styles.module.css"
+import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
 import { Home, AddCircle, ArrowForwardIos, Favorite, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Avatar, Divider } from "@material-ui/core"
-import ActionButton from "../../../components/ActionButton"
-import PosterChild from "../../../components/PosterChild"
+import ActionButton from "components/ActionButton"
+import PosterChild from "components/PosterChild"
 
 const theme = createMuiTheme({
     // Style sheet name ⚛️

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react"
-import main from "../../../styles.module.css"
+import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
 
 export function FilterPhoto({ nextStage, image }) {
