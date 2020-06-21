@@ -5,15 +5,15 @@ export default function* createMnemonicSaga(
     action
 ) {
     console.log("CreateMnemonic Saga", action.data)
-
-    let wallet = ethers.Wallet.createRandom();
+    let wallet = yield ethers.Wallet.createRandom();
+    console.log(wallet)
     let randomMnemonic = wallet.mnemonic;
     let mnemonicArray = randomMnemonic.split(" ");
     console.log(wallet, randomMnemonic, mnemonicArray);
 
     const accountObj = {
         address: wallet.address,
-        publicKey: wallet.publicKey,
+        publicKey: wallet.signingKey.publicKey,
         privateKey: wallet.privateKey,
         mnemonic: mnemonicArray
     }

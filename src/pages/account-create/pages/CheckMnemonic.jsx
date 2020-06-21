@@ -66,6 +66,7 @@ export function CheckMnemonic({
                 name="word3"
                 placeholder="Word 3"
                 required
+                value={mnemonic[2]}
               ></Input>
             </div>
             <div className={createAccount.textField}>
@@ -73,12 +74,16 @@ export function CheckMnemonic({
                 name="word5"
                 placeholder="Word 5"
                 required
+                value={mnemonic[4]}
+
               ></Input>
             </div>
             <div className={createAccount.textField}>
               <Input
                 name="word9"
                 placeholder="Word 9"
+                value={mnemonic[8]}
+
                 required
               ></Input>
             </div>
@@ -86,6 +91,8 @@ export function CheckMnemonic({
               <Input
                 name="word11"
                 placeholder="Word 11"
+                value={mnemonic[10]}
+
                 required
               ></Input>
             </div>

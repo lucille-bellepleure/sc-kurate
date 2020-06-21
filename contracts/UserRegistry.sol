@@ -91,10 +91,10 @@ contract UserRegistry {
         // Add a verfier to this user's hash
 
         // If the verifier isnt verified himself, throw.
-        if (users[msg.sender].numVerifications < verificationthresh) {
-            emit Error("verifier has not enough verifications.");
-            return "verifier has not enough verifications.";
-        }
+        require(
+            users[msg.sender].numVerifications >= verificationthresh,
+            "verifier has not enough verifications."
+        );
 
         uint256 numval = users[userAddress].numVerifications;
         users[userAddress].verifications[msg.sender] = true;

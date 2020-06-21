@@ -44,18 +44,14 @@ export function AccountCreateRoot() {
     console.log(accountData)
 
     const createAccount = (password) => {
-        //const encryptedPrivatekey = window.web3.eth.accounts.encrypt(accountData.wallet.signingKey.privateKey, password);
 
         const accountObj = {
-            //     avatar: avatar,
+            avatar: avatar,
             username: username,
             password: password,
-            //     status: 'account',
-            //     mnemonic: [],
-            //     wallet: {},
-            //     address: accountData.wallet.signingKey.address,
-            //     publicKey: accountData.wallet.signingKey.publicKey,
-            //     privateKey: encryptedPrivatekey
+            address: accountData.address,
+            publicKey: accountData.publicKey,
+            privateKey: accountData.privateKey
         }
 
         dispatch({ type: "CREATE_ACCOUNT", data: accountObj })
@@ -67,7 +63,7 @@ export function AccountCreateRoot() {
         case createOrRestore:
             return (
                 <CreateOrRestore
-                    nextStage={() => setStage(chooseUsername)}
+                    nextStage={() => setStage(showMnemonic)}
                     exitStage={() => history.goBack()}
                 />
             );

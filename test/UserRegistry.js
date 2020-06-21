@@ -17,6 +17,12 @@ contract("UserRegistry", accounts => {
         publicKey: '0x62c60782be40fce0b915ff6eecd6e23a1eaf64f0654cb9962e8a89d1f27ce992d7b9a7cf1f7e318d575620026ca25b69c241d3ff31f5720e0c2665853c671eae',
         userName: 'Kiki',
         userAvatar: 'data:data'
+    };
+    let edina = {
+        account: accounts[3],
+        publicKey: '0xa7123e8516ffd258ef67aaf536426e66a1d8f37ff1f9eb087e7d218690a1276b179a5b998301178533506d6afb33ea12a4ac96b9b44cfebae04944d9c8428d67',
+        userName: 'Edina',
+        userAvatar: 'data:data'
     }
 
     it('Should initialise and set owner', async () => {
@@ -62,6 +68,50 @@ contract("UserRegistry", accounts => {
         );
         let registeredUser = await userRegistry.readUser(kiki.account);
         assert.equal(kiki.userName, registeredUser.userName);
+    });
+    it('Should set a new useraccount (Edina) from Verified user (Michelle)', async () => {
+        let user = await userRegistry.addUser(
+            edina.account,
+            edina.userName,
+            edina.userAvatar,
+            edina.publicKey,
+            { from: michelle.account }
+        );
+        let registeredUser = await userRegistry.readUser(edina.account);
+        assert.equal(edina.userName, registeredUser.userName);
+    });
+    it('Owner should verify Kiki', async () => {
+        let result = await userRegistry.addVerification(kiki.account,
+            { from: contractOwner.account }
+        );
+        let numVerifications = await userRegistry.checkVeracity(kiki.account);
+        assert.equal(numVerifications.toNumber(), 1);
+    });
+    it('Michelle should verify Kiki', async () => {
+        let result = await userRegistry.addVerification(kiki.account,
+            { from: michelle.account }
+        );
+        let numVerifications = await userRegistry.checkVeracity(kiki.account);
+        assert.equal(numVerifications.toNumber(), 2);
+    });
+    it('Edina should not be able to verify Kiki', async () => {
+        let result = await userRegistry.addVerification(kiki.account,
+            { from: edina.account }
+        );
+    });
+    it('Kiki should verify Edina', async () => {
+        let result = await userRegistry.addVerification(edina.account,
+            { from: kiki.account }
+        );
+        let numVerifications = await userRegistry.checkVeracity(edina.account);
+        assert.equal(numVerifications.toNumber(), 1);
+    });
+    it('Michelle should verify Edina', async () => {
+        let result = await userRegistry.addVerification(edina.account,
+            { from: michelle.account }
+        );
+        let numVerifications = await userRegistry.checkVeracity(edina.account);
+        assert.equal(numVerifications.toNumber(), 2);
     });
 
 })
