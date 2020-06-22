@@ -6,18 +6,18 @@ import defaultAvatar from "images/defaultAvatar.png";
 // Sub-pages
 import CreateOrRestore from './pages/CreateOrRestore';
 import ShowMnemonic from './pages/ShowMnemonic';
-import AccountView from './pages/AccountView';
 import CheckMnemonic from './pages/CheckMnemonic';
 import ChooseUsername from './pages/ChooseUsername';
 import ChooseAvatar from './pages/ChooseAvatar';
 import ChoosePassword from "./pages/ChoosePassword";
 import SuccessEnter from "./pages/SuccessEnter";
+import RestoreAccountStart from "./pages/RestoreAccountStart";
+import RestoreAccountCheck from "./pages/RestoreAccountCheck"
 
 import { createAccount } from "services/account/actions";
 
 // Ids
 const createOrRestore = 'createOrRestore';
-const accountView = 'accountView';
 const showMnemonic = 'showMnemonic';
 const checkMnemonic = 'checkMnemonic';
 const chooseUsername = 'chooseUsername';
@@ -25,7 +25,11 @@ const chooseAvatar = 'chooseAvatar';
 const choosePassword = "choosePassword";
 const successStage = "successStage";
 
+const restoreAccountStart = "restoreAccountStart";
+const restoreAccountCheck = "restoreAccountCheck";
+
 function getAccount(state) {
+
     return state.account
 }
 
@@ -35,13 +39,19 @@ export function AccountCreateRoot() {
     const history = useHistory()
     const dispatch = useDispatch()
 
+
     // User Creation state
     const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState(defaultAvatar);
     const [password, setPassword] = useState("");
 
+
     const accountData = useSelector(state => getAccount(state))
     console.log(accountData)
+
+    if (accountData.status === "accountSet") {
+        history.push("/account")
+    }
 
     const createAccount = (password) => {
 
@@ -55,7 +65,7 @@ export function AccountCreateRoot() {
         }
 
         dispatch({ type: "CREATE_ACCOUNT", data: accountObj })
-        setStage(successStage)
+        //setStage(successStage)
     }
 
     // Router
@@ -63,7 +73,8 @@ export function AccountCreateRoot() {
         case createOrRestore:
             return (
                 <CreateOrRestore
-                    nextStage={() => setStage(showMnemonic)}
+                    createStage={() => setStage(showMnemonic)}
+                    restoreStage={() => setStage(restoreAccountStart)}
                     exitStage={() => history.goBack()}
                 />
             );
@@ -114,13 +125,15 @@ export function AccountCreateRoot() {
             return (
                 <SuccessEnter />
             );
-        case 'newAccount':
+        case restoreAccountStart:
             return (
-                <AccountView
-                    account={accountData}
-                    nextStage={() => setStage()}
-                />
+                <RestoreAccountStart
+                    nextStage={() => setStage(chooseUsername)}
+                    exitStage={() => setStage(createOrRestore)}
+                    setAvatar={setAvatar}
+                    setUsername={setUsername}></RestoreAccountStart>
             );
+
         default:
             return <h1>Oops...</h1>;
     }

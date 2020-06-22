@@ -10,7 +10,7 @@ import { Input } from "react-advanced-form-addons"
 import main from "styles.module.css"
 import accountstyles from "../account-create.module.css"
 
-export function CreateOrRestore({ nextStage, exitStage }) {
+export function CreateOrRestore({ createStage, restoreStage, exitStage }) {
     const dispatch = useDispatch();
 
     const handleSubmit = ({ serialized, fields, form }) => {
@@ -34,7 +34,7 @@ export function CreateOrRestore({ nextStage, exitStage }) {
             <div className={accountstyles.flexer} />
             <div className={accountstyles.flexer} />
 
-            <div tabIndex="2" className={accountstyles.button} onClick={nextStage}>
+            <div tabIndex="2" className={accountstyles.button} onClick={createStage}>
                 <div>
                     <div className={accountstyles.buttontext}>create account</div>
                 </div>
@@ -42,7 +42,7 @@ export function CreateOrRestore({ nextStage, exitStage }) {
 
             <div tabIndex="2" className={accountstyles.button}>
                 <div>
-                    <div className={accountstyles.buttontext}>restore account</div>
+                    <div className={accountstyles.buttontext} onClick={restoreStage}>restore account</div>
                 </div>
             </div>
         </div>

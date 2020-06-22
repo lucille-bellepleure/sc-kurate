@@ -8,7 +8,7 @@ import createSagaMiddleware from "redux-saga";
 import FDS from "fds.js";
 import Web3 from "web3"
 
-window.web3 = new Web3('http://goerli-geth.dappnode:8545')
+window.myWeb3 = new Web3('http://goerli-geth.dappnode:8545')
 
 window.fds = new FDS();
 

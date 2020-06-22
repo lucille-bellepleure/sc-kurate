@@ -47,7 +47,7 @@ export function AccountRoot() {
                     publicKey={account.publicKey}
                     address={account.address}
                     nextStage={() => setStage(removeAccount)}
-                    exitStage={() => history.goBack()}
+                    exitStage={() => history.push("/")}
                 />
             );
         case removeAccount:

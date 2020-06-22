@@ -78,12 +78,22 @@ export function HomeFeed({ nextStage, homefeed }) {
                         <NavLink to="/"><Home color="primary" fontSize="large"></Home></NavLink>
                     </div>
                     <div className={main.textbutton}>
-                        <NavLink to="/post-item">
-                            <AddCircle color="primary" fontSize="large"></AddCircle>
-                            {/* <div className={main.iconbuttonbig}>
+                        {account.status === "noAccount" ?
+                            <NavLink to="/create-account">
+                                <AddCircle color="primary" fontSize="large"></AddCircle>
+                                {/* <div className={main.iconbuttonbig}>
                                 <div className={main.plusicon}></div>
                             </div> */}
-                        </NavLink>
+                            </NavLink>
+                            :
+                            <NavLink to="/post-item">
+                                <AddCircle color="primary" fontSize="large"></AddCircle>
+                                {/* <div className={main.iconbuttonbig}>
+                                <div className={main.plusicon}></div>
+                            </div> */}
+                            </NavLink>
+                        }
+
                     </div>
                     <div className={main.textbutton}>
                         {account.status === "noAccount" ?

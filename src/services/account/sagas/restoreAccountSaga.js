@@ -1,10 +1,9 @@
 import { delay, put, select, fork } from "redux-saga/effects"
-import createSwarmFeed from "helpers/createSwarmFeed"
 
-export default function* createAccountSaga(
+export default function* restoreAccountSaga(
     action
 ) {
-    console.log("CreateAccount Saga", action.data)
+    console.log("RestoreAccount Saga", action.data)
     const userObject = action.data;
     console.log(userObject);
     debugger;
