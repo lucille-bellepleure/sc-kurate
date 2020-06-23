@@ -69,14 +69,15 @@ export function ChoosePassword({
               placeholder="Confirm password"
             />
           </div>
-          <div className={createAccountStyles.flexer} />
+          <div className={createAccountStyles.dialogiconbox}>
 
-          <div
-            tabIndex="2"
-            className={[styles.iconbuttonbig, createAccountStyles.confirm].join(" ")}
-            onClick={() => handleClick()}
-          >
-            <div className={styles.nextblueicon} />
+            <div
+              tabIndex="2"
+              className={[styles.iconbuttonbig, createAccountStyles.confirm].join(" ")}
+              onClick={() => handleClick()}
+            >
+              <div className={styles.nextblueicon} />
+            </div>
           </div>
         </Form>
       </FormProvider>

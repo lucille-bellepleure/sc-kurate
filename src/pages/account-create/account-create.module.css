@@ -228,11 +228,10 @@
   justify-content: center;
   align-content: center;
   width: 75vw;
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .confirm {
-  margin-top: 60px;
   background-color: #ffffff !important;
 }
 
@@ -287,7 +286,8 @@ justify-items: left;
 }
 
 .textField {
-  margin-bottom: 20px;
+  display: flex;
+  width: 75vw;
 }
 
 input[type="range"] {

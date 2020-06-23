@@ -5,8 +5,10 @@ export default function* createMnemonicSaga(
     action
 ) {
     console.log("CreateMnemonic Saga", action.data)
+
     let wallet = yield ethers.Wallet.createRandom();
     console.log(wallet)
+    console.log(wallet.mnemonic);
     let randomMnemonic = wallet.mnemonic;
     let mnemonicArray = randomMnemonic.split(" ");
     console.log(wallet, randomMnemonic, mnemonicArray);

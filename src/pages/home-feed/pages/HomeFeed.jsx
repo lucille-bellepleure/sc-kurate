@@ -9,6 +9,8 @@ import { Avatar, Divider } from "@material-ui/core"
 import ActionButton from "components/ActionButton"
 import PosterChild from "components/PosterChild"
 
+// import AccountUnlock from "components/AccountUnlock"
+
 const theme = createMuiTheme({
     // Style sheet name ⚛️
     palette: {
@@ -25,6 +27,7 @@ export function HomeFeed({ nextStage, homefeed }) {
 
     const account = useSelector(state => getUser(state))
     const dispatch = useDispatch()
+    const accountUnlock = useState(null)
 
     return (
         <ThemeProvider theme={theme}>
@@ -75,7 +78,12 @@ export function HomeFeed({ nextStage, homefeed }) {
                 </div>
                 <div className={main.footer}>
                     <div className={main.textbutton}>
-                        <NavLink to="/"><Home color="primary" fontSize="large"></Home></NavLink>
+                        <NavLink to="/">
+                            <Home
+                                onClick={() => accountUnlock.handleClickOpen()}
+                                color="primary"
+                                fontSize="large"></Home>
+                        </NavLink>
                     </div>
                     <div className={main.textbutton}>
                         {account.status === "noAccount" ?
@@ -107,6 +115,8 @@ export function HomeFeed({ nextStage, homefeed }) {
                         }
                     </div>
                 </div>
+
+                {/* <AccountUnlock ref={accountUnlock}></AccountUnlock> */}
 
             </div>
         </ThemeProvider>

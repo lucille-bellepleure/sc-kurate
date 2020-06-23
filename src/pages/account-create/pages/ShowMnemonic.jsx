@@ -39,12 +39,14 @@ export function ShowMnemonic({
           </div>
         ))}
       </div>
-      <div
-        tabIndex="2"
-        className={[styles.iconbuttonbig, createAccount.confirm].join(" ")}
-        onClick={nextStage}
-      >
-        <div className={styles.nextblueicon} />
+      <div className={createAccount.dialogiconbox}>
+        <div
+          tabIndex="2"
+          className={[styles.iconbuttonbig, createAccount.confirm].join(" ")}
+          onClick={nextStage}
+        >
+          <div className={styles.nextblueicon} />
+        </div>
       </div>
     </div>
   );

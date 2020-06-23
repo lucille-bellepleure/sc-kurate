@@ -7,7 +7,6 @@ export default function* createAccountSaga(
     console.log("CreateAccount Saga", action.data)
     const userObject = action.data;
     console.log(userObject);
-    debugger;
 
     const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(userObject.privateKey, userObject.password);
 

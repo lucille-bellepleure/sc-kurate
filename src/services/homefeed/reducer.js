@@ -8,15 +8,15 @@ const initialState = [
     {
         _id: '2020-06-08T17:31:40.972Z',
         type: 'post',
-        image: 'dummy1.png',
+        image: 'dummyboots.png',
         format: 'image',
-        user: 'Mr. Phil the Pill',
-        avatar: 'ava_pill.png',
+        user: 'Prada',
+        avatar: 'ava-prada.png',
         likes: 14,
         ilike: false,
         location: 'Rotterdam',
         time: '2020-06-08T17:31:40.972Z',
-        description: 'Got my first batch in. Soon for sale here! #XTC #MDMA'
+        description: 'Soon for sale here! #leather #shoe'
     },
     {
         _id: '2020-06-08T13:51:40.972Z',
@@ -26,7 +26,7 @@ const initialState = [
         user: 'SlaveFreeTrade',
         avatar: 'ava_sft.png',
         likes: 19,
-        ilike: true,
+        ilike: false,
         location: 'Fundraiser',
         time: '2020-06-08T13:51:40.972Z',
         description: 'The worlds 1st human rights compliance platform.Buy free of #modernslavery.The means to know what is Made in Freedom™.'
@@ -34,15 +34,15 @@ const initialState = [
     {
         _id: '2020-06-08T11:51:40.972Z',
         type: 'post',
-        image: 'dummy3.png',
+        image: 'dummy_kev.png',
         format: 'image',
-        user: 'Skunk & Nancy',
-        avatar: 'ava_skunk.png',
+        user: 'Kevin',
+        avatar: 'ava_kev.png',
         likes: 23,
         ilike: false,
-        location: 'Breda',
+        location: 'Greater LA',
         time: '2020-06-08T11:51:40.972Z',
-        description: ''
+        description: 'Lyra attacking the dog lol'
     },
     {
         _id: '2020-06-08T19:51:40.972Z',
@@ -60,28 +60,28 @@ const initialState = [
     {
         _id: '2020-06-08T13:51:40.972Z',
         type: 'post',
-        image: 'dummy4.png',
+        image: 'dummy_orange.png',
         format: 'image',
-        user: 'PussyLovers',
-        avatar: 'ava_pussy.png',
+        user: 'Edina',
+        avatar: 'ava_edina.png',
         likes: 19,
-        ilike: true,
-        location: 'LA',
+        ilike: false,
+        location: 'Budapest',
         time: '2020-06-08T13:51:40.972Z',
-        description: 'Lemon Haze'
+        description: 'Our next event, Swarm Alpha is coming on 29/06 20:00 CEST. Besides adding a rare NFT to your collection you can also learn about the super cool projects building on Swarm and get more details about the BZZ token.'
     },
     {
         _id: '2020-06-08T13:51:20.972Z',
         type: 'shop',
-        image: 'dummy5.png',
+        image: 'dummy_prada2.png',
         format: 'image',
-        user: 'OnceUponATime',
-        avatar: 'defaultAvatar.png',
+        user: 'Prada',
+        avatar: 'ava-prada.png',
         likes: 19,
         ilike: false,
         location: 'BXL',
         time: '2020-06-08T13:51:20.972Z',
-        description: 'Finest Haze: 100 gr 550, 50gr 280, 25gr 150'
+        description: 'Shop our new collection'
     },
 ];
 
