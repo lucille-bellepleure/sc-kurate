@@ -51,7 +51,7 @@ const initialState = [
         format: 'image',
         user: 'True Environmentalists',
         avatar: 'ava_environ.png',
-        ilike: true,
+        ilike: false,
         likes: 8,
         location: 'Sponsored',
         time: '2020-06-08T19:51:40.972Z',

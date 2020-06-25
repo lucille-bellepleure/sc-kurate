@@ -4,14 +4,18 @@ import { useSelector } from "react-redux";
 // Sub-pages
 import UploadPhoto from './pages/UploadPhoto';
 import FilterPhoto from './pages/FilterPhoto';
+import MetaDataPhoto from './pages/MetaDataPhoto';
+
 // Ids
 const uploadPhoto = 'uploadPhoto';
 const filterPhoto = 'filterPhoto';
+const metadataPhoto = 'metadataPhoto';
 
 export function PostItemRoot() {
 
     const [stage, setStage] = useState(uploadPhoto)
     const [photo, setPhoto] = useState()
+    const [filteredPhoto, setFilteredPhoto] = useState()
 
     // Router
     switch (stage) {
@@ -25,8 +29,16 @@ export function PostItemRoot() {
         case filterPhoto:
             return (
                 <FilterPhoto
-                    image={photo}>
+                    image={photo}
+                    nextStage={() => setStage(metadataPhoto)}
+                    setFilteredPhoto={setFilteredPhoto}>
                 </FilterPhoto>
+            );
+        case metadataPhoto:
+            return (
+                <MetaDataPhoto
+                    image={filteredPhoto}>
+                </MetaDataPhoto>
             )
 
         default:

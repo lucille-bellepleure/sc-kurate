@@ -288,6 +288,7 @@ justify-items: left;
 .textField {
   display: flex;
   width: 75vw;
+  margin-bottom: -26px;
 }
 
 input[type="range"] {

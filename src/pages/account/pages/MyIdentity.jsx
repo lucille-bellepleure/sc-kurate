@@ -7,6 +7,8 @@ import QRCode from "react-qr-code";
 const MyIdentity = ({
     nextStage,
     exitStage,
+    shortCode,
+    resolveShort,
     avatarStage,
     avatar,
     username,
@@ -19,6 +21,8 @@ const MyIdentity = ({
             <div className={createAccount.closeButton} onClick={exitStage}>
                 <div className={styles.exitgrayicon} />
             </div>
+            <div onClick={shortCode}>CREATE SHORT</div>
+            <div onClick={resolveShort}>FIND SHORT</div>
             <div className={createAccount.placeholder}>
                 <img className={createAccount.avatarImage} src={avatar} alt="avatar" />
             </div>

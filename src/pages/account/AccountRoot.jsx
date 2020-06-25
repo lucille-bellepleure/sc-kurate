@@ -6,10 +6,14 @@ import { useHistory } from "react-router-dom";
 import MyIdentity from './pages/MyIdentity';
 import RemoveAccount from './pages/RemoveAccount';
 import ChooseAvatar from '../account-create/pages/ChooseAvatar';
+import ShortCode from './pages/ShortCode';
+import ResolveShort from './pages/ResolveShort';
 // Ids
 const myIdentity = 'myIdentity';
 const removeAccount = 'removeAccount';
 const avatarStage = 'avatarStage';
+const shortcodeStage = 'shortcodeStage';
+const resolveShort = 'resolveShort';
 
 function getAccount(state) {
     return state.account
@@ -32,6 +36,20 @@ export function AccountRoot() {
         history.push("/")
     }
 
+    const handleShortcode = () => {
+        dispatch({ type: "CREATE_SHORTCODE", data: { username: account.username, useravatar: account.avatar } })
+        setStage(shortcodeStage)
+    }
+
+    const newShort = () => {
+        dispatch({ type: "CREATE_SHORTCODE", data: '' })
+    }
+
+    const handleResolveShortcode = (shortcode) => {
+        console.log(shortcode)
+        dispatch({ type: "RESOLVE_SHORTCODE", data: shortcode })
+    }
+
     const history = useHistory()
 
     // Router
@@ -48,6 +66,8 @@ export function AccountRoot() {
                     address={account.address}
                     nextStage={() => setStage(removeAccount)}
                     exitStage={() => history.push("/")}
+                    shortCode={handleShortcode}
+                    resolveShort={() => setStage(resolveShort)}
                 />
             );
         case removeAccount:
@@ -65,6 +85,27 @@ export function AccountRoot() {
                     exitStage={() => setStage(myIdentity)}
                 >
                 </ChooseAvatar>
+            )
+        case shortcodeStage:
+            return (
+                <ShortCode
+                    shortcode={account.shortcode}
+                    nextStage={() => setStage()}
+                    exitStage={() => setStage()}
+                    newShort={newShort}
+                >
+                </ShortCode>
+            )
+
+        case resolveShort:
+            return (
+                <ResolveShort
+                    nextStage={() => setStage()}
+                    exitStage={() => setStage()}
+                    resolveShortcode={handleResolveShortcode}
+                    peerAvatar={account.peerAvatar}
+                    peerUsername={account.peerUsername}>
+                </ResolveShort>
             )
 
         default:
