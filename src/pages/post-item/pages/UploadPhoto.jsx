@@ -1,14 +1,15 @@
-import React, { useState, useRef, useCallback } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css';
 import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
-import Placeholder from "images/placeholder.png"
+import Placeholder from "images/dummy_kev.png"
 export function UploadPhoto({ nextStage, setPhoto }) {
 
     const [filesState, setFilesState] = useState({
         filedata: Placeholder
     });
+
     const fileUploadRef = useRef(null);
     let cropperRef = useRef(null);
 
@@ -34,16 +35,19 @@ export function UploadPhoto({ nextStage, setPhoto }) {
     }
 
     const processImage = () => {
-        const photo = cropperRef.getCroppedCanvas({ maxWidth: 480, maxHeight: 480 }).toDataURL();
+        const photo = cropperRef.getCroppedCanvas({ width: 375, height: 375 }).toDataURL();
         setPhoto(photo);
         nextStage();
     }
 
     const [crop, setCrop] = useState({ x: 0, y: 0 })
     const [zoom, setZoom] = useState(1)
+
     const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
         console.log(croppedArea, croppedAreaPixels)
     }, [])
+
+
 
     return (
         <div className={main.container}>
@@ -53,20 +57,25 @@ export function UploadPhoto({ nextStage, setPhoto }) {
             </div>
             <div className={main.photoplace}>
                 <Cropper
+                    style={{ width: "100vw", maxHeight: "375px" }}
                     ref={cropper => { cropperRef = cropper }}
                     src={filesState.filedata}
                     className={main.cropper}                    // Cropper.js options
                     viewMode={3}
+                    autoCropArea={1}
                     aspectRatio={1 / 1}
                     guides={true}
                     cropBoxMovable={false}
                     cropBoxResizable={false}
                     dragMode="move"
-                    toggleDragModeOnDblclick={false}></Cropper>
+                    toggleDragModeOnDblclick={false}>
+                </Cropper>
             </div>
             <label htmlFor="upload-button">
-                <div className={main.iconbuttonbig}>
-                    <div className={main.plusicon}></div>
+                <div className={main.dialogiconbox}>
+                    <div className={main.iconbuttonbig}>
+                        <div className={main.plusicon}></div>
+                    </div>
                 </div>
             </label>
             <input type="file"

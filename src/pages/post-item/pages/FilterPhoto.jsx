@@ -1,77 +1,103 @@
-import React, { useState, useRef, useCallback } from "react"
+import React, { useEffect, useState, useRef, useCallback } from "react"
 import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
+import ProcessImage from 'react-imgpro';
 
 export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
-    const [testimage, settestimage] = useState();
+    let myCaman = null;
+    const [thumbs, setThumbs] = useState([{ filter: "vintage", src: image }]);
+    console.log(thumbs)
 
-    const [filterclass, setFilterclass] = useState("1977");
-    const cssgram_filters = [
-        "1977",
-        "aden",
-        "brannan",
-        "brooklyn",
-        "clarendon",
-        "earlybird",
-        "gingham",
-        "hudson",
-        "inkwell",
-        "kelvin",
-        "lark",
-        "lofi",
-        "maven",
-        "mayfair",
-        "moon",
-        "nashville",
-        "perpetua",
-        "reyes",
-        "rise",
-        "slumber",
-        "stinson",
-        "toaster",
-        "valencia",
-        "walden",
-        "willow",
-        "xpro2"
-    ]
+    const [img, setImg] = useState()
+    const canvasRef = useRef(null)
+    const thumbCanvasRef = useRef(null)
+    const [currentFilter, setCurrentFilter] = useState("vintage")
 
-    const cssco_filters = [
-        "cssco cssco--c1",
-        "cssco cssco--f2",
-        "cssco cssco--g3",
-        "cssco cssco--p5",
-        "cssco cssco--hb1",
-        "cssco cssco--hb2",
-        "cssco cssco--acg",
-        "cssco cssco--lv3",
-        "cssco cssco--m5",
-        "cssco cssco--a6",
-        "cssco cssco--kk2",
-        "cssco cssco--m3",
-        "cssco cssco--t1",
-        "cssco cssco--b5",
-        "cssco cssco--x1"
-    ]
+    const filterMap = [
+        { filter: "vintage" },
+        { filter: "lomo" },
+        { filter: "clarity" },
+        { filter: "sinCity" },
+        { filter: "sunrise" },
+        { filter: "crossProcess" },
+        { filter: "orangePeel" },
+        { filter: "love" },
+        { filter: "grungy" },
+        { filter: "jarques" },
+        { filter: "pinhole" },
+        { filter: "oldBoot" },
+        { filter: "glowingSun" },
+        { filter: "hazyDays" },
+        { filter: "herMajesty" },
+        { filter: "nostalgia" },
+        { filter: "hemingway" },
+        { filter: "concentrate" }
+    ];
+
 
     const handleFilteredPhoto = () => {
-        var ctx = canvasRef.current.toDataURL('image/png', 1.0);
-
-        console.log(ctx);
-        //setFilteredPhoto(ctx);
-        //nextStage();
-        settestimage(ctx)
+        var file = canvasRef.current.toDataURL('image/png', 1.0);
+        console.log(file);
+        setFilteredPhoto(img);
+        nextStage();
     }
 
-    var divStyle = {
-        backgroundImage: 'url(' + image + ')'
+    const changeEffect = (effect) => {
+        window.Caman(
+            canvasRef.current,
+            img,
+            function () {
+                this.reset()
+                this[effect]()
+                this.render(function () {
+                    setImg(this.toBase64())
+                });
+            }
+        );
     }
 
+    const createThumbs = () => {
+        for (let index = 0; index < filterMap.length; index++) {
+            const filter = filterMap[index];
+            let thumb;
+            var canvas = document.createElement('canvas');
+            canvas.width = 100
+            canvas.height = 100
 
-    const canvasRef = React.useRef(null)
+            const thumbSrc = window.Caman(canvas, image, function () {
+                this[filter.filter]()
+                this.render(function () {
+                    let base64 = this.toBase64()
+                    setThumbs(thumbs => [...thumbs, { filter: filter.filter, src: base64 }])
+                });
+            })
 
-    // const caman = Caman(canvasRef, image, function () {
-    //     this.brightness(10).render();
-    // })
+        }
+    }
+
+    useEffect(() => {
+        console.log(canvasRef.current)
+        let ctx = canvasRef.current.getContext('2d')
+        let img = new Image()
+        img.src = image
+        canvasRef.current.width = img.width
+        canvasRef.current.height = img.height
+        ctx.drawImage(img, 0, 0, img.width, img.height);
+
+        myCaman = window.Caman(
+            canvasRef.current,
+            img,
+            function () {
+                this.render(function () {
+                    setImg(this.toBase64())
+                });
+            });
+        console.log(myCaman)
+
+
+        createThumbs()
+
+    }, [canvasRef]);
 
     return (
         <div className={main.container}>
@@ -79,29 +105,29 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
                 <div><NavLink className={main.textbutton} to="/">Cancel</NavLink></div>
                 <div onClick={() => { handleFilteredPhoto() }} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>Next</div>
             </div>
-            <img src={testimage}></img>
-            <canvas width="100%"
-                ref={canvasRef}
-                className={main.photoplace} class={filterclass} style={divStyle}>
-            </canvas>
-            <div className={main.filterplace}>
-                {cssgram_filters.map((filter) => (
-                    <div
-                        className={main.filteritem}
-                        onClick={() => setFilterclass(filter)}
-                    >
-                        <div>{filter}</div>
-                        <img
-                            class={filter}
-                            src={image}
-                            width={120}
-                            height={120}
+            <canvas className={main.photoplace} ref={canvasRef}></canvas>
+            {thumbs.length >= 0 ?
+                <div className={main.filterplace}>
+                    {thumbs.map((item) => (
+                        <div className={main.filteritem}
                         >
-                        </img>
-                    </div>
-                ))}
+                            <div>{item.filter}</div>
+                            <img
+                                data-caman="vintage()"
+                                src={item.src}
+                                width={100}
+                                height={100}
+                                onClick={() => changeEffect(item.filter)}>
+                            </img>
+                        </div>
 
-            </div>
+                    ))}
+
+
+                </div>
+                : <div>no thumbs yet</div>}
+
+
         </div>
     );
 }

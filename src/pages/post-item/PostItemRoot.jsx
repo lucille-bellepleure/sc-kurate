@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Sub-pages
 import UploadPhoto from './pages/UploadPhoto';
@@ -11,11 +11,22 @@ const uploadPhoto = 'uploadPhoto';
 const filterPhoto = 'filterPhoto';
 const metadataPhoto = 'metadataPhoto';
 
+function getUser(state) {
+    return state.account
+}
+
 export function PostItemRoot() {
 
+    const dispatch = useDispatch()
+    const account = useSelector(state => getUser(state))
     const [stage, setStage] = useState(uploadPhoto)
     const [photo, setPhoto] = useState()
     const [filteredPhoto, setFilteredPhoto] = useState()
+
+    const sharePost = (post) => {
+        const dataObject = { post: post, user: account }
+        dispatch({ type: "SHARE_POST", data: dataObject })
+    }
 
     // Router
     switch (stage) {
@@ -37,7 +48,8 @@ export function PostItemRoot() {
         case metadataPhoto:
             return (
                 <MetaDataPhoto
-                    image={filteredPhoto}>
+                    image={filteredPhoto}
+                    sharePost={sharePost}>
                 </MetaDataPhoto>
             )
 

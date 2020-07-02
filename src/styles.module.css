@@ -569,7 +569,7 @@ color: var(--sc-blue);
 .header {
 composes: backgroundImg;
 display: flex;
-justify-content: center;
+justify-content: space-between;
 align-items: center;
 padding: 16px 0px 16px 0px;
 height: 24px;
@@ -589,10 +589,11 @@ composes: baseShadow;
 width: 100vw;
 display: flex;
 padding: 0;
-margin-top: 62px;
-align-items: center;
+margin-top: 56px;
+align-items: flex-start;
 justify-content: center;
-background-color: var(--sc-grey3);
+  background-color:var(--sc-grey4);
+
 }
 
 .photoplace:after {
@@ -602,7 +603,7 @@ padding-bottom: 100%;
 }
 
 .cropper {
-  width: 100%;
+  width: 100vw;
   height: 420px;
 }
 
@@ -611,19 +612,20 @@ display: flex;
 align-items: center;
 justify-content: left;
 height: 100%;
-padding: 20px;
-
+padding: 10px;
 overflow: scroll;
 }
 
 .filteritem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 10px;
 }
 
 .textbutton {
 composes: bodyDefault;
 margin: 10px;
-color: var(--sc-grey4);
 }
 
 .scroller {
@@ -735,4 +737,34 @@ margin-bottom: 4px;
 .small {
 width: 10px;
 height: 10px;
+}
+
+.dialogiconbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 100vw;
+  margin-top: 40px;
+}
+
+.textinput {
+  composes: bodyDefault;
+  width: 205px;
+  color: var(--sc-white);
+  text-align: left;
+  padding-bottom: 5px;
+  margin-left: 20px;
+  border: 0px;
+  background-color: transparent;
+}
+
+.metaContainer {
+  display: flex;
+  width: 100vw;
+  padding: 20px;
+  flex-direction: row;
+  align-items: flex-start;
+  background-color:var(--sc-grey4);
+
 }

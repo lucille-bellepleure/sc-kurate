@@ -3,12 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // Sub-pages
+import AccountHome from './pages/AccountHome';
 import MyIdentity from './pages/MyIdentity';
 import RemoveAccount from './pages/RemoveAccount';
 import ChooseAvatar from '../account-create/pages/ChooseAvatar';
 import ShortCode from './pages/ShortCode';
 import ResolveShort from './pages/ResolveShort';
+
 // Ids
+const accountHome = 'accountHome';
 const myIdentity = 'myIdentity';
 const removeAccount = 'removeAccount';
 const avatarStage = 'avatarStage';
@@ -54,6 +57,11 @@ export function AccountRoot() {
 
     // Router
     switch (stage) {
+        case accountHome:
+            return (
+                <AccountHome>
+                </AccountHome>
+            );
         case myIdentity:
             return (
                 <MyIdentity
