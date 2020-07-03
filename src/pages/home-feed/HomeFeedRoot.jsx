@@ -16,8 +16,8 @@ export function HomeFeedRoot() {
     const dispatch = useDispatch()
 
     const [stage, setStage] = useState(homeFeed)
-    const homefeed = useSelector(state => getHomefeed(state))
-
+    const homefeedObject = useSelector(state => getHomefeed(state))
+    const homefeed = Object.values(homefeedObject)
 
     // Router
     switch (stage) {

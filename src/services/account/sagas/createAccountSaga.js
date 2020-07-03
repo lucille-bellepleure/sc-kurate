@@ -30,8 +30,16 @@ export default function* createAccountSaga(
         'userposts',
         userObject.privateKey,
         {
-            posts: []
+            posts: {}
         })
+    const following = yield window.fds.Account.SwarmStore.SF.set(
+        userObject.address,
+        'usersubscriptions',
+        userObject.privateKey,
+        { "0x1F844ebC9Ce8f918A1b4428375b4357c7a6A974d": { "username": "Swarm Orange" } }
+    )
+
+
 
     const accountObj = {
         address: userObject.address,

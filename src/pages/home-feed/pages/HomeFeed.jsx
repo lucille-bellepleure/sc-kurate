@@ -32,26 +32,28 @@ export function HomeFeed({ nextStage, homefeed }) {
 
     useEffect(() => {
         if (account.address) {
-            dispatch({ type: 'RESOLVE_MYPOSTS' })
+            dispatch({ type: 'RESOLVE_MYPOSTS', data: account.address })
         }
     }, [account.address])
 
+    console.log(homefeed)
 
     return (
         <ThemeProvider theme={theme}>
             <div className={main.container}>
-                <div className={main.header}>
+                <div className={main.headerwithlogo}>
                     <img src={require("../../../images/logo-transparent-D.png")}></img>
                     {/* <div className={main.logo}></div> */}
                 </div>
                 <div className={main.scroller}>
-                    {homefeed.sort(sortByProp('_id', 'desc'))
-                        .map((item) => (
+                    {homefeed
+                        .sort(sortByProp("_id", "desc"))
+                        .map((item, index) => (
                             <div>
                                 <div className={main.postHead}>
                                     <Avatar src={item.avatar} className={main.avatar}></Avatar>
                                     <div>
-                                        <div className={main.postUsername}><b>{item.user}</b></div>
+                                        <div className={main.postUsername}><b>{item.username}</b></div>
                                         <div className={main.postLocation}>{item.location}</div>
                                     </div>
                                 </div>
@@ -69,7 +71,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                                         }
                                     &nbsp;
                                     <b>{item.likes}</b></div>
-                                    <div>{item.description}</div>
+                                    <div>{item.caption}</div>
                                 </div>
                             </div>
 

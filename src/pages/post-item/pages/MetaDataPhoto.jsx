@@ -9,7 +9,8 @@ export function MetaDataPhoto({ nextStage, sharePost, image }) {
     const [textInput, setTextInput] = useState()
 
     const handlePost = () => {
-        sharePost({ image: image, caption: textInput })
+        const time = new Date().toISOString()
+        sharePost({ image: image, caption: textInput, time: time })
     }
 
     return (

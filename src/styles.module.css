@@ -107,6 +107,7 @@ font-size: 12px;
 letter-spacing: 0;
 line-height: 15px;
 }
+
 .smallestLight {
 font-family: Montserrat, sans-serif;
 font-weight: 300;
@@ -114,6 +115,7 @@ font-size: 10px;
 letter-spacing: 0;
 line-height: 13px;
 }
+
 .smallestBold {
 font-family: Montserrat, sans-serif;
 font-weight: 800;
@@ -123,10 +125,10 @@ line-height: 13px;
 }
 
 .blueLink {
-composes: smallBold;
-cursor: pointer;
-color: var(--sc-blue);
-border-bottom: 2px dotted blue;
+  composes: smallBold;
+  cursor: pointer;
+  color: var(--sc-blue);
+  border-bottom: 2px dotted blue;
 }
 
 /*
@@ -140,10 +142,10 @@ border-bottom: 1px dotted var(--sc-grey3b);
 */
 
 .baseShadow {
-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
 code {
@@ -152,192 +154,192 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 }
 
 *:focus {
-outline: none !important;
+  outline: none !important;
 }
 
 .backgroundImg {
-background-image: url("./images/bg-header3.png");
-background-size: cover;
+  background-image: url("./images/bg-header3.png");
+  background-size: cover;
 }
 
 .swarmcity {
-composes: backgroundImg;
-width: 100vw;
-height: 100vh;
-margin: 0;
-padding: 0;
-scroll-behavior: auto;
-max-width: 520px;
-background-color: black;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: auto;
+  max-width: 520px;
 }
 
 .container {
-display: flex;
-flex-direction: column;
-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 520px;
+  width: 100vw;
 }
 
 .hashtagName {
-composes: mainTitle1;
-color: #333333;
-height: 60px;
-margin-top: 25px;
+  composes: mainTitle1;
+  color: #333333;
+  height: 60px;
+  margin-top: 25px;
 }
 
 .itembottom {
-height: 50px;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: flex-end;
-margin-top: -10px;
-margin-bottom: 25px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: -10px;
+  margin-bottom: 25px;
 }
 
 .user {
-display: flex;
-flex-direction: row;
-justify-content: flex-start;
-align-items: center;
-margin-left: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 30px;
 }
 
 .logo {
-background-image: url("./images/SwarmCity-Sprite-normal.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 108px;
-height: 50px;
-background-position: -108px -108px;
+  background-image: url("./images/SwarmCity-Sprite-normal.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 108px;
+  height: 50px;
+  background-position: -108px -108px;
 }
 
 .logotext {
-margin-bottom: 20px;
-font-weight: 800;
-font-family: Montserrat, sans-serif;
-font-size: 16px;
-margin-bottom: 5px;
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 
 .item {
-background-color: white;
-font-weight: 200;
-font-size: 22px;
-line-height: 19px;
-color: #333333;
-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-box-sizing: border-box;
-margin: 0px 10px 0px 10px;
-min-height: 121px;
-padding: 29px;
-display: grid;
-grid-template-columns: auto min-content;
-grid-template-rows: auto auto;
-grid-gap: 0px;
-padding: 29px;
+  background-color: white;
+  font-weight: 200;
+  font-size: 22px;
+  line-height: 19px;
+  color: #333333;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin: 0px 10px 0px 10px;
+  min-height: 121px;
+  padding: 29px;
+  display: grid;
+  grid-template-columns: auto min-content;
+  grid-template-rows: auto auto;
+  grid-gap: 0px;
+  padding: 29px;
 }
 
 .smallitem {
-background-color: white;
-font-weight: 200;
-font-size: 18px;
-line-height: 19px;
-color: #333333;
-cursor: pointer;
-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-box-sizing: border-box;
-margin: 0px 10px 4px 10px;
-min-height: 121px;
+  background-color: white;
+  font-weight: 200;
+  font-size: 18px;
+  line-height: 19px;
+  color: #333333;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin: 0px 10px 4px 10px;
+  min-height: 121px;
 }
 
 .myinfobox {
-display: flex;
-flex-direction: row;
-align-items: center;
-box-sizing: border-box;
-color: #333333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  color: #333333;
 }
 
 .usernamesmall {
-color: #333333;
+  color: #333333;
 }
 
 .accountbox {
-composes: smallBold;
-display: flex;
-flex-direction: column;
-margin-left: 15px;
-line-height: 20px;
-box-sizing: border-box;
-color: #333333;
+  composes: smallBold;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  line-height: 20px;
+  box-sizing: border-box;
+  color: #333333;
 }
 
 .balance {
-composes: bodyBold;
-font-size: 22px;
-color: #efd96f;
+  composes: bodyBold;
+  font-size: 22px;
+  color: #efd96f;
 }
 
 .button {
-composes: bodyButton;
-composes: baseShadow;
-width: 75vw;
-min-width: 200px;
-max-width: 300px;
-text-align: center;
-box-sizing: border-box;
-padding: 30px 42px;
-border-radius: 2px;
-cursor: pointer;
-max-height: 82px;
-background-color: rgba(255, 255, 255, 0.2);
-margin-top: 20px;
+  composes: bodyButton;
+  composes: baseShadow;
+  width: 75vw;
+  min-width: 200px;
+  max-width: 300px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 30px 42px;
+  border-radius: 2px;
+  cursor: pointer;
+  max-height: 82px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
 }
 
 .buttontext {
-color: white;
+  color: white;
 }
 
 .createaccountbutton {
-align-content: flex-start;
-width: 146px;
-height: 56px;
-text-align: center;
-border: 0;
-border-radius: 2px;
-background-color: rgba(255, 255, 255, 0.25);
-cursor: pointer;
-color: #666666;
-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
--webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
--moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
--o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
-padding: 9px 14px;
-composes: bodyBold;
+  align-content: flex-start;
+  width: 146px;
+  height: 56px;
+  text-align: center;
+  border: 0;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  color: #666666;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
+  -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25);
+  padding: 9px 14px;
+  composes: bodyBold;
 }
 
 .baseshadow {
-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
 .dont-break-out {
-/* These are technically the same, but use both */
-overflow-wrap: break-word;
-word-wrap: break-word;
--ms-word-break: break-all;
-/* This is the dangerous one in WebKit, as it breaks things wherever */
-word-break: break-all;
-/* Instead use this non-standard one: */
-word-break: break-word;
-/* Adds a hyphen where the word breaks, if supported (No Blink) */
--ms-hyphens: auto;
--moz-hyphens: auto;
--webkit-hyphens: auto;
-hyphens: auto;
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }
 
 /* .iconbuttonbig {
@@ -360,206 +362,206 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 } */
 
 .iconbuttonbig {
-z-index: 100;
-display: flex;
-align-items: center;
-justify-content: center;
-width: 72px;
-height: 72px;
-border-radius: 50%;
-cursor: pointer;
-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
--o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
-background-color: white;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  background-color: white;
 }
 
 .plusicon {
-width: 54px;
-height: 54px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -108px -270px;
+  width: 54px;
+  height: 54px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -108px -270px;
 }
 
 .plusblueicon {
-width: 54px;
-height: 54px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -162px -0px;
+  width: 54px;
+  height: 54px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -162px -0px;
 }
 
 .nextblueicon {
-width: 54px;
-height: 54px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -216px -0px;
+  width: 54px;
+  height: 54px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -216px -0px;
 }
 
 .exiticon {
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -216px -198px;
-width: 36px;
-height: 36px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -216px -198px;
+  width: 36px;
+  height: 36px;
 }
 
 .replyblueicon {
-background-position: -108px -0px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -108px -0px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .exiticonblue {
-background-position: -270px -72px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 36px;
-height: 36px;
+  background-position: -270px -72px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 36px;
+  height: 36px;
 }
 
 .exitgrayicon {
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -216px -234px;
-width: 36px;
-height: 36px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -216px -234px;
+  width: 36px;
+  height: 36px;
 }
 
 .closeicon {
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -144px -234px;
-width: 36px;
-height: 36px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -144px -234px;
+  width: 36px;
+  height: 36px;
 }
 
 .alertblueicon {
-background-position: -108px -54px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
-margin-bottom: -20px;
-z-index: 1;
-margin-top: 30px;
+  background-position: -108px -54px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
+  margin-bottom: -20px;
+  z-index: 1;
+  margin-top: 30px;
 }
 
 .backicon {
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -180px -198px;
-width: 32px;
-height: 32px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -180px -198px;
+  width: 32px;
+  height: 32px;
 }
 
 .rotateicon {
-background-position: -216px -54px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -216px -54px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .nextwhiteicon {
-background-position: -162px -270px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -162px -270px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .nextgrayicon {
-background-position: -54px -270px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -54px -270px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .nextgreysmallicon {
-background-position: -252px -234px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 32px;
-height: 32px;
+  background-position: -252px -234px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 32px;
+  height: 32px;
 }
 
 .vmarkicon {
-background-position: -0px -54px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -0px -54px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .vmarkiconwhite {
-background-position: -0px -216px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -0px -216px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .xmarkicon {
-background-position: -54px -0px;
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-width: 54px;
-height: 54px;
+  background-position: -54px -0px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  width: 54px;
+  height: 54px;
 }
 
 .logout {
-background-image: url("./images/SwarmCity-Sprite-doublesize.png");
-background-repeat: no-repeat;
-background-size: 324px 324px;
-background-position: -216px -198px;
-width: 36px;
-height: 36px;
+  background-image: url("./images/SwarmCity-Sprite-doublesize.png");
+  background-repeat: no-repeat;
+  background-size: 324px 324px;
+  background-position: -216px -198px;
+  width: 36px;
+  height: 36px;
 }
 
 .flexrow {
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .flexcolumn {
-display: flex;
-flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .useraddress {
-compose: smallLight;
+  compose: smallLight;
 }
 
 .yellow {
-color: var(--sc-yellow);
+  color: var(--sc-yellow);
 }
 
 .blue {
-color: var(--sc-blue);
+  color: var(--sc-blue);
 }
 
 .red {
@@ -567,39 +569,58 @@ color: var(--sc-blue);
 }
 
 .header {
-composes: backgroundImg;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 16px 0px 16px 0px;
-height: 24px;
-position: fixed;
-top: 0;
-margin: 0;
-width: 100%;
-z-index: 10;
-max-width: 520px;
-color: var(--sc-yellow);
-composes: bodyBold;
-background-color: black;
-composes: baseShadow;
+  composes: backgroundImg;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0px 16px 0px;
+  height: 24px;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  width: 100vw;
+  z-index: 10;
+  max-width: 520px;
+  color: var(--sc-yellow);
+  composes: bodyBold;
+  background-color: black;
+  composes: baseShadow;
+}
+
+.headerwithlogo {
+  composes: backgroundImg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0px 16px 0px;
+  height: 24px;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  width: 100vw;
+  z-index: 10;
+  max-width: 520px;
+  color: var(--sc-yellow);
+  composes: bodyBold;
+  background-color: black;
+  composes: baseShadow;
 }
 
 .photoplace {
-width: 100vw;
-display: flex;
-padding: 0;
-margin-top: 56px;
-align-items: flex-start;
-justify-content: center;
+  width: 100vw;
+  display: flex;
+  padding: 0;
+  margin-top: 56px;
+  max-width: 520px;
+  align-items: flex-start;
+  justify-content: center;
   background-color:var(--sc-grey4);
-
 }
 
 .photoplace:after {
-content: "";
-display: block;
-padding-bottom: 100%;
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 .cropper {
@@ -608,12 +629,13 @@ padding-bottom: 100%;
 }
 
 .filterplace {
-display: flex;
-align-items: center;
-justify-content: left;
-height: 100%;
-padding: 10px;
-overflow: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 100%;
+  overflow: scroll;
+  background-color: var(--sc-white);
+  composes: backgroundImg;
 }
 
 .filteritem {
@@ -624,119 +646,117 @@ overflow: scroll;
 }
 
 .textbutton {
-composes: bodyDefault;
-margin: 10px;
+  composes: bodyDefault;
+  margin: 10px;
 }
 
 .scroller {
-background-color:white;
-composes: backgroundImg;
-width: 100%;
-margin-top: 56px;
-margin-bottom: 52px;
+  background-color:white;
+  composes: backgroundImg;
+  width: 100%;
+  margin-top: 56px;
+  margin-bottom: 52px;
 }
 
 .footer {
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
-align-items: center;
-padding: 16px 0px 12px 0px;
-composes: backgroundImg;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 16px 0px 12px 0px;
+  composes: backgroundImg;
   background-color: black;
-z-index: 100;
-height: 24px;
-position: fixed;
-width: 100%;
-max-width: 520px;
-bottom: 0;
-
+  z-index: 100;
+  height: 24px;
+  position: fixed;
+  width: 100%;
+  max-width: 520px;
+  bottom: 0;
 }
 
 .image {
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .postHead {
-display: grid;
-grid-template-columns: 48px auto;
-grid-template-rows: auto auto;
-padding: 16px;
-column-gap: 8px;
-color: var(--sc-grey4);
-align-items: center;
+  display: grid;
+  grid-template-columns: 48px auto;
+  grid-template-rows: auto auto;
+  padding: 16px;
+  column-gap: 8px;
+  color: var(--sc-grey4);
+  align-items: center;
 }
 
 .postUsername {
-composes: bodyBold;
-font-size: 14px;;
+  composes: bodyBold;
+  font-size: 14px;
 }
 
 .postLocation {
-composes: bodyDefault;
-font-size: 12px;
+  composes: bodyDefault;
+  font-size: 12px;
 }
 
 .avatarImage {
-border-radius: 50%;
-height: 32px;
-width: 32px;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
 }
 
 .postFooter {
-display: grid;
-padding: 16px;
-composes: bodyDefault;
-grid-template-rows: auto;
-row-gap: 8px;
-font-size: 14px;
-
+  display: grid;
+  padding: 16px;
+  composes: bodyDefault;
+  grid-template-rows: auto;
+  row-gap: 8px;
+  font-size: 14px;
 }
 
 .likes {
-display: flex;
-flex-direction: row;
-align-items: flex-start;
-font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  font-size: 14px;
 }
 
 .feedEnd {
-composes: bodyBold;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-height: 56px;
-color: var(--sc-grey4);
-margin: 40px 0px 100px 0px;  
+  composes: bodyBold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 56px;
+  color: var(--sc-grey4);
+  margin: 40px 0px 100px 0px;  
 }
 
 .actionButton {
-margin-top: -4px;
-composes: bodyBold;
-font-size: 14px;
-align-items: center;
-background-color: var(--sc-yellow);
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-color: var(--sc-grey4);
-z-index: 10;
-padding: 8px 16px 8px 16px;
+  margin-top: -4px;
+  composes: bodyBold;
+  font-size: 14px;
+  align-items: center;
+  background-color: var(--sc-yellow);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--sc-grey4);
+  z-index: 10;
+  padding: 8px 16px 8px 16px;
 }
 
 .iconAdjust {
-margin-top: 3px;
+  margin-top: 3px;
 }
 
 .video {
-margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .small {
-width: 10px;
-height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 .dialogiconbox {
@@ -746,6 +766,7 @@ height: 10px;
   align-content: center;
   width: 100vw;
   margin-top: 40px;
+  max-width: 520px;
 }
 
 .textinput {
@@ -766,5 +787,4 @@ height: 10px;
   flex-direction: row;
   align-items: flex-start;
   background-color:var(--sc-grey4);
-
 }

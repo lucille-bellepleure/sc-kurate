@@ -57,7 +57,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
             </div>
             <div className={main.photoplace}>
                 <Cropper
-                    style={{ width: "100vw", maxHeight: "375px" }}
+                    style={{ width: "100vw", maxWidth: "520px" }}
                     ref={cropper => { cropperRef = cropper }}
                     src={filesState.filedata}
                     className={main.cropper}                    // Cropper.js options
@@ -71,16 +71,18 @@ export function UploadPhoto({ nextStage, setPhoto }) {
                     toggleDragModeOnDblclick={false}>
                 </Cropper>
             </div>
-            <label htmlFor="upload-button">
-                <div className={main.dialogiconbox}>
-                    <div className={main.iconbuttonbig}>
-                        <div className={main.plusicon}></div>
+            <div className={main.filterplace}>
+                <label htmlFor="upload-button">
+                    <div className={main.dialogiconbox}>
+                        <div className={main.iconbuttonbig}>
+                            <div className={main.plusicon}></div>
+                        </div>
                     </div>
-                </div>
-            </label>
-            <input type="file"
-                id="upload-button"
-                hidden onChange={handleFileUpload} />
+                </label>
+                <input type="file"
+                    id="upload-button"
+                    hidden onChange={handleFileUpload} />
+            </div>
         </div >
     );
 }

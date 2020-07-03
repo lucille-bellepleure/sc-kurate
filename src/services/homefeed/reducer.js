@@ -3,16 +3,16 @@ import { persistentReducer } from "redux-pouchdb-plus";
 
 // Service > user
 
-const initialState = [
-
-
-];
+const initialState = {};
 
 function homefeed(state = initialState, action) {
     switch (action.type) {
-        case t.ADD_POST:
-            console.log('Addpost to reducer: ', action.data)
-            return [...state, action.data];
+        case t.SET_POSTS:
+            console.log('set posts')
+            return {
+                ...state,
+                ...action.data
+            };
         case t.SET_LIKE:
             return state.map((item) =>
                 item._id === action.data._id

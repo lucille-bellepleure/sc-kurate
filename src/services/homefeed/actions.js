@@ -5,8 +5,8 @@ export const setLike = data => ({
     data
 })
 
-export const addPost = data => ({
-    type: t.ADD_POST,
+export const setPosts = data => ({
+    type: t.SET_POSTS,
     data
 })
 

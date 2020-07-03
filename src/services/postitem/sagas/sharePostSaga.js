@@ -18,7 +18,7 @@ export default function* sharePostSaga(
         const oldPost = yield window.fds.Account.SwarmStore.SF.get(userObject.address, 'userposts');
         let tempPosts = JSON.parse(oldPost);
         let time = new Date().toISOString();
-        tempPosts.posts.push({ time: time, bzz: storedPost })
+        tempPosts.posts[storedPost] = { time: time, bzz: storedPost }
         yield window.fds.Account.SwarmStore.SF.set(
             userObject.address,
             'userposts',
@@ -27,17 +27,6 @@ export default function* sharePostSaga(
         )
     } catch (error) {
         console.log('ERR', error.message)
-        // create new feed
-        let time = new Date().toISOString();
-
-        const oldPost = yield window.fds.Account.SwarmStore.SF.set(
-            userObject.address,
-            'userposts',
-            decryptedPrivateKey.privateKey,
-            {
-                posts: [{ time: time, bzz: storedPost }]
-            })
-        console.log(oldPost)
     }
 
 
