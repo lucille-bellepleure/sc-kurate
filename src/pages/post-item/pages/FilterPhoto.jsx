@@ -37,7 +37,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 
     const handleFilteredPhoto = () => {
         var file = canvasRef.current.toDataURL('image/png', 1.0);
-        console.log(file);
+        //console.log(file);
         setFilteredPhoto(img);
         nextStage();
     }

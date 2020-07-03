@@ -55,7 +55,8 @@ export default function* resolveShortCodeSaga(
 
     const accountObj = {
         peerAvatar: result.useravatar,
-        peerUsername: result.username
+        peerUsername: result.username,
+        peerAddress: result.address
     };
 
     console.log(accountObj);

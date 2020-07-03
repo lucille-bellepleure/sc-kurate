@@ -112,7 +112,8 @@ export function AccountRoot() {
                     exitStage={() => setStage()}
                     resolveShortcode={handleResolveShortcode}
                     peerAvatar={account.peerAvatar}
-                    peerUsername={account.peerUsername}>
+                    peerUsername={account.peerUsername}
+                    peerAddress={account.peerAddress}>
                 </ResolveShort>
             )
 

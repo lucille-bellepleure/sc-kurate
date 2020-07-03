@@ -25,6 +25,14 @@ export default function* createAccountSaga(
 
     console.log(swarmUser);
 
+    const firstPost = yield window.fds.Account.SwarmStore.SF.set(
+        userObject.address,
+        'userposts',
+        userObject.privateKey,
+        {
+            posts: []
+        })
+
     const accountObj = {
         address: userObject.address,
         avatar: userObject.avatar,

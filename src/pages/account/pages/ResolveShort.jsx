@@ -10,6 +10,7 @@ export function ResolveShort({
     exitStage,
     peerAvatar,
     peerUsername,
+    peerAddress,
     resolveShortcode
 }) {
     const [shortcode, setShortcode] = useState();
@@ -44,6 +45,7 @@ export function ResolveShort({
                 <img className={createAccount.avatarImage} src={peerAvatar} alt="avatar" />
             </div>
             <div>{peerUsername}</div>
+            <div><input type="text" value={peerAddress}></input></div>
         </div>
     )
 }

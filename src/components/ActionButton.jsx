@@ -4,7 +4,7 @@ import { Home, Add, ArrowForwardIos, FavoriteBorder, Person, PlayCircleFilledWhi
 
 function ActionButton(props) {
 
-    console.log(props)
+    //console.log(props)
     switch (props.type) {
         case 'sponsored':
             return (

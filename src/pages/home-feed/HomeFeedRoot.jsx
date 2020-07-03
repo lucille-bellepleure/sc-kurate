@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Sub-pages
 import HomeFeed from './pages/HomeFeed';
@@ -13,8 +13,11 @@ function getHomefeed(state) {
 
 export function HomeFeedRoot() {
 
+    const dispatch = useDispatch()
+
     const [stage, setStage] = useState(homeFeed)
     const homefeed = useSelector(state => getHomefeed(state))
+
 
     // Router
     switch (stage) {

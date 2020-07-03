@@ -4,7 +4,7 @@ import { Player } from "video-react"
 
 
 function PosterChild({ image, format }) {
-    console.log(image, format)
+    //console.log(image, format)
     switch (format) {
         case 'video':
             return (
@@ -15,7 +15,7 @@ function PosterChild({ image, format }) {
             )
         case 'image':
             return (
-                <img className={main.image} width="100%" src={require("../images/" + image)}></img>
+                <img className={main.image} width="100%" src={image}></img>
             )
 
         default:

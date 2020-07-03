@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 // Sub-pages
 import UploadPhoto from './pages/UploadPhoto';
@@ -17,6 +18,8 @@ function getUser(state) {
 
 export function PostItemRoot() {
 
+    const history = useHistory()
+
     const dispatch = useDispatch()
     const account = useSelector(state => getUser(state))
     const [stage, setStage] = useState(uploadPhoto)
@@ -26,6 +29,7 @@ export function PostItemRoot() {
     const sharePost = (post) => {
         const dataObject = { post: post, user: account }
         dispatch({ type: "SHARE_POST", data: dataObject })
+        //history.push("/")
     }
 
     // Router

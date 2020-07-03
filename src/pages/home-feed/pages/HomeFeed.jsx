@@ -1,5 +1,4 @@
-import React, { useState, useRef, useCallback } from "react"
-
+import React, { useEffect, useState, useRef, useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
@@ -8,6 +7,8 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Avatar, Divider } from "@material-ui/core"
 import ActionButton from "components/ActionButton"
 import PosterChild from "components/PosterChild"
+import sortByProp from "helpers/sortByProp";
+
 
 // import AccountUnlock from "components/AccountUnlock"
 
@@ -29,43 +30,50 @@ export function HomeFeed({ nextStage, homefeed }) {
     const dispatch = useDispatch()
     const accountUnlock = useState(null)
 
+    useEffect(() => {
+        if (account.address) {
+            dispatch({ type: 'RESOLVE_MYPOSTS' })
+        }
+    }, [account.address])
+
+
     return (
         <ThemeProvider theme={theme}>
-
             <div className={main.container}>
                 <div className={main.header}>
                     <img src={require("../../../images/logo-transparent-D.png")}></img>
                     {/* <div className={main.logo}></div> */}
                 </div>
                 <div className={main.scroller}>
-                    {homefeed.map((item) => (
-                        <div>
-                            <div className={main.postHead}>
-                                <Avatar src={require("../../../images/" + item.avatar)} className={main.avatar}></Avatar>
-                                <div>
-                                    <div className={main.postUsername}><b>{item.user}</b></div>
-                                    <div className={main.postLocation}>{item.location}</div>
+                    {homefeed.sort(sortByProp('_id', 'desc'))
+                        .map((item) => (
+                            <div>
+                                <div className={main.postHead}>
+                                    <Avatar src={item.avatar} className={main.avatar}></Avatar>
+                                    <div>
+                                        <div className={main.postUsername}><b>{item.user}</b></div>
+                                        <div className={main.postLocation}>{item.location}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            <PosterChild format={item.format} image={item.image} onDoubleClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}></PosterChild>
+                                <PosterChild format={item.format} image={item.image} onDoubleClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}></PosterChild>
 
-                            <ActionButton type={item.type}></ActionButton>
-                            <div className={main.postFooter}>
-                                <div className={main.likes}>
-                                    {item.ilike
-                                        ? <Favorite
-                                            onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
-                                        : <FavoriteBorder
-                                            onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
-                                            color="primary" fontSize="small"></FavoriteBorder>
-                                    }
+                                <ActionButton type={item.type}></ActionButton>
+                                <div className={main.postFooter}>
+                                    <div className={main.likes}>
+                                        {item.ilike
+                                            ? <Favorite
+                                                onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
+                                            : <FavoriteBorder
+                                                onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
+                                                color="primary" fontSize="small"></FavoriteBorder>
+                                        }
                                     &nbsp;
                                     <b>{item.likes}</b></div>
-                                <div>{item.description}</div>
+                                    <div>{item.description}</div>
+                                </div>
                             </div>
-                        </div>
 
-                    ))}
+                        ))}
 
                     <div>
                         <div className={main.feedEnd}>
