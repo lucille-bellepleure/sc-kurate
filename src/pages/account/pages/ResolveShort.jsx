@@ -46,6 +46,7 @@ export function ResolveShort({
             </div>
             <div>{peerUsername}</div>
             <div><input type="text" value={peerAddress}></input></div>
+
         </div>
     )
 }

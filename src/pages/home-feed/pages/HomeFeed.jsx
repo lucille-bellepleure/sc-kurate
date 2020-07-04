@@ -51,7 +51,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                         .map((item, index) => (
                             <div>
                                 <div className={main.postHead}>
-                                    <Avatar src={item.avatar} className={main.avatar}></Avatar>
+                                    <NavLink to={"/user/" + item.address}><Avatar src={item.avatar} className={main.avatar}></Avatar></NavLink>
                                     <div>
                                         <div className={main.postUsername}><b>{item.username}</b></div>
                                         <div className={main.postLocation}>{item.location}</div>

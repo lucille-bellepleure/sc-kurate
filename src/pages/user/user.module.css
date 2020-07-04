@@ -1,0 +1,96 @@
+.usersection {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    max-width: 520px;
+    margin-top: 56px;
+    padding: 20px;
+    background-color: white;
+    composes: backgroundImg from "../../styles.module.css";
+}
+
+.avatarImage {
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    margin-bottom: 20px;
+}
+
+.userName {
+    composes: bodyBold from "../../styles.module.css";
+    font-size: 16px;
+    color: var(--sc-grey4);
+}
+
+.userAddress {
+    composes: bodyDefault from "../../styles.module.css";
+    font-size: 14px;
+    color: var(--sc-grey4);
+    margin-top: 5px;
+    text-overflow: ellipsis;
+    width: 150px;
+    overflow: hidden;
+}
+
+.followingItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.followingContainer {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-self: left;
+}
+
+.followingNumber {
+    composes: bodyBold from "../../styles.module.css";
+    font-size: 18px;
+}
+
+.followingLabel {
+    composes: bodyDefault from "../../styles.module.css";
+    font-size: 14px;
+}
+
+.scroller {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    width: 100vw;
+    max-width: 520px;
+}
+
+.postImage {
+    max-width: 100%;
+}
+
+.followingList {
+    width: 100vw;
+    max-width: 520px;
+    margin-top: 56px;
+}
+
+.followingListItem {
+    background-color: white;
+    width: 100vw;
+    max-width: 520px;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    padding: 20px;
+    margin: 0px;
+    composes: bodyBold from "../../styles.module.css";
+    font-size: 16px;
+}
+
+.followingListAvatar {
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    margin-right: 20px;
+}
+
