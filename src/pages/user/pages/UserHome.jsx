@@ -16,7 +16,59 @@ const theme = createMuiTheme({
     }
 });
 
+
+
 export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
+
+    const [followButtonState, setFollowButtonState] = useState("isme")
+
+    useEffect(() => {
+        if (user.account.address === account.address) {
+            setFollowButtonState('isme')
+            console.log('this user is me')
+        } else if (account.subs[user.account.address]) {
+            setFollowButtonState('isfollow')
+            console.log('this user is a sub')
+        } else {
+            setFollowButtonState('canfollow')
+            console.log('this user can be a sub')
+        }
+    }, [user.subs])
+
+    const handleFollow = () => {
+        console.log('follow')
+    }
+
+    const handleUnFollow = () => {
+        console.log('unfollow')
+    }
+
+    const dispatch = useDispatch()
+
+    function followbutton(followButtonState) {
+        switch (followButtonState) {
+            case 'isme':
+                console.log('this user is me')
+                return (<div></div >)
+            case 'canfollow':
+                console.log('this user can be followed')
+                return (<div onClick={() => dispatch({ type: 'FOLLOW_USER', data: { address: user.account.address, currentSubs: account.subs } })} className={styles.followButton}>
+                    Follow
+                </div>)
+            case 'isfollow':
+                console.log('already following user')
+                return (<div onClick={() => handleUnFollow()} className={styles.followButton}>
+                    Unfollow
+                </div>)
+            default:
+                return (<div className={styles.followButton}>
+                    Dunno
+                </div>)
+        }
+    }
+
+
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -38,11 +90,15 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
                             <div className={styles.followingLabel}>Following </div>
                         </div>
                     </div>
-
                     <div>
                         <div className={styles.userName}>{user.account.username}</div>
                         <div className={styles.userAddress}>{user.account.address}</div>
                     </div>
+
+
+                    {followbutton(followButtonState)}
+
+
                 </div>
 
                 <div className={styles.scroller}>

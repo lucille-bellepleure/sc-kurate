@@ -18,6 +18,10 @@ export default function* resolveMyPostsSaga(
     try {
         const mySubscriptionsRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'usersubscriptions');
         const mySubscriptions = JSON.parse(mySubscriptionsRaw)
+        const userObject = {
+            subs: mySubscriptions
+        }
+        yield put({ type: "SET_ACCOUNT", data: userObject })
         const subscriptionsArray = Object.keys(mySubscriptions)
         for (let index = 0; index < subscriptionsArray.length; index++) {
             const subscription = subscriptionsArray[index];

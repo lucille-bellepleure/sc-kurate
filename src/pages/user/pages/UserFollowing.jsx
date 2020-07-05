@@ -28,13 +28,15 @@ export function UserFollowing({ nextStage, exitStage, user, userfeed, usersubs, 
                 </div>
                 <div className={styles.followingList}>
                     {usersubs.map((item) => (
-                        <div className={styles.followingListItem}>
-                            <img className={styles.followingListAvatar} src={item.avatar} alt="avatar" />
-                            <div>
-                                <div className={styles.userName}>{item.username}</div>
-                                <div className={styles.userAddress}>{item.address}</div>
+                        <NavLink to={"/user/" + item.address}>
+                            <div className={styles.followingListItem}>
+                                <img className={styles.followingListAvatar} src={item.avatar} alt="avatar" />
+                                <div>
+                                    <div className={styles.userName}>{item.username}</div>
+                                    <div className={styles.userAddress}>{item.address}</div>
+                                </div>
                             </div>
-                        </div>
+                        </NavLink>
                     ))}
 
                 </div>
@@ -42,7 +44,6 @@ export function UserFollowing({ nextStage, exitStage, user, userfeed, usersubs, 
                     <div className={main.textbutton}>
                         <NavLink to="/">
                             <Home
-
                                 color="primary"
                                 fontSize="large"></Home>
                         </NavLink>

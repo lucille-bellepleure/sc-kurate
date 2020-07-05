@@ -24,12 +24,12 @@ export function PostItemRoot() {
     const user = useSelector(state => getUserFromState(state))
     const [stage, setStage] = useState(userHome)
 
+
     console.log(user)
     const account = useSelector(state => getUser(state))
 
     const userfeed = Object.values(user.posts)
     const usersubs = Object.values(user.subs)
-
 
     const params = useParams()
     const address = params.userAddress
@@ -37,8 +37,9 @@ export function PostItemRoot() {
     useEffect(() => {
         if (address) {
             dispatch({ type: 'GET_USER', data: address })
+            setStage(userHome)
         }
-    }, [])
+    }, [params.userAddress])
 
     // Router
     switch (stage) {
