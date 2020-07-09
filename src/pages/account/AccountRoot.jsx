@@ -24,7 +24,7 @@ function getAccount(state) {
 
 export function AccountRoot() {
 
-    const [stage, setStage] = useState(myIdentity)
+    const [stage, setStage] = useState(accountHome)
     const account = useSelector(state => getAccount(state))
 
     const dispatch = useDispatch()
@@ -59,7 +59,10 @@ export function AccountRoot() {
     switch (stage) {
         case accountHome:
             return (
-                <AccountHome>
+                <AccountHome
+                    myIdentityStage={() => setStage(myIdentity)}
+                    shortCodeStage={() => setStage(shortcodeStage)}
+                    resolveStage={() => setStage(resolveShort)}>
                 </AccountHome>
             );
         case myIdentity:
@@ -73,7 +76,7 @@ export function AccountRoot() {
                     publicKey={account.publicKey}
                     address={account.address}
                     nextStage={() => setStage(removeAccount)}
-                    exitStage={() => history.push("/")}
+                    exitStage={() => setStage(accountHome)}
                     shortCode={handleShortcode}
                     resolveShort={() => setStage(resolveShort)}
                 />

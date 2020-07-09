@@ -1,5 +1,6 @@
 import { call, delay, put, select, fork } from "redux-saga/effects"
 import { getAccount } from "services/account/selectors"
+import useSWR, { responseInterface } from "swr";
 
 export default function* followUserSaga(
     action

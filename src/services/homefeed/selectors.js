@@ -10,3 +10,9 @@ export const getHomefeedAsArray = createSelector(
     getHomefeed,
     homefeed => Object.values(homefeed)
 );
+
+export const getPostById = createSelector(
+    getHomefeed,
+    (_, id) => id,
+    (homefeed, id) => homefeed[id]
+)

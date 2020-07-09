@@ -90,7 +90,6 @@ export function HomeFeed({ nextStage, homefeed }) {
                     <div className={main.textbutton}>
                         <NavLink to="/">
                             <Home
-                                onClick={() => accountUnlock.handleClickOpen()}
                                 color="primary"
                                 fontSize="large"></Home>
                         </NavLink>
@@ -126,7 +125,6 @@ export function HomeFeed({ nextStage, homefeed }) {
                     </div>
                 </div>
 
-                {/* <AccountUnlock ref={accountUnlock}></AccountUnlock> */}
 
             </div>
         </ThemeProvider>

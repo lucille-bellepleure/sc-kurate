@@ -1,6 +1,9 @@
 import { call, delay, put, select, fork } from "redux-saga/effects"
 import { getAccount } from "services/account/selectors"
 import fetchMyPosts from "../fetchFunctions/fetchMyPosts.js"
+import * as s from "../selectors"
+
+
 export default function* resolveMyPostsSaga(
     action
 ) {
@@ -12,8 +15,14 @@ export default function* resolveMyPostsSaga(
 
     // First resolve my posts
     const address = action.data
-    const myPosts = yield call(fetchMyPosts, { address })
+
+    const cachedPosts = yield select(s.getHomefeed)
+    console.log(cachedPosts)
+
+    const myPosts = yield call(fetchMyPosts, { address, cachedPosts })
+
     yield put({ type: "SET_POSTS", data: myPosts })
+
     // Then resolve the posts of the people I follow
     try {
         const mySubscriptionsRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'usersubscriptions');

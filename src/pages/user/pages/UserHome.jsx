@@ -7,6 +7,9 @@ import { Home, AddCircle, ArrowBackIos, ArrowForwardIos, Favorite, FavoriteBorde
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Avatar, Divider } from "@material-ui/core"
 import sortByProp from "helpers/sortByProp";
+import useSWR, { responseInterface } from "swr";
+import fetch from 'unfetch'
+
 
 const theme = createMuiTheme({
     // Style sheet name ⚛️
@@ -16,11 +19,10 @@ const theme = createMuiTheme({
     }
 });
 
-
-
 export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
 
     const [followButtonState, setFollowButtonState] = useState("isme")
+    const JSONFetcher = url => fetch(url).then(r => r.text())
 
     useEffect(() => {
         if (user.account.address === account.address) {
@@ -34,6 +36,11 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
             console.log('this user can be a sub')
         }
     }, [user.subs])
+
+    const postId = "1de454a67e435e2fe76871322e996ec1f422c7ecbffe66b406f2a2c4945cd685"
+
+    const { data, error } = useSWR('https://swarm-gateways.net/bzz:/' + postId, JSONFetcher);
+    if (data) { const cleanData = JSON.parse(data); console.log(cleanData) }
 
     const handleFollow = () => {
         console.log('follow')
@@ -100,6 +107,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
 
 
                 </div>
+                <div className={main.blue}>RAW </div>
 
                 <div className={styles.scroller}>
                     {userfeed.map((item) => (

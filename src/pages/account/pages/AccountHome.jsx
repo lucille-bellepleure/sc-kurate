@@ -9,7 +9,10 @@ const AccountHome = ({
     nextStage,
     exitStage,
     avatar,
-    username
+    username,
+    myIdentityStage,
+    shortCodeStage,
+    resolveStage
 }) => (
         <div className={createAccount.formcontainer}>
             <div className={createAccount.closeButton} onClick={exitStage}>
@@ -17,7 +20,8 @@ const AccountHome = ({
             </div>
             <div className={createAccount.flexer}></div>
             <div className={createAccount.homemenu}>
-                <div className={createAccount.menuitem}>
+                <div className={createAccount.menuitem}
+                    onClick={myIdentityStage}>
                     <AccountCircle></AccountCircle>
                     <div>Account settings</div>
                 </div>
@@ -25,11 +29,13 @@ const AccountHome = ({
                     <AccountBalanceWallet></AccountBalanceWallet>
                     <div>Wallet</div>
                 </div>
-                <div className={createAccount.menuitem}>
+                <div className={createAccount.menuitem}
+                    onClick={shortCodeStage}>
                     <VerifiedUser></VerifiedUser>
                     <div>Get verified</div>
                 </div>
-                <div className={createAccount.menuitem}>
+                <div className={createAccount.menuitem}
+                    onClick={resolveStage}>
                     <Loyalty></Loyalty>
                     <div>Verify a friend</div>
                 </div>

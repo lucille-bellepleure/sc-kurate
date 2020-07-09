@@ -1,3 +1,4 @@
+
 export default async function fetchMyPosts({ address }) {
     const personRawPosts = await window.fds.Account.SwarmStore.SF.get(address, 'userposts');
     const personPosts = JSON.parse(personRawPosts)
@@ -8,6 +9,9 @@ export default async function fetchMyPosts({ address }) {
 
     await Promise.all(
         postsArray.map(async post => {
+            console.log(post)
+            //const { rawRes, error } = useSWR(post, fetcher);
+            //console.log({ rawRes, error })
             const rawRes = await window.fds.Account.Store.sendRequest("https://swarm-gateways.net/bzz:/" + post + "/, 'GET', 'text'");
             const result = JSON.parse(rawRes);
             const thisPost = {}

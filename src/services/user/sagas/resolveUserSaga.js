@@ -1,9 +1,12 @@
 import { call, delay, put, select, fork } from "redux-saga/effects"
 import fetchPosts from "../fetchFunctions/fetchPosts.js"
+
 export default function* resolveUserSaga(
     action
 ) {
     console.log("Resolve Posts Saga", action.data)
+
+
 
     let initialState = {
         account:

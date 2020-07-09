@@ -5,7 +5,7 @@ import { persistentReducer } from "redux-pouchdb-plus";
 
 const initialState = {};
 
-function homefeed(state = initialState, action) {
+function homefeedState(state = initialState, action) {
     switch (action.type) {
         case t.SET_POSTS:
             console.log('set posts')
@@ -28,8 +28,8 @@ function homefeed(state = initialState, action) {
     }
 }
 
-// const homefeed = persistentReducer(homefeedState, {
-//     name: "homefeed"
-// });
+const homefeed = persistentReducer(homefeedState, {
+    name: "homefeed"
+});
 
 export default homefeed
