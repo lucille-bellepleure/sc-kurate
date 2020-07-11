@@ -16,20 +16,29 @@ function getUser(state) {
     return state.account
 }
 
+function getSystem(state) {
+    return state.system
+}
 export function PostItemRoot() {
 
     const history = useHistory()
 
     const dispatch = useDispatch()
     const account = useSelector(state => getUser(state))
+    const system = useSelector(state => getSystem(state))
+
     const [stage, setStage] = useState(uploadPhoto)
     const [photo, setPhoto] = useState()
     const [filteredPhoto, setFilteredPhoto] = useState()
 
     const sharePost = (post) => {
-        const dataObject = { post: post, user: account }
-        dispatch({ type: "SHARE_POST", data: dataObject })
-        //history.push("/")
+        if (!system.passWord) {
+            dispatch({ type: "SET_SYSTEM", data: { showPasswordUnlock: true } })
+        } else {
+            const dataObject = { post: post, user: account, password: system.passWord }
+            dispatch({ type: "SHARE_POST", data: dataObject })
+            history.push("/")
+        }
     }
 
     // Router
@@ -53,7 +62,8 @@ export function PostItemRoot() {
             return (
                 <MetaDataPhoto
                     image={filteredPhoto}
-                    sharePost={sharePost}>
+                    sharePost={sharePost}
+                    accountUnlock={system.passWord}>
                 </MetaDataPhoto>
             )
 

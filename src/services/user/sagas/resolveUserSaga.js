@@ -6,8 +6,6 @@ export default function* resolveUserSaga(
 ) {
     console.log("Resolve Posts Saga", action.data)
 
-
-
     let initialState = {
         account:
             { username: "fetching" },

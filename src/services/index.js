@@ -1,11 +1,15 @@
 import account from "./account/"
-import homefeed from "./homefeed"
+import postState from "./postState"
 import postitem from "./postitem"
 import user from "./user"
+import homefeed from "./homefeed"
+import system from "./system"
 
 export default {
     account,
-    homefeed,
+    postState,
     postitem,
-    user
+    user,
+    homefeed,
+    system
 };

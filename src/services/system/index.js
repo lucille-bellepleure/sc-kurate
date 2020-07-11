@@ -1,11 +1,12 @@
 import reducer from "./reducer";
-//import saga from "./sagas";
+import saga from "./sagas";
 
 // Service > system
 
-export const mountPoint = "homefeed";
+export const mountPoint = "system";
 
 export default {
     mountPoint,
-    reducer
+    reducer,
+    saga
 };

@@ -4,7 +4,7 @@ import 'cropperjs/dist/cropper.css';
 import main from "styles.module.css"
 import { Route, NavLink } from "react-router-dom";
 import Placeholder from "images/placeholder.png"
-export function MetaDataPhoto({ nextStage, sharePost, image }) {
+export function MetaDataPhoto({ nextStage, sharePost, image, accountUnlock }) {
 
     const [textInput, setTextInput] = useState()
 
@@ -17,7 +17,9 @@ export function MetaDataPhoto({ nextStage, sharePost, image }) {
         <div className={main.container}>
             <div className={main.header}>
                 <div><NavLink className={main.textbutton} to="/">Cancel</NavLink></div>
-                <div onClick={() => { handlePost() }} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>Share</div>
+                <div onClick={() => { handlePost() }} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>
+                    {accountUnlock ? "Share" : "Unlock"}
+                </div>
             </div>
             <div className={main.photoplace}>
                 <div className={main.metaContainer}>
@@ -25,9 +27,9 @@ export function MetaDataPhoto({ nextStage, sharePost, image }) {
                     <textarea
                         type="text"
                         autoFocus
-                        multiline
+
                         rows="4"
-                        maxlength="78"
+                        maxLength="78"
                         className={main.textinput}
                         value={textInput}
                         placeholder="Write a caption..."

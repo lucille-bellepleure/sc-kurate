@@ -24,15 +24,54 @@ function getUser(state) {
     return state.account
 }
 
+function getPosts(state) {
+    return state.postState
+}
+
 export function HomeFeed({ nextStage, homefeed }) {
 
     const account = useSelector(state => getUser(state))
+    const posts = useSelector(state => getPosts(state))
     const dispatch = useDispatch()
     const accountUnlock = useState(null)
 
+    const getPost = (bzz) => {
+        const item = posts[bzz]
+        if (item) {
+            return (
+                <div key={item._id}>
+                    <div className={main.postHead}>
+                        <NavLink to={"/user/" + item.address}><Avatar src={item.avatar} className={main.avatar}></Avatar></NavLink>
+                        <div>
+                            <div className={main.postUsername}><b>{item.username}</b></div>
+                            <div className={main.postLocation}>{item.location}</div>
+                        </div>
+                    </div>
+                    <PosterChild format={item.format} image={item.image} onDoubleClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}></PosterChild>
+
+                    <ActionButton type={item.type}></ActionButton>
+                    <div className={main.postFooter}>
+                        <div className={main.likes}>
+                            {item.ilike
+                                ? <Favorite
+                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
+                                : <FavoriteBorder
+                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
+                                    color="primary" fontSize="small"></FavoriteBorder>
+                            }
+                                    &nbsp;
+                                    <b>{item.likes}</b></div>
+                        <div>{item.caption}</div>
+                    </div>
+                </div>
+
+            )
+        }
+    }
+
     useEffect(() => {
         if (account.address) {
-            dispatch({ type: 'RESOLVE_MYPOSTS', data: account.address })
+            dispatch({ type: 'RES_HOMEFEED' })
         }
     }, [account.address])
 
@@ -47,34 +86,9 @@ export function HomeFeed({ nextStage, homefeed }) {
                 </div>
                 <div className={main.scroller}>
                     {homefeed
-                        .sort(sortByProp("_id", "desc"))
+                        .sort(sortByProp("time", "desc"))
                         .map((item, index) => (
-                            <div>
-                                <div className={main.postHead}>
-                                    <NavLink to={"/user/" + item.address}><Avatar src={item.avatar} className={main.avatar}></Avatar></NavLink>
-                                    <div>
-                                        <div className={main.postUsername}><b>{item.username}</b></div>
-                                        <div className={main.postLocation}>{item.location}</div>
-                                    </div>
-                                </div>
-                                <PosterChild format={item.format} image={item.image} onDoubleClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}></PosterChild>
-
-                                <ActionButton type={item.type}></ActionButton>
-                                <div className={main.postFooter}>
-                                    <div className={main.likes}>
-                                        {item.ilike
-                                            ? <Favorite
-                                                onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
-                                            : <FavoriteBorder
-                                                onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
-                                                color="primary" fontSize="small"></FavoriteBorder>
-                                        }
-                                    &nbsp;
-                                    <b>{item.likes}</b></div>
-                                    <div>{item.caption}</div>
-                                </div>
-                            </div>
-
+                            getPost(item.bzz)
                         ))}
 
                     <div>

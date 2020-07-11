@@ -788,3 +788,64 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   align-items: flex-start;
   background-color:var(--sc-grey4);
 }
+
+.dialogBox {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.dialogTitle {
+  composes: bodyBold;
+  margin-bottom: 20px;
+}
+
+.dialogClose {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.dialogAvatar {
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  margin-bottom: 20px;
+}
+
+.dialogPasswordBox {
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  place-items: center center;
+  margin-bottom: 10vh;
+}
+
+.dialogPassword {
+  composes: bodyDefault;
+  width: 205px;
+  color: var(--sc-grey4);
+  text-align: left;
+  padding-bottom: 5px;
+  border: 0px;
+  border-bottom: 1px solid var(--sc-grey4);
+  background-color: transparent;
+}
+
+.dialogPasswordiconbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-top: -40px;
+  max-width: 520px;
+  padding: 20px;
+}
+
+.cancel {
+  background: none;
+  box-shadow: none;
+}

@@ -6,7 +6,8 @@ export default function* sharePostSaga(
     console.log("Share Post Saga", action.data)
     const postObject = action.data;
     const userObject = action.data.user;
-    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(action.data.user.privateKey, '1234');
+
+    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(action.data.user.privateKey, postObject.password);
 
     console.log(decryptedPrivateKey.privateKey);
 
@@ -25,6 +26,7 @@ export default function* sharePostSaga(
             decryptedPrivateKey.privateKey,
             tempPosts
         )
+        yield put({ type: 'SET_SYSTEM', data: { passWord: null } })
     } catch (error) {
         console.log('ERR', error.message)
     }

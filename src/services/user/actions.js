@@ -14,3 +14,8 @@ export const followUser = data => ({
     type: t.FOLLOW_USER,
     data
 })
+
+export const resHomefeed = data => ({
+    type: t.RES_HOMEFEED,
+    data
+})

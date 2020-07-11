@@ -2,11 +2,11 @@
 import { takeEvery } from "redux-saga/effects";
 import * as t from "./actionTypes";
 // Sagas
-import resolveMyPostsSaga from "./sagas/resolveMyPostsSaga"
+import resolvePostSaga from "./sagas/resolvePostSaga"
 
 /******************************* Watchers *************************************/
 
-export default function* homefeedRootSaga() {
+export default function* postStateRootSaga() {
     //yield resolveMyPostsSaga()
-    yield takeEvery(t.RESOLVE_MYPOSTS, resolveMyPostsSaga);
+    yield takeEvery(t.RES_POST, resolvePostSaga);
 }

@@ -5,21 +5,23 @@ import { persistentReducer } from "redux-pouchdb-plus";
 
 const initialState = {};
 
-function homefeed(state = initialState, action) {
+function postState(state = initialState, action) {
     switch (action.type) {
-        case t.SET_HOMEFEED:
-            console.log('sethomefeed')
+        case t.ADD_POST:
+            console.log('add post')
             return {
                 ...state,
                 ...action.data
             };
+        case t.CLEAR_CACHE:
+            return {}
         default:
             return state;
     }
 }
 
-const homefeedPersisted = persistentReducer(homefeed, {
-    name: "homefeed"
+const postStatePersisted = persistentReducer(postState, {
+    name: "postState"
 });
 
-export default homefeedPersisted
+export default postStatePersisted
