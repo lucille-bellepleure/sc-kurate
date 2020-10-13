@@ -6,11 +6,13 @@ import { useParams, useHistory } from "react-router-dom";
 import UserHome from './pages/UserHome';
 import UserFollowing from './pages/UserFollowing';
 // Ids
+const userFetching = 'userFetching';
 const userHome = 'userHome';
+
 const userFollowing = 'userFollowing';
 
-function getUserFromState(state) {
-    return state.user
+function getUserFromState(state, address) {
+    return state.users[address]
 }
 
 function getUser(state) {
@@ -21,28 +23,40 @@ export function PostItemRoot() {
 
     const history = useHistory()
     const dispatch = useDispatch()
-    const user = useSelector(state => getUserFromState(state))
-    const [stage, setStage] = useState(userHome)
+    const [stage, setStage] = useState(userFetching)
 
+    const [userfeed, setUserfeed] = useState([])
+    const [usersubs, setUsersubs] = useState([])
 
-    console.log(user)
     const account = useSelector(state => getUser(state))
-
-    const userfeed = Object.values(user.posts)
-    const usersubs = Object.values(user.subs)
 
     const params = useParams()
     const address = params.userAddress
 
+    const user = useSelector(state => getUserFromState(state, address))
+
     useEffect(() => {
         if (address) {
             dispatch({ type: 'GET_USER', data: address })
+            setStage(userFetching)
+        }
+
+    }, [params.userAddress])
+
+    useEffect(() => {
+        if (user) {
+            setUserfeed(Object.values(user.posts))
+            setUsersubs(Object.values(user.subs))
             setStage(userHome)
         }
-    }, [params.userAddress])
+    }, [user])
 
     // Router
     switch (stage) {
+        case userFetching:
+            return (
+                <div>User fetching</div>
+            )
         case userHome:
             return (
                 <UserHome

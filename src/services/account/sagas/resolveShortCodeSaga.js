@@ -2,7 +2,6 @@ import { delay, put, select, fork } from "redux-saga/effects"
 import { createKeyPair } from '@erebos/secp256k1'
 import { pubKeyToAddress } from '@erebos/keccak256'
 import { toHex, hexToByteArray, byteArrayToHex, numbersToByteArray, stringToUint8Array } from 'helpers/conversion';
-import { hexValue } from '@erebos/hex';
 
 export default function* resolveShortCodeSaga(
     action

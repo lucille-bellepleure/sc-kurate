@@ -3,7 +3,7 @@ import saga from "./sagas";
 
 // Service > system
 
-export const mountPoint = "user";
+export const mountPoint = "users";
 
 export default {
     mountPoint,

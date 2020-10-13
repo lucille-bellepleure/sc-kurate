@@ -1,5 +1,7 @@
-import { call, delay, put, select, fork } from "redux-saga/effects"
+import { all, call, delay, put, select, fork } from "redux-saga/effects"
 import fetchPosts from "../fetchFunctions/fetchPosts.js"
+import resolvePostSaga from "../../postState/sagas/resolvePostSaga"
+import * as s from "../selectors"
 
 export default function* resolveUserSaga(
     action
@@ -13,33 +15,23 @@ export default function* resolveUserSaga(
         subs: {}
     };
 
-    yield put({ type: "SET_USER", data: initialState })
-
     const address = action.data
+
+    const cachedUsers = yield select(s.getUsers)
 
     // Resolve user
     const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'userdata');
     const userData = JSON.parse(userDataRaw)
 
-    let userObject = {
-        account: userData
-    }
-
-    yield put({ type: "SET_USER", data: userObject })
-
-    console.log(userData)
 
 
     // Resolve posts
-    const userPosts = yield call(fetchPosts, { address })
-    console.log(userPosts)
+    const personRawPosts = yield window.fds.Account.SwarmStore.SF.get(address, 'userposts');
+    const personPosts = JSON.parse(personRawPosts)
+    const postsArray = Object.keys(personPosts.posts)
 
-    userObject = {
-        posts: userPosts,
-    }
 
-    yield put({ type: "SET_USER", data: userObject })
-
+    yield all(postsArray.map(x => call(resolvePostSaga, { postId: x, userAddress: address })))
 
     // Resolve user's subscriptions
     const userSubsRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'usersubscriptions');
@@ -56,9 +48,11 @@ export default function* resolveUserSaga(
         console.log(userSubs[sub])
     }
 
-    userObject = {
+    const userObject = {
+        account: userData,
+        posts: personPosts.posts,
         subs: userSubs
     }
 
-    yield put({ type: "SET_USER", data: userObject })
+    yield put({ type: "SET_USER", data: { [address]: userObject } })
 }

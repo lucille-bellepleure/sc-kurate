@@ -1,7 +1,7 @@
 import account from "./account/"
 import postState from "./postState"
 import postitem from "./postitem"
-import user from "./user"
+import users from "./users"
 import homefeed from "./homefeed"
 import system from "./system"
 
@@ -9,7 +9,7 @@ export default {
     account,
     postState,
     postitem,
-    user,
+    users,
     homefeed,
     system
 };

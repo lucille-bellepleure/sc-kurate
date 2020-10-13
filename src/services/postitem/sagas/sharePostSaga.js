@@ -6,8 +6,13 @@ export default function* sharePostSaga(
     console.log("Share Post Saga", action.data)
     const postObject = action.data;
     const userObject = action.data.user;
+    let decryptedPrivateKey
+    try {
+        decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(action.data.user.privateKey, postObject.password);
 
-    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(action.data.user.privateKey, postObject.password);
+    } catch (error) {
+        console.log(error)
+    }
 
     console.log(decryptedPrivateKey.privateKey);
 
@@ -27,14 +32,10 @@ export default function* sharePostSaga(
             tempPosts
         )
         yield put({ type: 'SET_SYSTEM', data: { passWord: null } })
+        yield put({ type: "RES_HOMEFEED" })
     } catch (error) {
         console.log('ERR', error.message)
     }
-
-
-
-
-
 
     //yield put({ type: "SET_ACCOUNT", data: accountObj })
 }

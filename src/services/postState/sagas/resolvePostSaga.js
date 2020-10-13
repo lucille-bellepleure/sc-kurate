@@ -7,9 +7,9 @@ export default function* resolvePostSaga(
 ) {
     console.log("Resolve Post Saga", action)
     // Temp get private key 
-    // const account = yield select(getAccount)
-    // const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
-    // console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
+    const account = yield select(getAccount)
+    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
+    console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
 
     // First resolve my posts
     const postId = action.postId

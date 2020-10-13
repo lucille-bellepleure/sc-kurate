@@ -9,10 +9,27 @@ import FDS from "fds.js";
 import Web3 from "web3"
 
 
-window.myWeb3 = new Web3('http://goerli-geth.dappnode:8545')
+window.myWeb3 = new Web3('https://goerli.infura.io/v3/46958faea5154db687257f9598b0e269')
 
-window.fds = new FDS();
+//window.fds = new FDS({ swarmGateway: "https://swarm.fairdatasociety.org", ethGateway: "https://goerli.infura.io/v3/46958faea5154db687257f9598b0e269" });
 
+window.fds = new FDS({
+    tokenName: 'gas',
+    swarmGateway: 'https://swarm.fairdatasociety.org',
+    ethGateway: 'https://goerli.infura.io/v3/46958faea5154db687257f9598b0e269',
+    faucetAddress: 'http://localhost:3001/gimmie',
+    chainID: '5',
+    httpTimeout: 1000,
+    gasPrice: 0.001,
+    walletVersion: 1,
+    scratchDir: '/tmp/something',
+    ensConfig: {
+        domain: 'instaswarm.eth',
+        registryAddress: '0xf5edc04158Bec885e6435605496dE40736E3934C',
+        subdomainRegistrarAddress: '0x2710B36f042e209a154Ec9233483510D3FC15f14',
+        resolverContractAddress: '0x22532D2ec451BD4c626313cE9C7385eFaA2b8a45'
+    }
+})
 const sagaMiddleware = createSagaMiddleware();
 const db = new PouchDB({ name: "instaSwarm" });
 const pouchMiddleware = persistentStore({ db });
