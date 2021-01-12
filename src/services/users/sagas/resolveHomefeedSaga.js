@@ -17,14 +17,20 @@ export default function* resolveHomefeedSaga(
     //yield put({ type: "SET_HOMEFEED", data: initialState })
 
     // Resolve me
+    debugger
+
     const account = yield select(getAccount)
-    const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(account.address, 'userdata');
+    console.log(account)
+    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
+    console.log(decryptedPrivateKey)
+    const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(account.address, 'userdata', decryptedPrivateKey.privateKey);
     const userData = JSON.parse(userDataRaw)
-    const personRawPosts = yield window.fds.Account.SwarmStore.SF.get(account.address, 'userposts');
+
+    const personRawPosts = yield window.fds.Account.SwarmStore.SF.get(account.address, 'userposts', decryptedPrivateKey.privateKey);
     const personPosts = JSON.parse(personRawPosts)
     const postsArray = Object.keys(personPosts.posts)
 
-    const personRawSubs = yield window.fds.Account.SwarmStore.SF.get(account.address, 'usersubscriptions');
+    const personRawSubs = yield window.fds.Account.SwarmStore.SF.get(account.address, 'usersubscriptions', decryptedPrivateKey.privateKey);
     const personSubs = JSON.parse(personRawSubs)
     const personSubsArray = Object.keys(personSubs)
 

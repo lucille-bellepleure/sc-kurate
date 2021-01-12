@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef, useCallback} from "react";
 import main from "styles.module.css";
 import {Route, NavLink} from "react-router-dom";
-import ProcessImage from "react-imgpro";
 
 export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
   let myCaman = null;
@@ -81,13 +80,6 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
     canvasRef.current.height = img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
 
-    // myCaman = window.Caman(canvasRef.current, img, function () {
-    //   this.render(function () {
-    //     setImg(this.toBase64());
-    //   });
-    // });
-    // console.log(myCaman);
-
     let photonImage = window.photon.open_image(canvasRef.current, ctx);
 
     // Filter the image
@@ -99,43 +91,23 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
   };
 
   const createThumbs = async () => {
+    let ctx = canvasRef.current.getContext("2d");
+    let photonImage = window.photon.open_image(canvasRef.current, ctx);
+    let scaledCanvas = window.photon.resize(photonImage, 100, 100, 2);
+    let ctx2 = scaledCanvas.getContext("2d");
+
     for (let index = 0; index < filterMap.length; index++) {
       const filter = filterMap[index];
-      let ctx = canvasRef.current.getContext("2d");
-      let photonImage = window.photon.open_image(canvasRef.current, ctx);
+      let resizedPhotonImage = window.photon.open_image(scaledCanvas, ctx2);
+      window.photon.filter(resizedPhotonImage, filter.filter);
+      let file = resizedPhotonImage.get_base64();
 
-      await window.photon.filter(photonImage, filter.filter);
-      let imageData = window.photon.to_image_data(photonImage);
-      console.log(imageData);
-
-      let canvas2 = document.createElement("canvas");
-      let ctx2 = canvas2.getContext("2d");
-      canvas2.width = imageData.width;
-      canvas2.height = imageData.height;
-      ctx2.putImageData(imageData, 0, 0);
-
-      let thumb64 = canvas2.toDataURL();
-      //let thumbCanvas = await window.photon.putImageData(canvas, ctx2, photonImage);
-      //let thumb64 = canvas.toDataURL();
       setThumbs(thumbs => [
         ...thumbs, {
           filter: filter.filter,
-          src: thumb64
+          src: file
         }
       ]);
-
-      //   const thumbSrc = window.Caman(canvas, image, function () {
-      //     this[filter.filter]();
-      //     this.render(function () {
-      //       let base64 = this.toBase64();
-      //       setThumbs(thumbs => [
-      //         ...thumbs, {
-      //           filter: filter.filter,
-      //           src: base64
-      //         }
-      //       ]);
-      //     });
-      //   });
     }
   };
 
@@ -155,14 +127,12 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
     // });
     // console.log(myCaman);
 
-    let photonImage = window.photon.open_image(canvasRef.current, ctx);
-
     // Filter the image
-    window.photon.filter(photonImage, "islands");
+    //window.photon.filter(photonImage, "islands");
     //window.photon.transform.resize(photonImage, 10, 10, 4);
 
     // Replace the current canvas' ImageData with the new image's ImageData.
-    window.photon.putImageData(canvasRef.current, ctx, photonImage);
+    //window.photon.putImageData(canvasRef.current, ctx, photonImage);
 
     createThumbs();
   }, [canvasRef]);
@@ -180,7 +150,9 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
         Next
       </div>
     </div>
-    <canvas className={main.photoplace} ref={canvasRef}></canvas>
+    <div className={main.photoplace}>
+      <canvas className={main.cropper} ref={canvasRef}></canvas>
+    </div>
     {
       thumbs.length >= 0
         ? (<div className={main.filterplace}>

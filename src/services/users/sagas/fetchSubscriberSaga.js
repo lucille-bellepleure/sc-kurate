@@ -1,5 +1,6 @@
 import { all, call, delay, put, select, fork } from "redux-saga/effects"
 import resolvePostSaga from "../../postState/sagas/resolvePostSaga"
+import { getAccount } from "services/account/selectors"
 
 export default function* fetchSubscriberSaga(
     action
@@ -11,6 +12,11 @@ export default function* fetchSubscriberSaga(
     };
 
     // Resolve subscriber
+    const account = yield select(getAccount)
+    console.log(account)
+    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
+    console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
+
     const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(action.address, 'userdata');
     const userData = JSON.parse(userDataRaw)
     const personRawPosts = yield window.fds.Account.SwarmStore.SF.get(action.address, 'userposts');

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import wasmWorker from "wasm-worker";
-import sharePost from "helpers/instaSwarm.js";
+import storePost from "helpers/instaSwarm.js";
 // Sub-pages
 import UploadPhoto from "./pages/UploadPhoto";
 import FilterPhoto from "./pages/FilterPhoto";
@@ -65,9 +65,9 @@ export function PostItemRoot() {
         user: account,
         password: system.passWord
       };
-      //await sharePost(dataObject);
-      dispatch({type: "SHARE_POST", data: dataObject});
-      //history.push("/");
+      await storePost(dataObject);
+      //dispatch({type: "SHARE_POST", data: dataObject});
+      history.push("/");
     }
   }
 

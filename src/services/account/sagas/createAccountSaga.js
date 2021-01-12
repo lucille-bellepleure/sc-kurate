@@ -9,7 +9,6 @@ export default function* createAccountSaga(
     console.log(userObject);
 
     const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(userObject.privateKey, userObject.password);
-
     console.log(encryptedPrivateKey);
 
     const swarmUser = yield window.fds.Account.SwarmStore.SF.set(
@@ -38,8 +37,6 @@ export default function* createAccountSaga(
         userObject.privateKey,
         { "0x1F844ebC9Ce8f918A1b4428375b4357c7a6A974d": { "username": "Swarm Orange" } }
     )
-
-
 
     const accountObj = {
         address: userObject.address,
