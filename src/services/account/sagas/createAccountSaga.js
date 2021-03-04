@@ -33,7 +33,7 @@ export default function* createAccountSaga(
     // Here we create empty userSubs feed
 
     try {
-        const refSubs = yield setFeed('usersubscriptions', {
+        const refSubs = yield setFeed('usersubscriptions',
             { "0x4424B92F472d518c1D6B704D22C6cf9f904cC439": { "username": "Zelig" } },
             userObject.privateKey)
     } catch (error) {
