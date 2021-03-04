@@ -1,4 +1,5 @@
 import { delay, put, select, fork } from "redux-saga/effects"
+import { setFeed, getFeed, uploadData } from "helpers/swarmFeed"
 
 export default function* sharePostSaga(
     action
@@ -16,26 +17,26 @@ export default function* sharePostSaga(
 
     console.log(decryptedPrivateKey.privateKey);
 
-    const storedPost = yield window.fds.Account.Store.postData(postObject.post)
+    const storedPost = yield uploadData(postObject.post)
 
     console.log(storedPost)
 
-    try {
-        const oldPost = yield window.fds.Account.SwarmStore.SF.get(userObject.address, 'userposts');
-        let tempPosts = JSON.parse(oldPost);
-        let time = new Date().toISOString();
-        tempPosts.posts[storedPost] = { time: time, bzz: storedPost }
-        yield window.fds.Account.SwarmStore.SF.set(
-            userObject.address,
-            'userposts',
-            decryptedPrivateKey.privateKey,
-            tempPosts
-        )
-        yield put({ type: 'SET_SYSTEM', data: { passWord: null } })
-        yield put({ type: "RES_HOMEFEED" })
-    } catch (error) {
-        console.log('ERR', error.message)
-    }
+    // try {
+    //     const oldPost = yield window.fds.Account.SwarmStore.SF.get(userObject.address, 'userposts');
+    //     let tempPosts = JSON.parse(oldPost);
+    //     let time = new Date().toISOString();
+    //     tempPosts.posts[storedPost] = { time: time, bzz: storedPost }
+    //     yield window.fds.Account.SwarmStore.SF.set(
+    //         userObject.address,
+    //         'userposts',
+    //         decryptedPrivateKey.privateKey,
+    //         tempPosts
+    //     )
+    //     yield put({ type: 'SET_SYSTEM', data: { passWord: null } })
+    //     yield put({ type: "RES_HOMEFEED" })
+    // } catch (error) {
+    //     console.log('ERR', error.message)
+    // }
 
     //yield put({ type: "SET_ACCOUNT", data: accountObj })
 }

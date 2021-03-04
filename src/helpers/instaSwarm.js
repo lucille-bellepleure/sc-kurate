@@ -1,4 +1,11 @@
+import { setFeed, getFeed, uploadData } from "helpers/swarmFeed"
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}
+
 export default async function storePost(dataObject) {
+
     const postObject = dataObject;
     const userObject = dataObject.user;
     let decryptedPrivateKey
@@ -8,19 +15,26 @@ export default async function storePost(dataObject) {
     } catch (error) {
         console.log(error)
     }
+    debugger
 
-    const storedPost = await window.fds.Account.Store.postData(postObject.post)
+    const storedPost = await uploadData(postObject.post)
+    console.log('Stored posts', storedPost)
+
 
     try {
-        const oldPost = await window.fds.Account.SwarmStore.SF.get(userObject.address, 'userposts', decryptedPrivateKey.privateKey);
-        let tempPosts = JSON.parse(oldPost);
+        var oldPosts = await getFeed('userposts', userObject.address);
+        //let tempPosts = JSON.parse(oldPost);
+
+        console.log('oldPosts: ', oldPosts)
+
         let time = new Date().toISOString();
-        tempPosts.posts[storedPost] = { time: time, bzz: storedPost }
-        await window.fds.Account.SwarmStore.SF.set(
-            userObject.address,
+        oldPosts.posts[storedPost] = { time: time, bzz: storedPost }
+        //let stringedPosts = JSON.stringify(newPosts)
+
+        await setFeed(
             'userposts',
-            decryptedPrivateKey.privateKey,
-            tempPosts
+            oldPosts,
+            decryptedPrivateKey.privateKey
         )
         return true
     } catch (error) {

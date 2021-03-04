@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useRef, useCallback} from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import main from "styles.module.css";
-import {Route, NavLink} from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 
-export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
+export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
   let myCaman = null;
   const [thumbs, setThumbs] = useState([
     {
@@ -19,49 +19,33 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
 
   const filterMap = [
     {
+      filter: "lofi"
+    },
+    {
+      filter: "dramatic"
+    },
+    {
+      filter: "cali"
+    },
+    {
+      filter: "firenze"
+    }, {
+      filter: "obsidian"
+    },
+    {
       filter: "oceanic"
     }, {
       filter: "islands"
     }, {
       filter: "marine"
     }, {
-      filter: "seagreen"
-    }, {
-      filter: "flagblue"
-    }, {
       filter: "diamante"
     }, {
-      filter: "liquid"
-    }, {
-      filter: "radio"
-    }, {
-      filter: "twenties"
-    }, {
-      filter: "rosetint"
-    }, {
-      filter: "mauve"
-    }, {
-      filter: "bluechrome"
-    }, {
-      filter: "vintage"
-    }, {
       filter: "perfume"
-    }, {
-      filter: "serenity"
     }, {
       filter: "golden"
     }, {
       filter: "pastel_pink"
-    }, {
-      filter: "cali"
-    }, {
-      filter: "dramatic"
-    }, {
-      filter: "firenze"
-    }, {
-      filter: "obsidian"
-    }, {
-      filter: "lofi"
     }
   ];
 
@@ -71,6 +55,15 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
     setFilteredPhoto(file);
     nextStage();
   };
+
+  const resetEffect = () => {
+    let ctx = canvasRef.current.getContext("2d");
+    let img = new Image();
+    img.src = image;
+    canvasRef.current.width = img.width;
+    canvasRef.current.height = img.height;
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+  }
 
   const changeEffect = effect => {
     let ctx = canvasRef.current.getContext("2d");
@@ -145,8 +138,8 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
         </NavLink>
       </div>
       <div onClick={() => {
-          handleFilteredPhoto();
-        }} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>
+        handleFilteredPhoto();
+      }} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>
         Next
       </div>
     </div>
@@ -156,11 +149,17 @@ export function FilterPhoto({nextStage, setFilteredPhoto, image}) {
     {
       thumbs.length >= 0
         ? (<div className={main.filterplace}>
+          <div className={main.filteritem}>
+            <div>original</div>
+            <img src={image} width={100} height={100} onClick={() => resetEffect()}></img>
+          </div>
           {
-            thumbs.map(item => (<div className={main.filteritem}>
-              <div>{item.filter}</div>
-              <img src={item.src} width={100} height={100} onClick={() => changeEffect(item.filter)}></img>
-            </div>))
+            thumbs.map(item => (
+              <div className={main.filteritem}>
+                <div>{item.filter}</div>
+                <img src={item.src} width={100} height={100} onClick={() => changeEffect(item.filter)}></img>
+              </div>
+            ))
           }
         </div>)
         : (<div>no thumbs yet</div>)

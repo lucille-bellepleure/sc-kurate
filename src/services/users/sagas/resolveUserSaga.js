@@ -23,8 +23,6 @@ export default function* resolveUserSaga(
     const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'userdata');
     const userData = JSON.parse(userDataRaw)
 
-
-
     // Resolve posts
     const personRawPosts = yield window.fds.Account.SwarmStore.SF.get(address, 'userposts');
     const personPosts = JSON.parse(personRawPosts)

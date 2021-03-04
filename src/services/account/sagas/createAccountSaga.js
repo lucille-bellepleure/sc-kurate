@@ -1,42 +1,42 @@
 import { delay, put, select, fork } from "redux-saga/effects"
-import createSwarmFeed from "helpers/createSwarmFeed"
+import { setFeed, getFeed } from "helpers/swarmFeed"
 
 export default function* createAccountSaga(
     action
 ) {
     console.log("CreateAccount Saga", action.data)
     const userObject = action.data;
-    console.log(userObject);
 
     const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(userObject.privateKey, userObject.password);
-    console.log(encryptedPrivateKey);
 
-    const swarmUser = yield window.fds.Account.SwarmStore.SF.set(
-        userObject.address,
-        'userdata',
-        userObject.privateKey,
-        {
+    // Here we set the user data object to a feed
+
+    try {
+        const refUser = yield setFeed('userdata', {
             username: userObject.username,
             useravatar: userObject.avatar,
             publicKey: userObject.publicKey,
             address: userObject.address
-        })
+        }, userObject.privateKey)
+    } catch (error) {
+        console.error(error)
+    }
 
-    console.log(swarmUser);
+    // Here we create an empty userPosts feed
 
-    const firstPost = yield window.fds.Account.SwarmStore.SF.set(
-        userObject.address,
-        'userposts',
-        userObject.privateKey,
-        {
-            posts: {}
-        })
-    const following = yield window.fds.Account.SwarmStore.SF.set(
-        userObject.address,
-        'usersubscriptions',
-        userObject.privateKey,
-        { "0x1F844ebC9Ce8f918A1b4428375b4357c7a6A974d": { "username": "Swarm Orange" } }
-    )
+    try {
+        const refPosts = yield setFeed('userposts', { posts: {} }, userObject.privateKey)
+    } catch (error) {
+        console.error(error)
+    }
+
+    // Here we create empty userSubs feed
+
+    try {
+        const refSubs = yield setFeed('usersubscriptions', { subscriptions: {} }, userObject.privateKey)
+    } catch (error) {
+        console.error(error)
+    }
 
     const accountObj = {
         address: userObject.address,

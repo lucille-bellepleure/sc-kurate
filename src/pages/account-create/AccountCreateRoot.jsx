@@ -30,7 +30,6 @@ const restoreAccountStart = "restoreAccountStart";
 const restoreAccountCheck = "restoreAccountCheck";
 
 function getAccount(state) {
-
     return state.account
 }
 
@@ -40,12 +39,10 @@ export function AccountCreateRoot() {
     const history = useHistory()
     const dispatch = useDispatch()
 
-
     // User Creation state
     const [username, setUsername] = useState("");
     const [avatar, setAvatar] = useState(defaultAvatar);
     const [password, setPassword] = useState("");
-
 
     const accountData = useSelector(state => getAccount(state))
     console.log(accountData)
@@ -66,7 +63,6 @@ export function AccountCreateRoot() {
         }
 
         dispatch({ type: "CREATE_ACCOUNT", data: accountObj })
-        //setStage(successStage)
     }
 
     // Router

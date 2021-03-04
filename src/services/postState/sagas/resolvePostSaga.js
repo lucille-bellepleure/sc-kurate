@@ -1,16 +1,18 @@
 import { call, delay, put, select, fork } from "redux-saga/effects"
 import { getAccount } from "services/account/selectors"
 import * as s from "../selectors"
+import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
 
 export default function* resolvePostSaga(
     action
 ) {
     console.log("Resolve Post Saga", action)
     // Temp get private key 
+
     const account = yield select(getAccount)
     console.log(account)
-    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
-    console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
+    //const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
+    //console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
 
     // First resolve my posts
     const postId = action.postId
@@ -20,11 +22,9 @@ export default function* resolvePostSaga(
     console.log(cachedPosts)
 
     if (!cachedPosts[postId]) {
-        debugger
-        const rawPost = yield window.fds.Account.Store.sendRequest("https://bee-gateway.duckdns.org/bzz:/" + postId + "/, 'GET', 'text'");
-        const thisPost = JSON.parse(rawPost)
-        const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(userAddress, 'userdata', decryptedPrivateKey.privateKey);
-        const userData = JSON.parse(userDataRaw)
+        const thisPost = yield downloadData(postId);
+        const userData = yield getFeed('userdata', userAddress);
+        //const userData = JSON.parse(userDataRaw)
         console.log(userData)
         thisPost._id = thisPost.time;
         thisPost.avatar = userData.useravatar;
