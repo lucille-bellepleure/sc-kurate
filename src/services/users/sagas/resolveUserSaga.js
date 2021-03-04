@@ -2,6 +2,7 @@ import { all, call, delay, put, select, fork } from "redux-saga/effects"
 import fetchPosts from "../fetchFunctions/fetchPosts.js"
 import resolvePostSaga from "../../postState/sagas/resolvePostSaga"
 import * as s from "../selectors"
+import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
 
 export default function* resolveUserSaga(
     action
@@ -20,26 +21,22 @@ export default function* resolveUserSaga(
     const cachedUsers = yield select(s.getUsers)
 
     // Resolve user
-    const userDataRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'userdata');
-    const userData = JSON.parse(userDataRaw)
+    const userData = yield getFeed('userdata', address);
 
     // Resolve posts
-    const personRawPosts = yield window.fds.Account.SwarmStore.SF.get(address, 'userposts');
-    const personPosts = JSON.parse(personRawPosts)
+    const personPosts = yield getFeed('userposts', address);
     const postsArray = Object.keys(personPosts.posts)
 
 
     yield all(postsArray.map(x => call(resolvePostSaga, { postId: x, userAddress: address })))
 
     // Resolve user's subscriptions
-    const userSubsRaw = yield window.fds.Account.SwarmStore.SF.get(address, 'usersubscriptions');
-    const userSubs = JSON.parse(userSubsRaw)
+    const userSubs = yield getFeed('usersubscriptions', address);
     console.log('Subscriptions: ', userSubs)
-    const userSubsArray = Object.keys(userSubs)
+    const userSubsArray = Object.keys(userSubs.subscriptions)
     for (let index = 0; index < userSubsArray.length; index++) {
         const sub = userSubsArray[index];
-        const subAccountRaw = yield window.fds.Account.SwarmStore.SF.get(sub, 'userdata')
-        const subAccount = JSON.parse(subAccountRaw)
+        const subAccount = yield getFeed('userdata', sub)
         userSubs[sub].avatar = subAccount.useravatar;
         userSubs[sub].username = subAccount.username;
         userSubs[sub].address = subAccount.address;

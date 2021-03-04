@@ -1,10 +1,11 @@
 import { call, delay, put, select, fork } from "redux-saga/effects"
 import { getAccount } from "services/account/selectors"
-import useSWR, { responseInterface } from "swr";
+import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
 
 export default function* followUserSaga(
     action
 ) {
+    debugger
     console.log('follow u ser saga', action.data)
     const account = yield select(getAccount)
     const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
@@ -13,17 +14,16 @@ export default function* followUserSaga(
     const currentSubs = action.data.currentSubs
     const addressToFollow = action.data.address
 
-    currentSubs[addressToFollow] = {}
+    currentSubs.subscriptions[addressToFollow] = {}
 
-    const newFollowing = yield window.fds.Account.SwarmStore.SF.set(
-        decryptedPrivateKey.address,
+    const newFollowing = yield setFeed(
         'usersubscriptions',
-        decryptedPrivateKey.privateKey,
-        currentSubs
+        currentSubs,
+        decryptedPrivateKey.privateKey
     )
 
     const userObject = {
-        subs: currentSubs
+        subs: currentSubs.subscriptions
     }
 
     yield put({ type: "SET_ACCOUNT", data: userObject })

@@ -15,7 +15,6 @@ export default async function storePost(dataObject) {
     } catch (error) {
         console.log(error)
     }
-    debugger
 
     const storedPost = await uploadData(postObject.post)
     console.log('Stored posts', storedPost)
