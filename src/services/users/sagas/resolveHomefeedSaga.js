@@ -35,7 +35,7 @@ export default function* resolveHomefeedSaga(
     const postsArray = Object.keys(personPosts.posts)
     const personSubs = yield getFeed('usersubscriptions', account.address);
     //const personSubs = JSON.parse(personRawSubs)
-    const personSubsArray = Object.keys(personSubs.subscriptions)
+    const personSubsArray = Object.keys(personSubs)
 
     console.log(personSubsArray)
 

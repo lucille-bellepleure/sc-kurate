@@ -62,7 +62,8 @@ export function AccountRoot() {
                 <AccountHome
                     myIdentityStage={() => setStage(myIdentity)}
                     shortCodeStage={() => setStage(shortcodeStage)}
-                    resolveStage={() => setStage(resolveShort)}>
+                    resolveStage={() => setStage(resolveShort)}
+                    exitStage={() => history.push("/")}>
                 </AccountHome>
             );
         case myIdentity:

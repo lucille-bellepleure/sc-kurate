@@ -6,7 +6,7 @@ export default function* restoreAccountSaga(
     console.log("RestoreAccount Saga", action.data)
     const userObject = action.data;
     console.log(userObject);
-    debugger;
+
 
     const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(userObject.privateKey, userObject.password);
 

@@ -5,7 +5,7 @@ import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
 export default function* followUserSaga(
     action
 ) {
-    debugger
+
     console.log('follow u ser saga', action.data)
     const account = yield select(getAccount)
     const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');

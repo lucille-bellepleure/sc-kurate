@@ -47,7 +47,8 @@ export default function* createAccountSaga(
         status: 'accountSet',
         mnemonic: null,
         privateKey: encryptedPrivateKey,
-        publicKey: userObject.publicKey
+        publicKey: userObject.publicKey,
+        subscriptions: { "0x4424B92F472d518c1D6B704D22C6cf9f904cC439": { "username": "Zelig" } }
     }
 
     console.log(accountObj);
