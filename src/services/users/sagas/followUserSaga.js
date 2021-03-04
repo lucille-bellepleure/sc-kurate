@@ -23,7 +23,7 @@ export default function* followUserSaga(
     )
 
     const userObject = {
-        subs: currentSubs.subscriptions
+        subs: currentSubs
     }
 
     yield put({ type: "SET_ACCOUNT", data: userObject })

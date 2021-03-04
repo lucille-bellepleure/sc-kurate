@@ -43,6 +43,8 @@ export default function* resolveUserSaga(
         console.log(userSubs[sub])
     }
 
+    debugger
+
     const userObject = {
         account: userData,
         posts: personPosts.posts,
