@@ -27,13 +27,12 @@ export default function* resolveUserSaga(
     const personPosts = yield getFeed('userposts', address);
     const postsArray = Object.keys(personPosts.posts)
 
-
     yield all(postsArray.map(x => call(resolvePostSaga, { postId: x, userAddress: address })))
 
     // Resolve user's subscriptions
     const userSubs = yield getFeed('usersubscriptions', address);
     console.log('Subscriptions: ', userSubs)
-    const userSubsArray = Object.keys(userSubs.subscriptions)
+    const userSubsArray = Object.keys(userSubs)
     for (let index = 0; index < userSubsArray.length; index++) {
         const sub = userSubsArray[index];
         const subAccount = yield getFeed('userdata', sub)
@@ -42,8 +41,6 @@ export default function* resolveUserSaga(
         userSubs[sub].address = subAccount.address;
         console.log(userSubs[sub])
     }
-
-
 
     const userObject = {
         account: userData,

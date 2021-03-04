@@ -34,7 +34,7 @@ export default function* createAccountSaga(
 
     try {
         const refSubs = yield setFeed('usersubscriptions',
-            { "0x4424B92F472d518c1D6B704D22C6cf9f904cC439": { "username": "Zelig" } },
+            {},
             userObject.privateKey)
     } catch (error) {
         console.error(error)
@@ -48,7 +48,7 @@ export default function* createAccountSaga(
         mnemonic: null,
         privateKey: encryptedPrivateKey,
         publicKey: userObject.publicKey,
-        subscriptions: { "0x4424B92F472d518c1D6B704D22C6cf9f904cC439": { "username": "Zelig" } }
+        subscriptions: {}
     }
 
     console.log(accountObj);
