@@ -1,5 +1,3 @@
-- name: Github Build & Deploy Action
-  uses: jeoy/github-deploy-actions@v1.0.1
 
 name: deploy
 
