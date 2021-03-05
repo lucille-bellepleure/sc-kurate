@@ -26,7 +26,7 @@ jobs:
         env: 
           CI: ""
       - name: Tar it
-          run: tar -cvC build . >instaswarm.tar
+        run: tar -cvC ./build . >instaswarm.tar
       - name: Upload to Gateway
           run: curl -X POST -H "Content-Type: application/x-tar" -H "Swarm-Index-Document: index.html" -H "Swarm-Error-Document: index.html" --data-binary @../instaswarm.tar https://bee-gateway.duckdns.org/dirs
       - name: Deploy to gh-pages
