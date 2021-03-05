@@ -16,6 +16,8 @@ background-color:#121212;
 user-select: none;
 cursor: default;
 
+touch-action: manipulation;
+
 /*----------COLORS----------*/
 /* Primary tone */
 --sc-yellow: #efd96f;
@@ -377,6 +379,22 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   background-color: white;
 }
 
+.iconbuttonbigblue {
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+  background-color: var(--sc-blue);
+}
+
 .plusicon {
   width: 54px;
   height: 54px;
@@ -568,6 +586,10 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   color: var(--sc-red);
 }
 
+.gray {
+    color: var(--sc-grey4);
+}
+
 .header {
   composes: backgroundImg;
   display: flex;
@@ -610,7 +632,7 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   display: block;
   background: white;
   max-width: 100%;
-  height: calc(100vh - 6px);
+  height: calc(100vh - 60px);
   margin: 0;
 }
 
@@ -624,6 +646,9 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   width: 100vw;
   display: flex;
   padding: 0;
+  max-height: 520px;
+    margin-top: 56px;
+
   max-width: 520px;
   justify-content: center;
   background-color:var(--sc-grey4);
@@ -631,9 +656,9 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 
 .cropper {
   width: 100vw;
-  max-width: 520px;
   display: flex;
   padding: 0;
+  margin: 0;
   max-width: 520px;
   justify-content: center;
   background-color:var(--sc-grey4);
@@ -659,6 +684,7 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 .textbutton {
   composes: bodyDefault;
   margin: 10px;
+  cursor: pointer;
 }
 
 .scroller {

@@ -138,8 +138,6 @@ export function HomeFeed({ nextStage, homefeed }) {
                         }
                     </div>
                 </div>
-
-
             </div>
         </ThemeProvider>
     );

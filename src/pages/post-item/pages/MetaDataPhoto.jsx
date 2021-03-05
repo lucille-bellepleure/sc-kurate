@@ -16,7 +16,7 @@ export function MetaDataPhoto({ nextStage, sharePost, image, accountUnlock }) {
     return (
         <div className={main.container}>
             <div className={main.header}>
-                <div><NavLink className={main.textbutton} to="/">Cancel</NavLink></div>
+                <div><NavLink className={[main.textbutton, main.gray].join(" ")} to="/">Cancel</NavLink></div>
                 <div onClick={() => { handlePost() }} className={[main.blue, main.bodyBold, main.textbutton].join(" ")}>
                     {accountUnlock ? "Share" : "Unlock"}
                 </div>

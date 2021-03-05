@@ -133,7 +133,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
   return (<div className={main.container}>
     <div className={main.header}>
       <div>
-        <NavLink className={main.textbutton} to="/">
+        <NavLink className={[main.textbutton, main.gray].join(" ")} to="/">
           Cancel
         </NavLink>
       </div>
@@ -143,7 +143,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
         Next
       </div>
     </div>
-    <div className={main.photoplace}>
+    <div className={[main.photoplace, main.aspectratiowrapper].join(" ")}>
       <canvas className={main.cropper} ref={canvasRef}></canvas>
     </div>
     {

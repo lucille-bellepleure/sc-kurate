@@ -26,6 +26,9 @@ export function UploadPhoto({ nextStage, setPhoto }) {
         filedata: binaryStr
       };
       setFilesState(fileTemp);
+      cropperRef.cropper.scale(1)
+      debugger
+
     };
     const fileName = files[0].name;
     reader.readAsDataURL(files[0]);
@@ -65,7 +68,6 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [position, setPosistion] = useState({ x: 0.5, y: 0.5 });
-  const [zoom, setZoom] = useState(1);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     console.log(croppedArea, croppedAreaPixels);
@@ -74,7 +76,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
   return (<div className={main.container}>
     <div className={main.header}>
       <div>
-        <NavLink className={main.textbutton} to="/">
+        <NavLink className={[main.textbutton, main.gray].join(" ")} to="/">
           Cancel
         </NavLink>
       </div>
@@ -86,16 +88,16 @@ export function UploadPhoto({ nextStage, setPhoto }) {
       <div className={main.aspectratiodiv}></div>
     </div> */
     }
-    <div className={main.aspectratiowrapper}>
+    <div className={main.photoplace}>
       <Cropper ref={cropper => {
         cropperRef = cropper;
-      }} src={filesState.filedata} className={main.cropper} viewMode={3} autoCropArea={1} initialAspectRatio={1 / 1} aspectRatio={1 / 1} guides={true} cropBoxMovable={false} cropBoxResizable={false} dragMode="move" toggleDragModeOnDblclick={false}></Cropper>
+      }} src={filesState.filedata} className={main.cropper} viewMode={1} modal={false} autoCrop={true} background={false} initialAspectRatio={1 / 1} aspectRatio={1 / 1} guides={true} cropBoxMovable={false} cropBoxResizable={false} dragMode="move" toggleDragModeOnDblclick={false}></Cropper>
     </div>
 
     <div className={main.filterplace}>
       <label htmlFor="upload-button">
         <div className={main.dialogiconbox}>
-          <div className={main.iconbuttonbig}>
+          <div className={main.iconbuttonbigblue}>
             <div className={main.plusicon}></div>
           </div>
         </div>

@@ -24,7 +24,7 @@ function getAccount(state) {
 
 export function AccountRoot() {
 
-    const [stage, setStage] = useState(accountHome)
+    const [stage, setStage] = useState(myIdentity)
     const account = useSelector(state => getAccount(state))
 
     const dispatch = useDispatch()
