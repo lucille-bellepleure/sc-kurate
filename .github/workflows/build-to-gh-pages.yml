@@ -2,11 +2,9 @@ name: github pages
 
 on:
   push:
-    branches-ignore:
-      - '**'
-    tags:
-      - 'v*.*.*'
-
+    branches:
+      - main
+      
 jobs:
   deploy:
     runs-on: ubuntu-18.04
