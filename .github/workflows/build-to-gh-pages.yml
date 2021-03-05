@@ -1,25 +1,33 @@
-
-name: deploy
+name: github pages
 
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - 'v*.*.*'
 
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@master
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-            - name: Build and Deploy
-              uses: ./.github/actions/deploy
-              env:
-                  COMMIT_EMAIL: michelle@ethswarm.org
-                  COMMIT_NAME: Michelle
-                  ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-                  BASE_BRANCH: master
-                  DEPLOY_BRANCH: gh-pages
-                  BUILD_SCRIPT: yarn && yarn build
-                  FOLDER: build
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install gulp
+        run: npm install --global gulp-cli
+      - name: Build
+        run: |
+          yarn
+          yarn build
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+     
