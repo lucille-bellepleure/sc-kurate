@@ -28,5 +28,4 @@ export default function* followUserSaga(
 
     yield put({ type: "SET_ACCOUNT", data: userObject })
 
-
 }
