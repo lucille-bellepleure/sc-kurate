@@ -25,7 +25,7 @@
     "caman": "^4.1.2",
     "ethers": "^4.0.47",
     "gun": "^0.2020.520",
-    "pouchdb": "^7.2.1",
+    "pouchdb": "^7.2.2",
     "react": "^16.13.1",
     "react-advanced-form": "^1.7.2",
     "react-advanced-form-addons": "^1.3.3",
@@ -50,6 +50,9 @@
     "wasm-pack": "^0.9.1",
     "wasm-worker": "^0.4.0",
     "web3": "1.2.8"
+  },
+  "resolutions": {
+    "leveldown": "5.0.2"
   },
   "homepage": ".",
   "scripts": {
