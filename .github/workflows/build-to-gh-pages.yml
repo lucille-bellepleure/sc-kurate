@@ -28,7 +28,7 @@ jobs:
         run: tar -cvC ./build . >instaswarm.tar
       - name: Upload to Gateway
         run: | 
-          export BREF=$(curl -s -X POST -H "Content-Type: application/x-tar" -H "Swarm-Index-Document: index.html" -H "Swarm-Error-Document: index.html" --data-binary @./instaswarm.tar https://bee-gateway.duckdns.org/dirs | jq -r .reference)
+          echo BREF=$(curl -s -X POST -H "Content-Type: application/x-tar" -H "Swarm-Index-Document: index.html" -H "Swarm-Error-Document: index.html" --data-binary @./instaswarm.tar https://bee-gateway.duckdns.org/dirs | jq -r .reference) >> $GITHUB_ENV
       - name: Run the feed updater script
         env:
           ADDRESS: ${{ secrets.ADDRESS }}
