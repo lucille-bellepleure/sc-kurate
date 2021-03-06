@@ -31,8 +31,8 @@ jobs:
           export BREF=$(curl -s -X POST -H "Content-Type: application/x-tar" -H "Swarm-Index-Document: index.html" -H "Swarm-Error-Document: index.html" --data-binary @./instaswarm.tar https://bee-gateway.duckdns.org/dirs | jq -r .reference)
       - name: Run the feed updater script
         env:
-        ADDRESS: ${{ secrets.ADDRESS }}
-        PRIVATEKEY: ${{ secrets.PRIVATEKEY }}
+          ADDRESS: ${{ secrets.ADDRESS }}
+          PRIVATEKEY: ${{ secrets.PRIVATEKEY }}
         run: node feedupdater.js
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
