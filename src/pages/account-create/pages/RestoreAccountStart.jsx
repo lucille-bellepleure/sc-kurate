@@ -3,6 +3,7 @@ import { Form, FormProvider, setErrors } from 'react-advanced-form';
 import { TextField } from "@material-ui/core";
 import styles from "styles.module.css";
 import createAccount from "../account-create.module.css";
+import { setFeed, getFeed } from "helpers/swarmFeed"
 
 import { ethers } from 'ethers';
 import { useDispatch } from "react-redux";
@@ -39,14 +40,19 @@ export function RestoreAccountStart({
         setMnemonicInput(e.target.value)
     }
 
-    const restoreMnemonic = () => {
+
+    /*
+    price drum choose pluck dust weekend story cruel library photo crack bundle
+    */
+
+    const restoreMnemonic = async () => {
+        debugger
         let wallet = {}
         try {
             wallet =
                 ethers.Wallet.fromMnemonic(mnemonicInput)
             console.log(wallet)
-            window.fds.Account.SwarmStore.SF.get(wallet.address, 'userdata').then((res) => {
-                console.log(JSON.parse(res))
+            await getFeed('userdata', wallet.address).then((result) => {
                 const accountObj = {
                     address: wallet.address,
                     publicKey: wallet.signingKey.publicKey,
@@ -54,7 +60,6 @@ export function RestoreAccountStart({
                     mnemonic: wallet.mnemonic
                 }
 
-                let result = JSON.parse(res)
                 setAvatar(result.useravatar);
                 setUsername(result.username)
                 dispatch({ type: 'SET_ACCOUNT', data: accountObj });
