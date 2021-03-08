@@ -1,5 +1,6 @@
 import { delay, put, select, fork } from "redux-saga/effects"
 import { setFeed, getFeed } from "helpers/swarmFeed"
+import { check } from "ethers/utils/wordlist";
 
 export default function* createAccountSaga(
     action
@@ -25,7 +26,11 @@ export default function* createAccountSaga(
     // Here we create an empty userPosts feed
 
     try {
-        const refPosts = yield setFeed('userposts', { posts: {} }, userObject.privateKey)
+        debugger
+        const checkExisitingPosts = yield getFeed('userposts', userObject.address)
+        if (!checkExisitingPosts) {
+            const refPosts = yield setFeed('userposts', { posts: {} }, userObject.privateKey)
+        }
     } catch (error) {
         console.error(error)
     }
@@ -33,9 +38,13 @@ export default function* createAccountSaga(
     // Here we create empty userSubs feed
 
     try {
-        const refSubs = yield setFeed('usersubscriptions',
-            {},
-            userObject.privateKey)
+        const checkExistingSubscriptions = yield getFeed('usersubscriptions', userObject.address)
+        if (!checkExistingSubscriptions) {
+            const refSubs = yield setFeed('usersubscriptions',
+                {},
+                userObject.privateKey)
+        }
+
     } catch (error) {
         console.error(error)
     }

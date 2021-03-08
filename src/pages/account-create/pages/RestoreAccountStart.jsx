@@ -46,18 +46,19 @@ export function RestoreAccountStart({
     */
 
     const restoreMnemonic = async () => {
-        debugger
+
         let wallet = {}
         try {
-            wallet =
-                ethers.Wallet.fromMnemonic(mnemonicInput)
+            wallet = ethers.Wallet.fromMnemonic(mnemonicInput)
             console.log(wallet)
+
             await getFeed('userdata', wallet.address).then((result) => {
                 const accountObj = {
                     address: wallet.address,
                     publicKey: wallet.signingKey.publicKey,
                     privateKey: wallet.privateKey,
-                    mnemonic: wallet.mnemonic
+                    mnemonic: wallet.mnemonic,
+
                 }
 
                 setAvatar(result.useravatar);
@@ -68,10 +69,6 @@ export function RestoreAccountStart({
         } catch (e) {
             setError(e.message);
         }
-
-
-
-
     }
 
     return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import sortByProp from "helpers/sortByProp"
 
 // Sub-pages
 import UserHome from './pages/UserHome';
@@ -45,7 +46,7 @@ export function PostItemRoot() {
 
     useEffect(() => {
         if (user) {
-            setUserfeed(Object.values(user.posts))
+            setUserfeed(Object.values(user.posts).sort(sortByProp("time", "desc")))
             setUsersubs(Object.values(user.subs))
             setStage(userHome)
         }
