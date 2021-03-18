@@ -45,7 +45,8 @@ export function AccountRoot() {
     }
 
     const newShort = () => {
-        dispatch({ type: "CREATE_SHORTCODE", data: '' })
+        debugger
+        dispatch({ type: "CREATE_SHORTCODE", data: { username: account.username, useravatar: account.avatar } })
     }
 
     const handleResolveShortcode = (shortcode) => {

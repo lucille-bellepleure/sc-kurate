@@ -40,7 +40,6 @@ export function RestoreAccountStart({
         setMnemonicInput(e.target.value)
     }
 
-
     /*
     price drum choose pluck dust weekend story cruel library photo crack bundle
     */

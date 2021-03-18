@@ -3,6 +3,7 @@ import { createKeyPair } from '@erebos/secp256k1'
 import { pubKeyToAddress } from '@erebos/keccak256'
 import { toHex, hexToByteArray, byteArrayToHex, numbersToByteArray, stringToUint8Array } from 'helpers/conversion';
 import { hexValue } from '@erebos/hex';
+import { setFeed, getFeed } from "helpers/swarmFeed"
 
 export default function* createShortCodeSaga(
     action
@@ -33,20 +34,19 @@ export default function* createShortCodeSaga(
     console.log('address: ', address, 'private: ', privateKey, 'public: ', publicKey)
 
     // Use keypair to write swarm feed with usernamme avatar and address
-    const swarmFeed = yield window.fds.Account.SwarmStore.SF.set(
-        address,
+    const swarmFeed = yield setFeed(
         'shortcode',
-        privateKey,
         {
             username: action.data.username,
             useravatar: action.data.useravatar,
             publicKey: publicKey,
             address: address
-        })
+        },
+        privateKey)
 
     // Set short code in redux
-    const swarmRes = yield window.fds.Account.SwarmStore.SF.get(address, 'shortcode')
-    console.log(JSON.parse(swarmRes))
+    const swarmRes = yield getFeed('shortcode', address)
+    console.log(swarmRes)
 
     const accountObj = {
         shortcode: { code: shortCode, time: 123456 },

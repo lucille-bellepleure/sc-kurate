@@ -2,6 +2,7 @@ import { delay, put, select, fork } from "redux-saga/effects"
 import { createKeyPair } from '@erebos/secp256k1'
 import { pubKeyToAddress } from '@erebos/keccak256'
 import { toHex, hexToByteArray, byteArrayToHex, numbersToByteArray, stringToUint8Array } from 'helpers/conversion';
+import { setFeed, getFeed } from "helpers/swarmFeed"
 
 export default function* resolveShortCodeSaga(
     action
@@ -44,11 +45,7 @@ export default function* resolveShortCodeSaga(
     //     })
 
     // Set short code in redux
-    const swarmFeed = yield window.fds.Account.SwarmStore.SF.get(address, 'shortcode')
-
-    console.log(swarmFeed)
-
-    const result = JSON.parse(swarmFeed)
+    const result = yield getFeed('shortcode', address)
 
     console.log(result)
 
