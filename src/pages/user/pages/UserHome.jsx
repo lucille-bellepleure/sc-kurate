@@ -39,8 +39,6 @@ function getSystem(state) {
   return state.system;
 }
 
-
-
 export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
   const [followButtonState, setFollowButtonState] = useState("isme");
   const JSONFetcher = url => fetch(url).then(r => r.text());
@@ -103,11 +101,10 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
                 currentSubs: account.subscriptions
               }
             });
+            setFollowButtonState("isfollow");
+
           }
 
-
-
-          setFollowButtonState("isfollow");
 
         }} className={styles.followButton}>
           Follow
