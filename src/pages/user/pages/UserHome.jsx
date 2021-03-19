@@ -1,8 +1,8 @@
-import React, {useEffect, useState, useRef, useCallback} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import main from "styles.module.css";
 import styles from "../user.module.css";
-import {useParams, Route, NavLink} from "react-router-dom";
+import { useParams, Route, NavLink } from "react-router-dom";
 import {
   Home,
   AddCircle,
@@ -13,9 +13,11 @@ import {
   Person,
   PlayCircleFilledWhite
 } from "@material-ui/icons";
-import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
-import {Avatar, Divider} from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Avatar, Divider } from "@material-ui/core";
 import sortByProp from "helpers/sortByProp";
+// import system from "../../../services/system";
+
 
 const theme = createMuiTheme({
   // Style sheet name ⚛️
@@ -33,9 +35,16 @@ function getPosts(state) {
   return state.postState;
 }
 
-export function UserHome({nextStage, user, userfeed, usersubs, account}) {
+function getSystem(state) {
+  return state.system;
+}
+
+
+
+export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
   const [followButtonState, setFollowButtonState] = useState("isme");
   const JSONFetcher = url => fetch(url).then(r => r.text());
+  const system = useSelector(state => getSystem(state));
 
   useEffect(() => {
     if (user.account.address === account.address) {
@@ -77,6 +86,16 @@ export function UserHome({nextStage, user, userfeed, usersubs, account}) {
       case "canfollow":
         console.log("this user can be followed");
         return (<div onClick={() => {
+
+          if (!system.passWord) {
+            console.log('i dont haz pass')
+            dispatch({
+              type: "SET_SYSTEM",
+              data: {
+                showPasswordUnlock: true
+              }
+            });
+          } else {
             dispatch({
               type: "FOLLOW_USER",
               data: {
@@ -84,8 +103,13 @@ export function UserHome({nextStage, user, userfeed, usersubs, account}) {
                 currentSubs: account.subscriptions
               }
             });
-            setFollowButtonState("isfollow");
-          }} className={styles.followButton}>
+          }
+
+
+
+          setFollowButtonState("isfollow");
+
+        }} className={styles.followButton}>
           Follow
         </div>);
       case "isfollow":
@@ -112,7 +136,7 @@ export function UserHome({nextStage, user, userfeed, usersubs, account}) {
         <div>&nbsp;</div>
       </div>
       <div className={styles.usersection}>
-        <img className={styles.avatarImage} src={user.account.useravatar} alt="avatar"/>
+        <img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
         <div className={styles.followingContainer}>
           <div className={styles.followingItem}>
             <div className={styles.followingNumber}>{userfeed.length}</div>
