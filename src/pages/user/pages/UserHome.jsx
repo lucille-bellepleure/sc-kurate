@@ -14,10 +14,9 @@ import {
   PlayCircleFilledWhite
 } from "@material-ui/icons";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
 import { Avatar, Divider } from "@material-ui/core";
 import sortByProp from "helpers/sortByProp";
-// import system from "../../../services/system";
-
 
 const theme = createMuiTheme({
   // Style sheet name ⚛️
@@ -39,12 +38,20 @@ function getSystem(state) {
   return state.system;
 }
 
-export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
+function getAccount(state) {
+  return state.account
+}
+
+export function UserHome({ nextStage, user, userfeed, usersubs }) {
   const [followButtonState, setFollowButtonState] = useState("isme");
   const JSONFetcher = url => fetch(url).then(r => r.text());
   const system = useSelector(state => getSystem(state));
+  const account = useSelector(state => getAccount(state))
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(account.subscriptions)
     if (user.account.address === account.address) {
       setFollowButtonState("isme");
       console.log("this user is me");
@@ -57,15 +64,29 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
     }
   }, [user.subs]);
 
-  const handleFollow = () => {
-    console.log("follow");
-  };
-
   const handleUnFollow = () => {
     console.log("unfollow");
+    if (!system.passWord) {
+      console.log('i dont haz pass')
+      dispatch({
+        type: "SET_SYSTEM",
+        data: {
+          showPasswordUnlock: true
+        }
+      });
+    } else {
+      dispatch({
+        type: "UNFOLLOW_USER",
+        data: {
+          address: user.account.address,
+          currentSubs: account.subscriptions,
+          password: system.passWord
+        }
+      });
+      setFollowButtonState("canfollow");
+    }
   };
 
-  const dispatch = useDispatch();
 
   const posts = useSelector(state => getPosts(state));
 
@@ -81,11 +102,13 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
       case "isme":
         console.log("this user is me");
         return <div></div>;
+
       case "canfollow":
         console.log("this user can be followed");
         return (<div onClick={() => {
 
           if (!system.passWord) {
+            console.log(account.subscriptions)
             console.log('i dont haz pass')
             dispatch({
               type: "SET_SYSTEM",
@@ -98,16 +121,16 @@ export function UserHome({ nextStage, user, userfeed, usersubs, account }) {
               type: "FOLLOW_USER",
               data: {
                 address: user.account.address,
-                currentSubs: account.subscriptions
+                currentSubs: account.subscriptions,
+                password: system.passWord
               }
             });
             setFollowButtonState("isfollow");
-
           }
 
 
         }} className={styles.followButton}>
-          Follow
+          <div className={styles.followButtonText}>Follow</div>
         </div>);
       case "isfollow":
         console.log("already following user");

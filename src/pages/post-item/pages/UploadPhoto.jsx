@@ -73,6 +73,10 @@ export function UploadPhoto({ nextStage, setPhoto }) {
     console.log(croppedArea, croppedAreaPixels);
   }, []);
 
+  const rotateImage = () => {
+    cropperRef.cropper.rotate(90)
+  }
+
   return (<div className={main.container}>
     <div className={main.header}>
       <div>
@@ -95,6 +99,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
     </div>
 
     <div className={main.filterplace}>
+      <div onClick={() => rotateImage()}>Rotate +90</div>
       <label htmlFor="upload-button">
         <div className={main.dialogiconbox}>
           <div className={main.iconbuttonbigblue}>

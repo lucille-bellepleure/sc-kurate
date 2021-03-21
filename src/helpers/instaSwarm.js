@@ -4,7 +4,7 @@ function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-export default async function storePost(dataObject) {
+export const storePost = async (dataObject) => {
 
     const postObject = dataObject;
     const userObject = dataObject.user;
@@ -41,3 +41,4 @@ export default async function storePost(dataObject) {
         return error
     }
 }
+

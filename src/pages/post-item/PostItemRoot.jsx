@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {useHistory} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import wasmWorker from "wasm-worker";
-import storePost from "helpers/instaSwarm.js";
+import { storePost } from "helpers/instaSwarm.js";
 // Sub-pages
 import UploadPhoto from "./pages/UploadPhoto";
 import FilterPhoto from "./pages/FilterPhoto";
@@ -16,7 +16,7 @@ const metadataPhoto = "metadataPhoto";
 async function loadWasm() {
   try {
     console.log("trying to load wasm");
-    const photon = await import ("@silvia-odwyer/photon");
+    const photon = await import("@silvia-odwyer/photon");
     window.photon = photon;
   } finally {
     console.log("loaded wasm successfully");
@@ -74,7 +74,7 @@ export function PostItemRoot() {
   // Router
   switch (stage) {
     case uploadPhoto:
-      return (<UploadPhoto nextStage={() => setStage(filterPhoto)} setPhoto={setPhoto}/>);
+      return (<UploadPhoto nextStage={() => setStage(filterPhoto)} setPhoto={setPhoto} />);
     case filterPhoto:
       return (<FilterPhoto image={photo} nextStage={() => setStage(metadataPhoto)} setFilteredPhoto={setFilteredPhoto}></FilterPhoto>);
     case metadataPhoto:

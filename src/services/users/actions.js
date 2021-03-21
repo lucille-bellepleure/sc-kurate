@@ -15,6 +15,11 @@ export const followUser = data => ({
     data
 })
 
+export const unfollowUser = data => ({
+    type: t.UNFOLLOW_USER,
+    data
+})
+
 export const resHomefeed = data => ({
     type: t.RES_HOMEFEED,
     data

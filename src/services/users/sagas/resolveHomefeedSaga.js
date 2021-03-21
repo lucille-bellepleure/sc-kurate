@@ -29,9 +29,6 @@ export default function* resolveHomefeedSaga(
     const personPosts = yield getFeed('userposts', account.address);
     //const personPosts = JSON.parse(personRawPosts)
 
-
-
-
     const postsArray = Object.keys(personPosts.posts)
     const personSubs = yield getFeed('usersubscriptions', account.address);
     //const personSubs = JSON.parse(personRawSubs)
@@ -81,9 +78,9 @@ export default function* resolveHomefeedSaga(
     //     console.log(userSubs[sub])
     // }
 
-    // userObject = {
-    //     subs: userSubs
-    // }
+    let userObject = {
+        subscriptions: personSubs
+    }
 
-    // yield put({ type: "SET_USER", data: userObject })
+    yield put({ type: "SET_ACCOUNT", data: userObject })
 }

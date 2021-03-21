@@ -19,3 +19,8 @@ export const resolveShortCode = data => ({
     type: t.RESOLVE_SHORTCODE,
     data
 })
+
+export const resolveAccount = data => ({
+    type: t.RESOLVE_ACCOUNT,
+    data
+})

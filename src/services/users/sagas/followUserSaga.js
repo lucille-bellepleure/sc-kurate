@@ -5,10 +5,9 @@ import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
 export default function* followUserSaga(
     action
 ) {
-    debugger
     console.log('follow u ser saga', action.data)
     const account = yield select(getAccount)
-    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
+    const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, action.data.password);
     console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
 
     const currentSubs = action.data.currentSubs
@@ -22,10 +21,6 @@ export default function* followUserSaga(
         decryptedPrivateKey.privateKey
     )
 
-    const userObject = {
-        subs: currentSubs
-    }
-
-    yield put({ type: "SET_ACCOUNT", data: userObject })
+    yield put({ type: "RESOLVE_ACCOUNT" })
 
 }

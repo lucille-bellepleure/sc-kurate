@@ -25,6 +25,7 @@
     "caman": "^4.1.2",
     "ethers": "^4.0.47",
     "gun": "^0.2020.520",
+    "moment": "^2.29.1",
     "pouchdb": "^7.2.2",
     "react": "^16.13.1",
     "react-advanced-form": "^1.7.2",

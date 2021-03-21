@@ -8,7 +8,7 @@ import { Avatar, Divider } from "@material-ui/core"
 import ActionButton from "components/ActionButton"
 import PosterChild from "components/PosterChild"
 import sortByProp from "helpers/sortByProp";
-
+import moment from "moment"
 
 // import AccountUnlock from "components/AccountUnlock"
 
@@ -51,7 +51,7 @@ export function HomeFeed({ nextStage, homefeed }) {
 
                     <ActionButton type={item.type}></ActionButton>
                     <div className={main.postFooter}>
-                        <div className={main.likes}>
+                        {/* <div className={main.likes}>
                             {item.ilike
                                 ? <Favorite
                                     onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
@@ -60,8 +60,11 @@ export function HomeFeed({ nextStage, homefeed }) {
                                     color="primary" fontSize="small"></FavoriteBorder>
                             }
                                     &nbsp;
-                                    <b>{item.likes}</b></div>
+                                    <b>{item.likes}</b></div> */}
+                        <div className={main.smallestBold}>{moment(item.time).fromNow()}</div>
+
                         <div>{item.caption}</div>
+
                     </div>
                 </div>
 

@@ -56,7 +56,8 @@ export function PostItemRoot() {
     switch (stage) {
         case userFetching:
             return (
-                <div>User fetching</div>
+                <div style={{ color: '#ffffff' }
+                }> User fetching</div >
             )
         case userHome:
             return (

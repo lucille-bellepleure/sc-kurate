@@ -25,3 +25,4 @@ const postStatePersisted = persistentReducer(postState, {
 });
 
 export default postStatePersisted
+//export default postState
