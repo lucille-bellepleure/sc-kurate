@@ -90,10 +90,11 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 
   const posts = useSelector(state => getPosts(state));
 
+
   const getPost = bzz => {
     const item = posts[bzz];
     if (item) {
-      return <img className={styles.postImage} src={item.image}></img>;
+      return <NavLink to={"/post/" + bzz}><img className={styles.postImage} src={item.image}></img></NavLink>;
     }
   };
 
@@ -127,15 +128,13 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
             });
             setFollowButtonState("isfollow");
           }
-
-
         }} className={styles.followButton}>
           <div className={styles.followButtonText}>Follow</div>
         </div>);
       case "isfollow":
         console.log("already following user");
         return (<div onClick={() => handleUnFollow()} className={styles.followButton}>
-          Unfollow
+          <div className={styles.followButtonText}>Unfollow</div>
         </div>);
       default:
         return <div className={styles.followButton}>Dunno</div>;

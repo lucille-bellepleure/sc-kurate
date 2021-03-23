@@ -6,10 +6,12 @@ import sortByProp from "helpers/sortByProp"
 // Sub-pages
 import UserHome from './pages/UserHome';
 import UserFollowing from './pages/UserFollowing';
+import PostDetail from './pages/PostDetail';
+
 // Ids
 const userFetching = 'userFetching';
 const userHome = 'userHome';
-
+const postDetail = 'postDetail';
 const userFollowing = 'userFollowing';
 
 function getUserFromState(state, address) {
@@ -82,6 +84,14 @@ export function PostItemRoot() {
                     exitStage={() => { setStage(userHome) }}
                 />
             );
+        case postDetail:
+            return (
+                <PostDetail
+                    account={account}
+                    user={user}
+                    nextStage={() => setStage(userHome)}>
+                </PostDetail>
+            )
 
         default:
             return <h1>Oops...</h1>;
