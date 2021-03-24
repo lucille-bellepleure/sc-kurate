@@ -94,7 +94,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
   const getPost = bzz => {
     const item = posts[bzz];
     if (item) {
-      return <NavLink to={"/post/" + bzz}><img className={styles.postImage} src={item.image}></img></NavLink>;
+      return <NavLink to={"/post/" + bzz+"/"+item.address}><img className={styles.postImage} src={item.image}></img></NavLink>;
     }
   };
 

@@ -41,6 +41,7 @@ export function RestoreAccountStart({
     }
 
     /*
+    PhoneX Account
     price drum choose pluck dust weekend story cruel library photo crack bundle
     */
 

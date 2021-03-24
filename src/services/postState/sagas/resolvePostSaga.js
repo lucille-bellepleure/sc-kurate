@@ -15,8 +15,8 @@ export default function* resolvePostSaga(
     const account = yield select(getAccount)
 
     // First resolve my posts
-    const postId = action.postId
-    const userAddress = action.userAddress
+    const postId = action.data.postId
+    const userAddress = action.data.userAddress
 
     const cachedPosts = yield select(s.getPostState)
     console.log(cachedPosts)

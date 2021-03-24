@@ -27,7 +27,7 @@ export default function* resolveUserSaga(
     const personPosts = yield getFeed('userposts', address);
     const postsArray = Object.keys(personPosts.posts)
 
-    yield all(postsArray.map(x => call(resolvePostSaga, { postId: x, userAddress: address })))
+    yield all(postsArray.map(x => call(resolvePostSaga, { data: {postId: x, userAddress: address} })))
 
     // Resolve user's subscriptions
     const userSubs = yield getFeed('usersubscriptions', address);

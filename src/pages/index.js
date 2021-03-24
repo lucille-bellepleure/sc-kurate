@@ -11,5 +11,5 @@ export default [
     { path: "/create-account", exact: true, component: AccountCreateRoot },
     { path: "/account", exact: true, component: AccountRoot },
     { path: "/user/:userAddress", component: UserRoot },
-    { path: "/post/:bzzPost", component: PostDetail }
+    { path: "/post/:bzzPost/:userAddress", component: PostDetail }
 ]

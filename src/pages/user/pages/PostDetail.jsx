@@ -48,38 +48,50 @@ function getAccount(state) {
 export function PostDetail({
   nextStage,
   user,
-  post = { id: 0, address: '0x0', avatar: 'a', username: 'waiting', caption: 'waiting', location: 'unknown', time: '' } }) {
+  }) {
   const dispatch = useDispatch();
   const params = useParams()
   const bzzPost = params.bzzPost
+  const userAddress = params.userAddress
+
 
   const system = useSelector(state => getSystem(state));
   const account = useSelector(state => getAccount(state))
   const posts = useSelector(state => getPosts(state));
 
+  const [post, setPost] = useState({ id: 0, address: '0x0', avatar: 'a', username: 'waiting', caption: 'waiting', location: 'unknown', time: '' })
+
+
   useEffect(() => {
-    const getPostContent = async () => {
-      post = posts[bzzPost]
-    }
-    getPostContent(bzzPost)
-  }, bzzPost)
-
-
+    console.log(bzzPost)
+    // const getPostContent = async () => {
+    //   post = posts[bzzPost]
+    //   console.log(posts)
+    // }
+    // getPostContent(bzzPost)
+   //dispatch({type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress }})
+   if(posts[bzzPost]) {
+    setPost(posts[bzzPost])
+    console.log(post)
+   }
+   
+  })
 
   const [followButtonState, setFollowButtonState] = useState("isme");
   const JSONFetcher = url => fetch(url).then(r => r.text());
-
 
   return (<ThemeProvider theme={theme}>
     <div className={main.container}>
       <div className={main.header}>
         <div>
-          <NavLink className={main.textbutton} to="/">
+          <NavLink className={main.textbutton} to={"/user/"+post.address}>
             <ArrowBackIos color="primary"></ArrowBackIos>
           </NavLink>
         </div>
         <div className={[main.textbutton, main.bodyDefault, main.blue].join()}>
           {/* {user.account.username} */}
+          {/* {post.caption} */}
+
         </div>
         <div>&nbsp;</div>
       </div>
@@ -88,18 +100,16 @@ export function PostDetail({
       <div className={styles.scroller}>
         {userfeed.map(item => getPost(item.bzz))}
       </div> */}
-
-      <div>
+      <div className={main.scroller}>
         <div className={main.postHead}>
           <NavLink to={"/user/" + post.address}><Avatar src={post.avatar} className={main.avatar}></Avatar></NavLink>
           <div>
-            <div className={post.postUsername}><b>{post.username}</b></div>
-            <div className={post.postLocation}>{post.location}</div>
+            <div className={main.postUsername}><b>{post.username}</b></div>
+            <div className={main.postLocation}>{post.location}</div>
           </div>
         </div>
         <PosterChild format={post.format} image={post.image} onDoubleClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post.id, ilike: true } })}></PosterChild>
 
-        <ActionButton type={post.type}></ActionButton>
         <div className={main.postFooter}>
           {/* <div citemlassName={main.likes}>
                             {item.ilike
