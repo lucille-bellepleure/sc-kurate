@@ -69,7 +69,7 @@ export function PostDetail({
     //   console.log(posts)
     // }
     // getPostContent(bzzPost)
-   //dispatch({type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress }})
+   dispatch({type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress }})
    if(posts[bzzPost]) {
     setPost(posts[bzzPost])
     console.log(post)
