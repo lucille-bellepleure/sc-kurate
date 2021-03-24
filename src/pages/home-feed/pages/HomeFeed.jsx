@@ -64,6 +64,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                         <div className={main.smallestBold}>{moment(item.time).fromNow()}</div>
 
                         <div>{item.caption}</div>
+                        <a className={main.blueLink}>Collect this post</a>
 
                     </div>
                 </div>

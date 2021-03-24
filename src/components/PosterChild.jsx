@@ -17,7 +17,6 @@ function PosterChild({ image, format }) {
             return (
                 <img className={main.image} width="100%" src={image}></img>
             )
-
         default:
             return null
     }

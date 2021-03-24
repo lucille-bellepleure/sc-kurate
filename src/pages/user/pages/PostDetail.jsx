@@ -61,7 +61,6 @@ export function PostDetail({
 
   const [post, setPost] = useState({ id: 0, address: '0x0', avatar: 'a', username: 'waiting', caption: 'waiting', location: 'unknown', time: '' })
 
-
   useEffect(() => {
     console.log(bzzPost)
     // const getPostContent = async () => {
@@ -74,7 +73,6 @@ export function PostDetail({
     setPost(posts[bzzPost])
     console.log(post)
    }
-   
   })
 
   const [followButtonState, setFollowButtonState] = useState("isme");
@@ -122,10 +120,11 @@ export function PostDetail({
                                     &nbsp;
                                     <b>{item.likes}</b></div> */}
           <div className={main.smallestBold}>{moment(post.time).fromNow()}</div>
-
           <div>{post.caption}</div>
+          <a className={main.blueLink}>Collect this post</a>
 
         </div>
+
       </div>
 
       <div className={main.footer}>

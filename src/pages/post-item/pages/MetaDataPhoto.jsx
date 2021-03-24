@@ -37,7 +37,6 @@ export function MetaDataPhoto({ nextStage, sharePost, image, accountUnlock }) {
                     />
                 </div>
             </div>
-
         </div >
     );
 }
