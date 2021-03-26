@@ -41,9 +41,9 @@ touch-action: manipulation;
 .mainTitle1 {
 font-weight: 800;
 font-family: Montserrat, sans-serif;
-font-size: 35px;
+font-size: 42px;
 letter-spacing: 0;
-line-height: 36px;
+line-height: 120%;
 }
 .mainTitle2 {
 font-family: Montserrat, sans-serif;
@@ -150,6 +150,10 @@ border-bottom: 1px dotted var(--sc-grey3b);
   -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
+.baseGlowText {
+    text-shadow: 0px 0px 20px #ffffff 0.5;
+}
+
 code {
 font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
@@ -208,21 +212,81 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 }
 
 .logo {
-  background-image: url("./images/SwarmCity-Sprite-normal.png");
+  background-image: url("./images/logo-transparent-Y.png");
   background-repeat: no-repeat;
   background-size: 324px 324px;
   width: 108px;
   height: 50px;
   background-position: -108px -108px;
+  animation: letter-flicker 8s linear infinite;
+
 }
 
 .logotext {
   margin-bottom: 20px;
-  font-weight: 800;
+  font-weight: 300;
   font-family: Montserrat, sans-serif;
   font-size: 16px;
-  color: #333333;
+  color: var(--sc-grey1);
+
+      text-shadow: 0px 0px 5px var(--sc-grey2);
+
 }
+
+.offset {
+  animation: letter-flicker 6s linear;
+}
+
+@keyframes letter-flicker {
+  0% {
+    opacity:0;
+        text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  
+ 
+  100% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+
+  }
+  
+  2% {
+    opacity:0;
+  }
+   4% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+
+  }
+  
+  70% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  
+  72% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  
+  77% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  100% {
+    opacity:.9;
+        text-shadow: 0px 0px 5px var(--sc-grey2);
+
+  }
+}
+
 
 
 .item {
@@ -898,12 +962,13 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
   height: 80vh;
-  background-color: var(--sc-yellow)
+  background-color: var(--sc-grey4)
 }
 
 .aboutBrand {
   composes: mainTitle1;
-  color: #333333;
+  font-weight: 800;
+  color: var(--sc-yellow);
   height: 60px;
   margin-top: 15px; 
   align-self: center;
@@ -924,4 +989,18 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 
 .spacer {
   margin: 10px
+}
+
+.buttonYellow {
+  composes: button;
+  background-color: var(--sc-yellow);
+}
+
+.flip {
+        transform: scale(-1, 1);
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
 }

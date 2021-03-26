@@ -4,7 +4,7 @@ import main from "styles.module.css"
 import { useParams, Route, NavLink } from "react-router-dom";
 import { Home, AddCircle, ArrowBackIos, ArrowForwardIos, Favorite, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
+import logo from "images/logo-transparent-Y.png" 
 const theme = createMuiTheme({
     // Style sheet name ⚛️
     palette: {
@@ -19,12 +19,20 @@ export function AboutKurate({ nextStage, exitStage, user, userfeed, usersubs, ac
         <ThemeProvider theme={theme}>
             <div className={main.container}>
                 <div className={main.aboutContainer}>
-                    <div className={main.logo}></div>
-                    <div className={main.aboutBrand}>Kurate</div>
-                    <div className={main.logotext}>by swarm.city</div>
+                                        <div className={main.spacer}></div>
+
+                        <img className={main.offset} src={logo}/>
+                    
+                    <div className={main.aboutBrand}>kurate</div>
+
+                    {/* <div className={main.logotext}>by swarm.<span className={main.offset}>city</span></div> */}
                     <div className={main.spacer}></div>
                     <div className={main.spacer}></div>
-                    <div className={main.button} onClick={() => { nextStage() }}>
+                    <div className={main.spacer}></div>
+                    <div className={main.spacer}></div>
+                                        <div className={main.spacer}></div>
+
+                    <div className={main.buttonYellow} onClick={() => { nextStage() }}>
                         enter here
                     </div>
                 </div>
