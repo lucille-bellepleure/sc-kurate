@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import main from "styles.module.css";
 import styles from "../user.module.css";
-import { useParams, Route, NavLink } from "react-router-dom";
+import { useParams, useHistory, Route, NavLink } from "react-router-dom";
+
 import {
   Home,
   AddCircle,
@@ -20,6 +21,7 @@ import ActionButton from "components/ActionButton"
 
 import { Avatar, Divider } from "@material-ui/core";
 import sortByProp from "helpers/sortByProp";
+import { deletePost } from "helpers/instaSwarm.js";
 
 const theme = createMuiTheme({
   // Style sheet name ⚛️
@@ -45,19 +47,24 @@ function getAccount(state) {
   return state.account
 }
 
+function getUserFromState(state, address) {
+    return state.users[address]
+}
+
 export function PostDetail({
-  nextStage,
-  user,
+  nextStage
   }) {
   const dispatch = useDispatch();
   const params = useParams()
   const bzzPost = params.bzzPost
   const userAddress = params.userAddress
 
+  const history = useHistory()
 
   const system = useSelector(state => getSystem(state));
   const account = useSelector(state => getAccount(state))
   const posts = useSelector(state => getPosts(state));
+  const user = useSelector(state => getUserFromState(state, userAddress))
 
   const [post, setPost] = useState({ id: 0, address: '0x0', avatar: 'a', username: 'waiting', caption: 'waiting', location: 'unknown', time: '' })
 
@@ -74,6 +81,23 @@ export function PostDetail({
     console.log(post)
    }
   })
+
+  const deletePostAction = () => {
+    if (!system.passWord) {
+      console.log("unlock first");
+      dispatch({
+        type: "SET_SYSTEM",
+        data: {
+          showPasswordUnlock: true
+        }
+      });
+    } else {
+      deletePost(account, system.passWord, bzzPost, post.serial, function(){
+      history.push("/user/"+account.address)
+    })
+    }
+  }
+
 
   const [followButtonState, setFollowButtonState] = useState("isme");
   const JSONFetcher = url => fetch(url).then(r => r.text());
@@ -122,6 +146,7 @@ export function PostDetail({
           <div className={main.smallestBold}>{moment(post.time).fromNow()}</div>
           <div>{post.caption}</div>
           <a className={main.blueLink}>Collect this post</a>
+          <div onClick={() => {deletePostAction()}}>Delete this post</div>
 
         </div>
 

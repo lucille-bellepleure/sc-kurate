@@ -10,24 +10,25 @@ export default function* resolvePostSaga(
     action
 ) {
 
-    console.log("Resolve Post Saga", action)
+    //console.log("Resolve Post Saga", action)
 
     const account = yield select(getAccount)
 
     // First resolve my posts
     const postId = action.postId
     const userAddress = action.userAddress
+    const serial = action.serial
 
     if(postId){
         const cachedPosts = yield select(s.getPostState)
-        console.log(cachedPosts)
     
-        //if (!cachedPosts[postId]) {
+        if (!cachedPosts[postId]) {
             const thisPost = yield downloadData(postId);
+            console.log(serial)
             const userData = yield getFeed('userdata', userAddress);
-            console.log(userData)
+            //console.log(userData)
             thisPost._id = thisPost.time;
-            thisPost.serial = thisPost.nft;
+            thisPost.serial = serial;
             thisPost.avatar = userData.useravatar;
             thisPost.username = userData.username;
             thisPost.address = userData.address;
@@ -36,9 +37,9 @@ export default function* resolvePostSaga(
             thisPost.type = "post";
             thisPost.format = "image";
             yield put({ type: "ADD_POST", data: { [postId]: thisPost } })
-       // } else {
-        //    console.log("Post in cache")
-       // }
+        } else {
+            console.log("Post in cache")
+        }
     }
 
     

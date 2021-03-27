@@ -73,7 +73,10 @@ export function PostItemRoot() {
         password: system.passWord
       };
       try {
-        await storePost(dataObject);
+        setStage(simpleChecklist)
+        await storePost(dataObject, function(){
+          history.push("/home")
+        }); 
         //setStatusState(1)
       } catch (error) {
         //setStatusState(2)

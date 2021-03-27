@@ -10,7 +10,7 @@ function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-export const storePost = async (dataObject) => {
+export const storePost = async (dataObject, cb) => {
     
     const postObject = dataObject;
     const userObject = dataObject.user;
@@ -45,7 +45,6 @@ export const storePost = async (dataObject) => {
 
     const myData = contract.methods.mintToken(userObject.address, serial, storedPost).encodeABI();
     
-
      window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
         // Build the transaction
         
@@ -82,6 +81,8 @@ export const storePost = async (dataObject) => {
                         oldPosts,
                         decryptedPrivateKey.privateKey
                     )
+                                        cb()
+
                     return true
                 } catch (error) {
                     console.log('ERR', error.message)
@@ -105,5 +106,39 @@ export const storePost = async (dataObject) => {
             });
     
   
+}
+
+export const deletePost = async (userObject, password, bzz, serial, cb) => {
+    let decryptedPrivateKey
+    try {
+        decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.privateKey, password);
+    } catch (error) {
+        console
+        .log(error)
+    }
+    try {
+        
+                    var oldPosts = await getFeed('userposts', userObject.address);
+                    //let tempPosts = JSON.parse(oldPost);
+            
+                    delete oldPosts.posts[bzz]
+                    //let stringedPosts = JSON.stringify(newPosts)
+                    console.log('oldPosts: ', oldPosts)
+
+            
+                    await setFeed(
+                        'userposts',
+                        oldPosts,
+                        decryptedPrivateKey.privateKey
+                    )
+                    cb()
+
+                    return true
+                } catch (error) {
+                    console.log('ERR', error.message)
+                    return error
+                }
+    cb(bzz,serial)
+
 }
 
