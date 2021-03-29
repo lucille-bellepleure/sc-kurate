@@ -10,12 +10,12 @@ export default function* createMnemonicSaga(
     console.log(wallet)
     console.log(wallet.mnemonic);
     let randomMnemonic = wallet.mnemonic;
-    let mnemonicArray = randomMnemonic.split(" ");
+    let mnemonicArray = randomMnemonic.phrase.split(" ");
     console.log(wallet, randomMnemonic, mnemonicArray);
 
     const accountObj = {
         address: wallet.address,
-        publicKey: wallet.signingKey.publicKey,
+        publicKey: wallet.publicKey,
         privateKey: wallet.privateKey,
         mnemonic: mnemonicArray
     }
