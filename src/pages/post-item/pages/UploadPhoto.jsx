@@ -27,7 +27,6 @@ export function UploadPhoto({ nextStage, setPhoto }) {
       };
       setFilesState(fileTemp);
       cropperRef.cropper.scale(1)
-      debugger
 
     };
     const fileName = files[0].name;

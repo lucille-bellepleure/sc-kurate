@@ -41,9 +41,9 @@ touch-action: manipulation;
 .mainTitle1 {
 font-weight: 800;
 font-family: Montserrat, sans-serif;
-font-size: 35px;
+font-size: 42px;
 letter-spacing: 0;
-line-height: 36px;
+line-height: 120%;
 }
 .mainTitle2 {
 font-family: Montserrat, sans-serif;
@@ -130,7 +130,7 @@ line-height: 13px;
   composes: smallBold;
   cursor: pointer;
   color: var(--sc-blue);
-  border-bottom: 2px dotted blue;
+  border-bottom: 2px dotted var(--sc-blue);
 }
 
 /*
@@ -148,6 +148,10 @@ border-bottom: 1px dotted var(--sc-grey3b);
   -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
   -o-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
+}
+
+.baseGlowText {
+    text-shadow: 0px 0px 20px #ffffff 0.5;
 }
 
 code {
@@ -179,7 +183,7 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   height: 100vh;
   max-width: 520px;
   width: 100vw;
-  background-color: #f2f2f2;
+  background-color: #222222;
 }
 
 .hashtagName {
@@ -208,21 +212,81 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 }
 
 .logo {
-  background-image: url("./images/SwarmCity-Sprite-normal.png");
+  background-image: url("./images/logo-transparent-Y.png");
   background-repeat: no-repeat;
   background-size: 324px 324px;
   width: 108px;
   height: 50px;
   background-position: -108px -108px;
+  animation: letter-flicker 8s linear infinite;
+
 }
 
 .logotext {
   margin-bottom: 20px;
-  font-weight: 800;
+  font-weight: 300;
   font-family: Montserrat, sans-serif;
   font-size: 16px;
-  margin-bottom: 5px;
+  color: var(--sc-grey1);
+
+      text-shadow: 0px 0px 5px var(--sc-grey2);
+
 }
+
+.offset {
+  animation: letter-flicker 6s linear;
+}
+
+@keyframes letter-flicker {
+  0% {
+    opacity:0;
+        text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  
+ 
+  100% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+
+  }
+  
+  2% {
+    opacity:0;
+  }
+   4% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+
+  }
+  
+  70% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  
+  72% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  
+  77% {
+    opacity:1;
+    text-shadow: 0px 0px 5px var(--sc-grey2);
+  }
+  100% {
+    opacity:.9;
+        text-shadow: 0px 0px 5px var(--sc-grey2);
+
+  }
+}
+
 
 
 .item {
@@ -298,6 +362,7 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   max-height: 82px;
   background-color: rgba(255, 255, 255, 0.2);
   margin-top: 20px;
+  color:var(--sc-grey4);
 }
 
 .buttontext {
@@ -744,11 +809,9 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 }
 
 .postFooter {
-  display: grid;
+  display: block;
   padding: 16px;
   composes: bodyDefault;
-  grid-template-rows: auto;
-  row-gap: 8px;
   font-size: 14px;
 }
 
@@ -887,4 +950,57 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 .cancel {
   background: none;
   box-shadow: none;
+}
+
+.thumbNavlink {
+  display: inline;
+}
+
+.aboutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background-color: var(--sc-grey4)
+}
+
+.aboutBrand {
+  composes: mainTitle1;
+  font-weight: 800;
+  color: var(--sc-yellow);
+  height: 60px;
+  margin-top: 15px; 
+  align-self: center;
+}
+
+.aboutFooter {
+  height: 20vh;
+  padding: 16px 40px 12px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  composes: backgroundImg;
+  z-index: 100;
+  max-width: 520px;
+  bottom: 0;
+}
+
+.spacer {
+  margin: 10px
+}
+
+.buttonYellow {
+  composes: button;
+  background-color: var(--sc-yellow);
+}
+
+.flip {
+        transform: scale(-1, 1);
+        -moz-transform: scale(-1, 1);
+        -webkit-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        transform: scale(-1, 1);
 }

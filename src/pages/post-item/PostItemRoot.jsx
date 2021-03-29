@@ -7,11 +7,15 @@ import { storePost } from "helpers/instaSwarm.js";
 import UploadPhoto from "./pages/UploadPhoto";
 import FilterPhoto from "./pages/FilterPhoto";
 import MetaDataPhoto from "./pages/MetaDataPhoto";
+import SimpleDialog from "pages/status/SimpleDialog";
+import SimpleChecklist from "pages/status/SimpleChecklist";
 
 // Ids
 const uploadPhoto = "uploadPhoto";
 const filterPhoto = "filterPhoto";
 const metadataPhoto = "metadataPhoto";
+const simpleDialog = "simpleDialog";
+const simpleChecklist = "simpleChecklist";
 
 async function loadWasm() {
   try {
@@ -48,6 +52,8 @@ export function PostItemRoot() {
   const [photo, setPhoto] = useState();
   const [filteredPhoto, setFilteredPhoto] = useState();
 
+  const [statusState, setStatusState] = useState(1)
+
   async function sharePost(post) {
     console.log("sharing post");
     if (!system.passWord) {
@@ -59,15 +65,23 @@ export function PostItemRoot() {
         }
       });
     } else {
+      //setStage(SimpleChecklist)
       console.log("trying to post");
       const dataObject = {
         post: post,
         user: account,
         password: system.passWord
       };
-      await storePost(dataObject);
+      try {
+        setStage(simpleChecklist)
+        await storePost(dataObject, function(){
+          history.push("/home")
+        }); 
+        //setStatusState(1)
+      } catch (error) {
+        //setStatusState(2)
+      }
       //dispatch({type: "SHARE_POST", data: dataObject});
-      history.push("/");
     }
   }
 
@@ -79,7 +93,10 @@ export function PostItemRoot() {
       return (<FilterPhoto image={photo} nextStage={() => setStage(metadataPhoto)} setFilteredPhoto={setFilteredPhoto}></FilterPhoto>);
     case metadataPhoto:
       return (<MetaDataPhoto image={filteredPhoto} sharePost={sharePost} accountUnlock={system.passWord}></MetaDataPhoto>);
-
+    case simpleDialog:
+      return (<SimpleDialog title="Are you ready to post?" text="Postage stamp (2 BZZ) and gas (35000 gwei) is included." confirm={() => { setStage(uploadPhoto) }} cancel={() => { history.goBack() }}></SimpleDialog>);
+    case simpleChecklist:
+      return (<SimpleChecklist title="Publishing post" titleDone="Post successfully published." titleError="Something went wrong." status={statusState} successStage={() => { history.push("/") }} cancel={() => { history.goBack() }}></SimpleChecklist>);
     default:
       return <h1>Oops...</h1>;
   }

@@ -15,7 +15,6 @@ import RestoreAccountStart from "./pages/RestoreAccountStart";
 import RestoreAccountCheck from "./pages/RestoreAccountCheck"
 
 import { createAccount } from "services/account/actions";
-import { check } from "ethers/utils/wordlist";
 
 // Ids
 const createOrRestore = 'createOrRestore';

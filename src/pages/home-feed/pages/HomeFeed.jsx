@@ -35,6 +35,13 @@ export function HomeFeed({ nextStage, homefeed }) {
     const dispatch = useDispatch()
     const accountUnlock = useState(null)
 
+    const Collect = (serial) => {
+
+        return (
+            <a className={main.blueLink}>Collect this post {serial}</a>
+        )
+    }
+
     const getPost = (bzz) => {
         const item = posts[bzz]
         if (item) {
@@ -64,7 +71,8 @@ export function HomeFeed({ nextStage, homefeed }) {
                         <div className={main.smallestBold}>{moment(item.time).fromNow()}</div>
 
                         <div>{item.caption}</div>
-
+                        <div><a href={"https://goerli.etherscan.io/token/0x3487d9fd4ead3bf081a679176e1eaff91ecd95ff?a=" + item.serial} target="_blank">{item.serial}</a></div>
+                        {/* <Collect serial={if(item.serial)}></Collect> */}
                     </div>
                 </div>
 
@@ -78,7 +86,7 @@ export function HomeFeed({ nextStage, homefeed }) {
         }
     }, [account.address])
 
-    console.log(homefeed)
+    //console.log(homefeed)
 
     return (
         <ThemeProvider theme={theme}>
@@ -105,7 +113,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                 </div>
                 <div className={main.footer}>
                     <div className={main.textbutton}>
-                        <NavLink to="/">
+                        <NavLink to="/home">
                             <Home
                                 color="primary"
                                 fontSize="large"></Home>

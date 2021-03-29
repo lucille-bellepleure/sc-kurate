@@ -1,6 +1,5 @@
 import { delay, put, select, fork } from "redux-saga/effects"
 import { setFeed, getFeed } from "helpers/swarmFeed"
-import { check } from "ethers/utils/wordlist";
 
 export default function* createAccountSaga(
     action

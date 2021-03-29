@@ -1,44 +1,154 @@
-import { setFeed, getFeed, uploadData } from "helpers/swarmFeed"
+import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
+import { ethers } from "ethers"
+// import { abi }  from 'contracts/KurateNFT.json';
+import { Transaction } from '@ethereumjs/tx'
+
+import Common from '@ethereumjs/common'
+
 
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-export const storePost = async (dataObject) => {
+    var abi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"receiver","type":"address"},{"internalType":"uint256","name":"serial","type":"uint256"},{"internalType":"string","name":"tokenURI","type":"string"}],"name":"mintToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 
+export const storePost = async (dataObject, cb) => {
+    
     const postObject = dataObject;
     const userObject = dataObject.user;
+
+    window.myWeb3.eth.defaultAccount = userObject.address;
+    debugger
     let decryptedPrivateKey
     try {
         decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.privateKey, dataObject.password);
-
     } catch (error) {
         console.log(error)
     }
 
+    const pk = decryptedPrivateKey.privateKey.substring(2,66)
+
+    const privateKey1 = new Buffer(pk, 'hex');
+
+
+    // Now let's mint an NFT for it 
+    
+    var contractAddress = "0x3487D9fD4eAD3bf081a679176E1Eaff91eCD95fF"
+    var contract = new window.myWeb3.eth.Contract(abi, contractAddress);
+    var res = await contract.methods.symbol().call()
+
+    var serial = Date.now();
+
     const storedPost = await uploadData(postObject.post)
-    console.log('Stored posts', storedPost)
+                console.log('Stored posts', storedPost)
+                const testPost = await downloadData(storedPost)
+                console.log('retrieved ', testPost)
+
+    const myData = contract.methods.mintToken(userObject.address, serial, storedPost).encodeABI();
+    
+     window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
+        // Build the transaction
+        
+          const txObject = {
+            nonce:    window.myWeb3.utils.toHex(txCount),
+            to:       contractAddress,
+            value:    window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('0', 'ether')),
+            gasLimit: window.myWeb3.utils.toHex(2100000),
+            gasPrice: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('6', 'gwei')),
+            data: myData  
+          }
+
+            //const common = new Common({ chain: 'goerli' })
+            //const tx = Transaction.fromTxData(txObject, { common })
+            
+        //tx.sign(privateKey1)
+         window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed => {
+            window.myWeb3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt', 
+            async function updateFeed () {
+                
+                try {
+                    var oldPosts = await getFeed('userposts', userObject.address);
+                    //let tempPosts = JSON.parse(oldPost);
+            
+            
+                    let time = new Date().toISOString();
+                    oldPosts.posts[storedPost] = { time: time, bzz: storedPost, nft: serial }
+                    //let stringedPosts = JSON.stringify(newPosts)
+                    console.log('oldPosts: ', oldPosts)
+
+            
+                    await setFeed(
+                        'userposts',
+                        oldPosts,
+                        decryptedPrivateKey.privateKey
+                    )
+                                        cb()
+
+                    return true
+                } catch (error) {
+                    console.log('ERR', error.message)
+                    return error
+                }
+            }
+            )
+
+            
+        });
 
 
-    try {
-        var oldPosts = await getFeed('userposts', userObject.address);
-        //let tempPosts = JSON.parse(oldPost);
 
-        console.log('oldPosts: ', oldPosts)
+    // var raw = '0x' + tx.serialize().toString('hex');
+    //             //Broadcast the transaction
+    //             const transaction = window.myWeb3.eth.sendSignedTransaction(raw, (err, tx) => {
+    //                 console.log(err, tx)
+    //             });
 
-        let time = new Date().toISOString();
-        oldPosts.posts[storedPost] = { time: time, bzz: storedPost }
-        //let stringedPosts = JSON.stringify(newPosts)
 
-        await setFeed(
-            'userposts',
-            oldPosts,
-            decryptedPrivateKey.privateKey
-        )
-        return true
-    } catch (error) {
-        console.log('ERR', error.message)
-        return error
-    }
+            });
+    
+  
 }
 
+export const deletePost = async (userObject, password, bzz, serial, cb) => {
+    let decryptedPrivateKey
+    try {
+        decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.privateKey, password);
+    } catch (error) {
+        console
+        .log(error)
+    }
+    try {
+        
+                    var oldPosts = await getFeed('userposts', userObject.address);
+                    //let tempPosts = JSON.parse(oldPost);
+            
+                    delete oldPosts.posts[bzz]
+                    //let stringedPosts = JSON.stringify(newPosts)
+                    console.log('oldPosts: ', oldPosts)
+
+            
+                    await setFeed(
+                        'userposts',
+                        oldPosts,
+                        decryptedPrivateKey.privateKey
+                    )
+                    cb()
+
+                    return true
+                } catch (error) {
+                    console.log('ERR', error.message)
+                    return error
+                }
+    cb(bzz,serial)
+
+}
+
+export const fetchBalance = async (address) => {
+    console.log(address)
+    var contractAddress = "0x3487D9fD4eAD3bf081a679176E1Eaff91eCD95fF";
+    var contract = new window.myWeb3.eth.Contract(abi, contractAddress);
+    
+    const balance = await contract.methods.balanceOf(address).call()
+    console.log(balance)
+    return balance
+}
