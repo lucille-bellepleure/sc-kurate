@@ -72,7 +72,7 @@ export function HomeFeed({ nextStage, homefeed }) {
 
                         <div>{item.caption}</div>
                         <div><a href={"https://goerli.etherscan.io/token/0x3487d9fd4ead3bf081a679176e1eaff91ecd95ff?a=" + item.serial} target="_blank">{item.serial}</a></div>
-{/* <Collect serial={if(item.serial)}></Collect> */}
+                        {/* <Collect serial={if(item.serial)}></Collect> */}
                     </div>
                 </div>
 
@@ -113,7 +113,7 @@ export function HomeFeed({ nextStage, homefeed }) {
                 </div>
                 <div className={main.footer}>
                     <div className={main.textbutton}>
-                        <NavLink to="/">
+                        <NavLink to="/home">
                             <Home
                                 color="primary"
                                 fontSize="large"></Home>

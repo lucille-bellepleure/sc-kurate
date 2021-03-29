@@ -3,6 +3,7 @@ import fetchPosts from "../fetchFunctions/fetchPosts.js"
 import resolvePostSaga from "../../postState/sagas/resolvePostSaga"
 import * as s from "../selectors"
 import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
+import * as h from "helpers/instaSwarm"
 
 export default function* resolveUserSaga(
     action
@@ -22,6 +23,8 @@ export default function* resolveUserSaga(
 
     // Resolve user
     const userData = yield getFeed('userdata', address);
+
+    const balances = yield h.fetchBalance(address);
 
     // Resolve posts
     const personPosts = yield getFeed('userposts', address);
@@ -45,7 +48,8 @@ export default function* resolveUserSaga(
     const userObject = {
         account: userData,
         posts: personPosts.posts,
-        subs: userSubs
+        subs: userSubs,
+        balances: balances
     }
 
     yield put({ type: "SET_USER", data: { [address]: userObject } })

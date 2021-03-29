@@ -94,7 +94,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
   const getPost = bzz => {
     const item = posts[bzz];
     if (item) {
-      return <NavLink to={"/post/" + bzz+"/"+item.address} className={styles.thumbNavlink}><img className={styles.postImage} src={item.image}></img></NavLink>;
+      return <NavLink to={"/post/" + bzz + "/" + item.address} className={styles.thumbNavlink}><img className={styles.postImage} src={item.image}></img></NavLink>;
     }
   };
 
@@ -158,12 +158,16 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
         <img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
         <div className={styles.followingContainer}>
           <div className={styles.followingItem}>
+            <div className={styles.followingNumber}>{user.balances}</div>
+            <div className={styles.followingLabel}>KURA</div>
+          </div>
+          <div className={styles.followingItem}>
             <div className={styles.followingNumber}>{userfeed.length}</div>
             <div className={styles.followingLabel}>Posts</div>
           </div>
           <div className={styles.followingItem} onClick={nextStage}>
             <div className={styles.followingNumber}>{usersubs.length}</div>
-            <div className={styles.followingLabel}>Following
+            <div className={styles.followingLabel}>Subs
             </div>
           </div>
         </div>
