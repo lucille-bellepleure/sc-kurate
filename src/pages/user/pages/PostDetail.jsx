@@ -48,12 +48,12 @@ function getAccount(state) {
 }
 
 function getUserFromState(state, address) {
-    return state.users[address]
+  return state.users[address]
 }
 
 export function PostDetail({
   nextStage
-  }) {
+}) {
   const dispatch = useDispatch();
   const params = useParams()
   const bzzPost = params.bzzPost
@@ -75,11 +75,11 @@ export function PostDetail({
     //   console.log(posts)
     // }
     // getPostContent(bzzPost)
-   dispatch({type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress }})
-   if(posts[bzzPost]) {
-    setPost(posts[bzzPost])
-    console.log(post)
-   }
+    dispatch({ type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress } })
+    if (posts[bzzPost]) {
+      setPost(posts[bzzPost])
+      console.log(post)
+    }
   })
 
   const deletePostAction = () => {
@@ -92,9 +92,9 @@ export function PostDetail({
         }
       });
     } else {
-      deletePost(account, system.passWord, bzzPost, post.serial, function(){
-      history.push("/user/"+account.address)
-    })
+      deletePost(account, system.passWord, bzzPost, post.serial, function () {
+        history.push("/user/" + account.address)
+      })
     }
   }
 
@@ -106,7 +106,7 @@ export function PostDetail({
     <div className={main.container}>
       <div className={main.header}>
         <div>
-          <NavLink className={main.textbutton} to={"/user/"+post.address}>
+          <NavLink className={main.textbutton} to={"/user/" + post.address}>
             <ArrowBackIos color="primary"></ArrowBackIos>
           </NavLink>
         </div>
@@ -145,8 +145,9 @@ export function PostDetail({
                                     <b>{item.likes}</b></div> */}
           <div className={main.smallestBold}>{moment(post.time).fromNow()}</div>
           <div>{post.caption}</div>
-          <a className={main.blueLink}>Collect this post</a>
-          <div onClick={() => {deletePostAction()}}>Delete this post</div>
+          <a className={main.blueLink} href={"https://goerli.etherscan.io/token/0x3487d9fd4ead3bf081a679176e1eaff91ecd95ff?a=" + post.serial} target="_blank">NFT on Etherscan</a>
+
+          <div onClick={() => { deletePostAction() }}>Delete this post</div>
 
         </div>
 
@@ -154,7 +155,7 @@ export function PostDetail({
 
       <div className={main.footer}>
         <div className={main.textbutton}>
-          <NavLink to="/">
+          <NavLink to="/home">
             <Home color="primary" fontSize="large"></Home>
           </NavLink>
         </div>

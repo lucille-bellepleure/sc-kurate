@@ -12,6 +12,8 @@ testrun.sh
 
 # testing
 /coverage
+/artifacts
+/cache
 
 # production
 /build

@@ -71,8 +71,8 @@ export function HomeFeed({ nextStage, homefeed }) {
                         <div className={main.smallestBold}>{moment(item.time).fromNow()}</div>
 
                         <div>{item.caption}</div>
-                        <div><a href={"https://goerli.etherscan.io/token/0x3487d9fd4ead3bf081a679176e1eaff91ecd95ff?a=" + item.serial} target="_blank">{item.serial}</a></div>
-                        {/* <Collect serial={if(item.serial)}></Collect> */}
+                        <NavLink className={main.blueLink} to={"/post/" + bzz + "/" + item.address}>Post details</NavLink>
+                        {/* <Collect serial={if(itemLerial)}></Collect> */}
                     </div>
                 </div>
 
