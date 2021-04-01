@@ -268,17 +268,13 @@ export const storePost = async (dataObject, cb) => {
     const userObject = dataObject.user;
 
     window.myWeb3.eth.defaultAccount = userObject.address;
-    debugger
+
     let decryptedPrivateKey
     try {
         decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.privateKey, dataObject.password);
     } catch (error) {
         console.log(error)
     }
-
-    const pk = decryptedPrivateKey.privateKey.substring(2, 66)
-
-    const privateKey1 = new Buffer(pk, 'hex');
 
 
     // Now let's mint an NFT for it 
@@ -466,6 +462,7 @@ export const resolveShortcode = async (shortcode) => {
             peerAvatar: result.res.useravatar,
             peerUsername: result.res.username,
             peerAddress: result.res.useraddress,
+            peerPublickey: result.res.userpublickkey,
             peerBalances: balances,
             peerVeracity: veracity
         };
@@ -476,5 +473,75 @@ export const resolveShortcode = async (shortcode) => {
         console.log('error in resolving shortcode')
         return "error"
     }
+
+}
+
+export const verifyUser = async (address, dataObject, cb) => {
+    const userObject = dataObject.user;
+
+    const avatarHash = await uploadData(dataObject.verifeeAvatar)
+
+    let decryptedPrivateKey
+    try {
+        decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.privateKey, dataObject.password);
+    } catch (error) {
+        console.log(error)
+    }
+
+    var contractAddress = "0x0dF4981120e9cEeD5f95e2bF7618BB78fB3EC8f0"
+    var contract = new window.myWeb3.eth.Contract(registryAbi, contractAddress);
+
+    // first check if user exists
+    const res = await contract.methods.readUser(address).call()
+
+    console.log(res)
+    // create user
+    // address userAddress,
+    // string memory publicKey,
+    // string memory userName,
+    // string memory userAvatar
+    const addUser = contract.methods.createUser(address, dataObject.verifeePublickey, dataObject.verifeeUsername, avatarHash).encodeABI();
+
+    window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
+        // Build the transaction
+
+        const txObject = {
+            nonce: window.myWeb3.utils.toHex(txCount),
+            to: contractAddress,
+            value: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('0', 'ether')),
+            gasLimit: window.myWeb3.utils.toHex(2100000),
+            gasPrice: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('1', 'gwei')),
+            data: addUser
+        }
+
+
+        window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed => {
+            window.myWeb3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt', async function addVerificationAfterCreate() {
+                const myData = contract.methods.addVerification(address).encodeABI();
+
+                window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
+                    // Build the transaction
+
+                    const txObject = {
+                        nonce: window.myWeb3.utils.toHex(txCount),
+                        to: contractAddress,
+                        value: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('0.1', 'ether')),
+                        gasLimit: window.myWeb3.utils.toHex(2100000),
+                        gasPrice: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('6', 'gwei')),
+                        data: myData
+                    }
+
+
+                    window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed2 => {
+                        window.myWeb3.eth.sendSignedTransaction(signed2.rawTransaction).on('receipt', function callBack() {
+                            cb()
+                        })
+                    });
+                });
+            })
+        });
+    });
+
+
 
 }

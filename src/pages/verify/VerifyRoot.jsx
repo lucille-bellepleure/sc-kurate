@@ -13,6 +13,7 @@ import SimpleChecklist from '../status/SimpleChecklist';
 const verifyHome = 'verifyHome';
 const fetchingCandidate = 'fetchingCandidate';
 const errorfetchingCandidate = 'errorfetchingCandidate'
+const verifyingState = "verifyingState"
 
 // function getUserFromState(state, address) {
 //     return state.users[address]
@@ -22,11 +23,22 @@ const errorfetchingCandidate = 'errorfetchingCandidate'
 //     return state.account
 // }
 
+function getSystem(state) {
+    return state.system;
+}
+
+function getUser(state) {
+    return state.account;
+}
+
 export function VerifyRoot() {
 
     const history = useHistory()
     const dispatch = useDispatch()
     const [stage, setStage] = useState(fetchingCandidate)
+
+    const system = useSelector(state => getSystem(state));
+    const account = useSelector(state => getUser(state));
 
     const [userVerify, setUserVerify] = useState({ username: "Fetching", avatar: "Fetching" })
 
@@ -37,6 +49,35 @@ export function VerifyRoot() {
 
     const params = useParams()
     const shortcode = params.shortcode
+
+    const verificationCall = async () => {
+        // check for passwd
+        if (!system.passWord) {
+            console.log("unlock first");
+            dispatch({
+                type: "SET_SYSTEM",
+                data: {
+                    showPasswordUnlock: true
+                }
+            });
+        } else {
+
+            setStage(verifyingState)
+            const dataObject = {
+                user: account,
+                password: system.passWord,
+                verifeeAvatar: userVerify.avatar,
+                verifeeUsername: userVerify.username,
+                verifeePublickey: userVerify.publickey,
+            };
+            console.log("starting verification of ", userVerify.address)
+            await h.verifyUser(userVerify.address, dataObject, function (res) {
+                console.log(res)
+                setStage(verifyHome)
+            })
+
+        }
+    }
 
     // const user = useSelector(state => getUserFromState(state, address))
 
@@ -51,7 +92,8 @@ export function VerifyRoot() {
                     setUserVerify({
                         username: res.peerUsername,
                         avatar: res.peerAvatar,
-                        address: res.peerAddress
+                        address: res.peerAddress,
+                        publickey: res.peerPublickey
                     })
                     setStage(verifyHome)
                 }
@@ -74,9 +116,12 @@ export function VerifyRoot() {
             return (
                 <VerifyHome
                     userVerify={userVerify}
-                    nextStage={() => setStage()}
+                    nextStage={() => { verificationCall() }}
                 />
             );
+        case verifyingState:
+            return (
+                <SimpleChecklist title="Verifying user" titleDone="Post successfully published." titleError="Something went wrong." status={1}></SimpleChecklist>);
 
 
         default:
