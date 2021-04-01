@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import main from "styles.module.css";
 import styles from "./simple-status.module.css";
 
-export function SimpleChecklist({ title, titleDone, titleError, successStage, status }) {
+export function SimpleChecklist({ title, titleDone, titleError, successStage, errorClick, status }) {
     const history = useHistory();
     const [dialogTitle, setDialogTitle] = useState(title || "not found")
     const [dialogDoneTitle, setDialogDoneTitle] = useState(titleDone || "not found")
@@ -62,7 +62,7 @@ export function SimpleChecklist({ title, titleDone, titleError, successStage, st
                             styles.confirmCheck,
                             styles.confirm
                         ].join(" ")}
-                        onClick={successStage}
+                        onClick={errorClick}
                     >
                         <div className={main.xmarkicon} />
                     </div>

@@ -4,6 +4,7 @@ import { pubKeyToAddress } from '@erebos/keccak256'
 import { toHex, hexToByteArray, byteArrayToHex, numbersToByteArray, stringToUint8Array } from 'helpers/conversion';
 import { hexValue } from '@erebos/hex';
 import { setFeed, getFeed } from "helpers/swarmFeed"
+import { getAccount } from "services/account/selectors"
 
 export default function* createShortCodeSaga(
     action
@@ -13,9 +14,14 @@ export default function* createShortCodeSaga(
     const PUBLIC_KEY_BYTES_LENGTH = 33
     const ADDRESS_BYTES_LENGTH = 20
 
+    const account = yield select(getAccount)
+
+
     console.log("CreateShortCode Saga", action.data)
     // Get timestamp
-    const timeStamp = 123456
+    //const timeStamp = 123456
+    var timeStamp = Math.round((new Date()).getTime() / 1000000);
+
     // ROund on the minute
     // Generate 4 digit short 
     const shortCode = Math.floor(1000 + Math.random() * 9000);
@@ -39,6 +45,8 @@ export default function* createShortCodeSaga(
         {
             username: action.data.username,
             useravatar: action.data.useravatar,
+            useraddress: account.address,
+            userpublickkey: account.publicKey,
             publicKey: publicKey,
             address: address
         },

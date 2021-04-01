@@ -25,12 +25,13 @@ export default function* resolveUserSaga(
     const userData = yield getFeed('userdata', address);
 
     const balances = yield h.fetchBalance(address);
+    const verification = yield h.checkVerification(address);
 
     // Resolve posts
     const personPosts = yield getFeed('userposts', address);
     const postsArray = Object.keys(personPosts.posts)
 
-    yield all(postsArray.map(x => call(resolvePostSaga, { data: {postId: x, userAddress: address} })))
+    yield all(postsArray.map(x => call(resolvePostSaga, { data: { postId: x, userAddress: address } })))
 
     // Resolve user's subscriptions
     const userSubs = yield getFeed('usersubscriptions', address);
@@ -49,7 +50,8 @@ export default function* resolveUserSaga(
         account: userData,
         posts: personPosts.posts,
         subs: userSubs,
-        balances: balances
+        balances: balances,
+        verification: verification
     }
 
     yield put({ type: "SET_USER", data: { [address]: userObject } })

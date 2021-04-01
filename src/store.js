@@ -6,6 +6,8 @@ import rootSaga from "./rootSaga";
 import createSagaMiddleware from "redux-saga";
 import Web3 from "web3";
 
+// User Registry: 0x0dF4981120e9cEeD5f95e2bF7618BB78fB3EC8f0
+// KURA token: 0x3487d9fd4ead3bf081a679176e1eaff91ecd95ff
 
 window.myWeb3 = new Web3('https://rpc.slock.it/goerli')
 

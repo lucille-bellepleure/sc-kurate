@@ -48,9 +48,10 @@ export const getFeed = async (topic, address) => {
         const hexData = await Utils.Hex.bytesToHex(retrievedData)
         const stringData = hex_to_ascii(hexData)
         const readObject = JSON.parse(stringData)
-        return readObject
+        return { code: 200, res: readObject }
     } catch (error) {
         console.error(error)
+        return { code: 500, res: error }
     }
 
 }

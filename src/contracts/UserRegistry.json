@@ -1,0 +1,256 @@
+{
+    "contractName": "UserRegistry",
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "userAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "addVerification",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "_feedback",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "_newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "changeOwner",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "userAddress",
+                    "type": "address"
+                },
+                {
+                    "internalType": "string",
+                    "name": "publicKey",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "userName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "userAvatar",
+                    "type": "string"
+                }
+            ],
+            "name": "createUser",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "_err",
+                    "type": "string"
+                }
+            ],
+            "name": "Error",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "userAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "giveGodVerification",
+            "outputs": [
+                {
+                    "internalType": "bool",
+                    "name": "",
+                    "type": "bool"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "userAddress",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "userName",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "userAvatar",
+                    "type": "string"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "publicKey",
+                    "type": "string"
+                }
+            ],
+            "name": "UserAdded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "userAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "UserAdded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "_from",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "_numverifications",
+                    "type": "uint256"
+                }
+            ],
+            "name": "VerificationAdded",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address payable",
+                    "name": "userAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "checkVeracity",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "numVerifications",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "userAddress",
+                    "type": "address"
+                }
+            ],
+            "name": "readUser",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "userName",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "userAvatar",
+                    "type": "string"
+                },
+                {
+                    "internalType": "string",
+                    "name": "publicKey",
+                    "type": "string"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "numVerifications",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "verificationthresh",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+}

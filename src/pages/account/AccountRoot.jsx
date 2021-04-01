@@ -50,7 +50,8 @@ export function AccountRoot() {
 
     const handleResolveShortcode = (shortcode) => {
         console.log(shortcode)
-        dispatch({ type: "RESOLVE_SHORTCODE", data: shortcode })
+        //dispatch({ type: "RESOLVE_SHORTCODE", data: shortcode })
+        history.push('/verify/' + shortcode)
     }
 
     const history = useHistory()

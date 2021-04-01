@@ -85,8 +85,8 @@ export function AccountCreateRoot() {
             return (
                 <CheckMnemonic
                     nextStage={() => setStage(chooseUsername)}
-                    exitStage={() => setStage(createOrRestore)}>
-                    >
+                    exitStage={() => setStage(createOrRestore)}
+                    prevStage={() => setStage(showMnemonic)}>
                 </CheckMnemonic>
             );
         case chooseUsername:

@@ -18,7 +18,6 @@ export function ResolveShort({
     const handleResolveShort = () => {
         console.log("Short code to resolve: ", shortcode)
         resolveShortcode(shortcode)
-
     }
 
     const handleShortChange = (e) => {

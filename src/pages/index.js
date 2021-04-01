@@ -5,6 +5,7 @@ import HomeFeedRoot from "./home-feed/HomeFeedRoot"
 import UserRoot from "./user/UserRoot"
 import PostDetail from "./user/pages/PostDetail"
 import AboutRoot from "./about/AboutRoot"
+import VerifyRoot from "./verify/VerifyRoot"
 
 export default [
     { path: "/home", exact: true, component: HomeFeedRoot },
@@ -13,5 +14,6 @@ export default [
     { path: "/create-account", exact: true, component: AccountCreateRoot },
     { path: "/account", exact: true, component: AccountRoot },
     { path: "/user/:userAddress", component: UserRoot },
-    { path: "/post/:bzzPost/:userAddress", component: PostDetail }
+    { path: "/post/:bzzPost/:userAddress", component: PostDetail },
+    { path: "/verify/:shortcode", component: VerifyRoot }
 ]
