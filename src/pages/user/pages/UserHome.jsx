@@ -158,7 +158,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
         <img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
         <div className={styles.followingContainer}>
           <div className={styles.followingItem}>
-            <div className={styles.followingNumber}>{user.balances}</div>
+            <div className={styles.followingNumber}>{user.balances.kuraBalance}</div>
             <div className={styles.followingLabel}>KURA</div>
           </div>
           <div className={styles.followingItem}>

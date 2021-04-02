@@ -29,17 +29,17 @@ export default function* resolveHomefeedSaga(
     const personPosts = yield getFeed('userposts', account.address);
     //const personPosts = JSON.parse(personRawPosts)
 
-    const postsArray = Object.keys(personPosts.posts)
+    const postsArray = Object.keys(personPosts.res.posts)
     const personSubs = yield getFeed('usersubscriptions', account.address);
     //const personSubs = JSON.parse(personRawSubs)
-    const personSubsArray = Object.keys(personSubs)
-
+    const personSubsArray = Object.keys(personSubs.res.res)
+    debugger
     yield all(personSubsArray.map(p =>
         call(fetchSubscriberSaga, { address: p })
     ))
-    yield all(postsArray.map(x => call(resolvePostSaga,  { postId: x, userAddress: account.address, serial: personPosts.posts[x].nft })))
+    yield all(postsArray.map(x => call(resolvePostSaga, { postId: x, userAddress: account.address, serial: personPosts.res.posts[x].nft })))
 
-    yield put({ type: "SET_HOMEFEED", data: personPosts.posts })
+    yield put({ type: "SET_HOMEFEED", data: personPosts.res.posts })
     // let userObject = {
     //     account: userData
     // }

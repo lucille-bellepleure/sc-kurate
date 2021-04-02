@@ -55,14 +55,14 @@ export function RestoreAccountStart({
             await getFeed('userdata', wallet.address).then((result) => {
                 const accountObj = {
                     address: wallet.address,
-                    publicKey: wallet.signingKey.publicKey,
+                    publicKey: wallet.publicKey,
                     privateKey: wallet.privateKey,
                     mnemonic: wallet.mnemonic,
 
                 }
 
-                setAvatar(result.useravatar);
-                setUsername(result.username)
+                setAvatar(result.res.useravatar);
+                setUsername(result.res.username)
                 dispatch({ type: 'SET_ACCOUNT', data: accountObj });
                 nextStage();
             }).catch((e) => { console.log(e); setError(e.message); })

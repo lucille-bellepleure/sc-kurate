@@ -9,8 +9,8 @@ export default function* followUserSaga(
     const account = yield select(getAccount)
     const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, action.data.password);
     console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
-
-    const currentSubs = action.data.currentSubs
+    debugger
+    const currentSubs = action.data.currentSubs.res
     const addressToFollow = action.data.address
 
     currentSubs[addressToFollow] = {}

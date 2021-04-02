@@ -54,10 +54,10 @@ export default function* createShortCodeSaga(
 
     // Set short code in redux
     const swarmRes = yield getFeed('shortcode', address)
-    console.log(swarmRes)
+    console.log(swarmRes.res)
 
     const accountObj = {
-        shortcode: { code: shortCode, time: 123456 },
+        shortcode: { code: shortCode, time: timeStamp },
     };
 
     console.log(accountObj);

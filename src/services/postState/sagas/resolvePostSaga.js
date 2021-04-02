@@ -19,19 +19,20 @@ export default function* resolvePostSaga(
     const userAddress = action.userAddress
     const serial = action.serial
 
-    if(postId){
+    if (postId) {
         const cachedPosts = yield select(s.getPostState)
-    
+
         if (!cachedPosts[postId]) {
             const thisPost = yield downloadData(postId);
             console.log(serial)
+            debugger
             const userData = yield getFeed('userdata', userAddress);
             //console.log(userData)
             thisPost._id = thisPost.time;
             thisPost.serial = serial;
-            thisPost.avatar = userData.useravatar;
-            thisPost.username = userData.username;
-            thisPost.address = userData.address;
+            thisPost.avatar = userData.res.useravatar;
+            thisPost.username = userData.res.username;
+            thisPost.address = userData.res.address;
             thisPost.likes = 0;
             thisPost.location = "Unknown";
             thisPost.type = "post";
@@ -42,5 +43,5 @@ export default function* resolvePostSaga(
         }
     }
 
-    
+
 }

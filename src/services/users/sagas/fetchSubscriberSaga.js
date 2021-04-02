@@ -18,12 +18,12 @@ export default function* fetchSubscriberSaga(
     const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
     console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
 
-    const userData = yield getFeed('userdata', action.address);
     const personPosts = yield getFeed('userposts', action.address);
-    const postsArray = Object.keys(personPosts.posts)
+
+    const postsArray = Object.keys(personPosts.res.posts)
 
     yield all(postsArray.map(x => call(resolvePostSaga, { postId: x, userAddress: action.address })))
 
-    yield put({ type: "SET_HOMEFEED", data: personPosts.posts })
+    yield put({ type: "SET_HOMEFEED", data: personPosts.res.posts })
 
 }
