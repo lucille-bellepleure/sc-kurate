@@ -15,7 +15,7 @@ function PosterChild({ image, format }) {
             )
         case 'image':
             return (
-                <img className={main.image} width="100%" src={image}></img>
+                <img className={main.image} alt="A Kurate Post" width="100%" src={image}></img>
             )
         default:
             return null

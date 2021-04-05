@@ -1,4 +1,4 @@
-import { delay, put, select, fork } from "redux-saga/effects"
+import { put } from "redux-saga/effects"
 import { setFeed, getFeed } from "helpers/swarmFeed"
 
 export default function* createAccountSaga(
@@ -12,7 +12,7 @@ export default function* createAccountSaga(
     // Here we set the user data object to a feed
 
     try {
-        const refUser = yield setFeed('userdata', {
+        yield setFeed('userdata', {
             username: userObject.username,
             useravatar: userObject.avatar,
             publicKey: userObject.publicKey,
@@ -25,10 +25,10 @@ export default function* createAccountSaga(
     // Here we create an empty userPosts feed
 
     try {
-        debugger
+
         const checkExisitingPosts = yield getFeed('userposts', userObject.address)
-        if (!checkExisitingPosts) {
-            const refPosts = yield setFeed('userposts', { posts: {} }, userObject.privateKey)
+        if (!checkExisitingPosts.res) {
+            yield setFeed('userposts', { posts: {} }, userObject.privateKey)
         }
     } catch (error) {
         console.error(error)
@@ -38,8 +38,8 @@ export default function* createAccountSaga(
 
     try {
         const checkExistingSubscriptions = yield getFeed('usersubscriptions', userObject.address)
-        if (!checkExistingSubscriptions) {
-            const refSubs = yield setFeed('usersubscriptions',
+        if (!checkExistingSubscriptions.res) {
+            yield setFeed('usersubscriptions',
                 {},
                 userObject.privateKey)
         }

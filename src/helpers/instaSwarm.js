@@ -7,7 +7,6 @@ function isEmpty(obj) {
     return Object.keys(obj).length === 0;
 }
 
-
 var tokenAbi = [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "approved", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "operator", "type": "address" }, { "indexed": false, "internalType": "bool", "name": "approved", "type": "bool" }], "name": "ApprovalForAll", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "approve", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "getApproved", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "operator", "type": "address" }], "name": "isApprovedForAll", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "receiver", "type": "address" }, { "internalType": "uint256", "name": "serial", "type": "uint256" }, { "internalType": "string", "name": "tokenURI", "type": "string" }], "name": "mintToken", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "ownerOf", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "internalType": "bytes", "name": "_data", "type": "bytes" }], "name": "safeTransferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "operator", "type": "address" }, { "internalType": "bool", "name": "approved", "type": "bool" }], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }], "name": "supportsInterface", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "tokenURI", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "tokenId", "type": "uint256" }], "name": "transferFrom", "outputs": [], "stateMutability": "nonpayable", "type": "function" }]
 var registryAbi = [
     {
@@ -262,6 +261,7 @@ var registryAbi = [
         "type": "function"
     }
 ]
+
 export const storePost = async (dataObject, cb) => {
 
     const postObject = dataObject;
@@ -277,7 +277,6 @@ export const storePost = async (dataObject, cb) => {
     }
 
 
-    // Now let's mint an NFT for it 
 
     var contractAddress = "0x3487D9fD4eAD3bf081a679176E1Eaff91eCD95fF"
     var contract = new window.myWeb3.eth.Contract(tokenAbi, contractAddress);
@@ -286,14 +285,11 @@ export const storePost = async (dataObject, cb) => {
     var serial = Date.now();
 
     const storedPost = await uploadData(postObject.post)
-    console.log('Stored posts', storedPost)
     const testPost = await downloadData(storedPost)
-    console.log('retrieved ', testPost)
 
     const myData = contract.methods.mintToken(userObject.address, serial, storedPost).encodeABI();
 
     window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
-        // Build the transaction
 
         const txObject = {
             nonce: window.myWeb3.utils.toHex(txCount),
@@ -304,28 +300,19 @@ export const storePost = async (dataObject, cb) => {
             data: myData
         }
 
-        //const common = new Common({ chain: 'goerli' })
-        //const tx = Transaction.fromTxData(txObject, { common })
 
-        //tx.sign(privateKey1)
         window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed => {
             window.myWeb3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt',
                 async function updateFeed() {
 
                     try {
                         var oldPosts = await getFeed('userposts', userObject.address);
-                        //let tempPosts = JSON.parse(oldPost);
-
-
                         let time = new Date().toISOString();
-                        oldPosts.posts[storedPost] = { time: time, bzz: storedPost, nft: serial }
-                        //let stringedPosts = JSON.stringify(newPosts)
-                        console.log('oldPosts: ', oldPosts)
-
+                        oldPosts.res.posts[storedPost] = { time: time, bzz: storedPost, nft: serial }
 
                         await setFeed(
                             'userposts',
-                            oldPosts,
+                            oldPosts.res,
                             decryptedPrivateKey.privateKey
                         )
                         cb()
@@ -340,16 +327,6 @@ export const storePost = async (dataObject, cb) => {
 
 
         });
-
-
-
-        // var raw = '0x' + tx.serialize().toString('hex');
-        //             //Broadcast the transaction
-        //             const transaction = window.myWeb3.eth.sendSignedTransaction(raw, (err, tx) => {
-        //                 console.log(err, tx)
-        //             });
-
-
     });
 
 
@@ -366,12 +343,7 @@ export const deletePost = async (userObject, password, bzz, serial, cb) => {
     try {
 
         var oldPosts = await getFeed('userposts', userObject.address);
-        //let tempPosts = JSON.parse(oldPost);
-
-        delete oldPosts.posts[bzz]
-        //let stringedPosts = JSON.stringify(newPosts)
-        console.log('oldPosts: ', oldPosts)
-
+        delete oldPosts.res.posts[bzz]
 
         await setFeed(
             'userposts',
@@ -385,7 +357,6 @@ export const deletePost = async (userObject, password, bzz, serial, cb) => {
         console.log('ERR', error.message)
         return error
     }
-    cb(bzz, serial)
 }
 
 export const fetchBalance = async (address) => {
@@ -413,19 +384,10 @@ export const resolveShortcode = async (shortcode) => {
     const PUBLIC_KEY_BYTES_LENGTH = 33
     const ADDRESS_BYTES_LENGTH = 20
 
-    console.log("ResolveShortCode Saga", shortcode)
-    // Get timestamp
-    //const timeStamp = 123456
     var timeStamp = Math.round((new Date()).getTime() / 1000000);
-
-    // ROund on the minute
-    // Generate 4 digit short 
-    //const shortCode = Math.floor(1000 + Math.random() * 9000);
     const shortCode = shortcode
-    // timestamp * short
     const seedstring = shortCode.toString().concat('-instaswarm-', timeStamp.toString())
     console.log(seedstring)
-    //const test = stringToUint8Array(seedstring)
     const privateKeyGenerated = byteArrayToHex(stringToUint8Array(seedstring), false)
 
     const keyPair = createKeyPair(privateKeyGenerated)
@@ -435,26 +397,12 @@ export const resolveShortcode = async (shortcode) => {
 
     console.log('address: ', address, 'private: ', privateKey, 'public: ', publicKey)
 
-    // Use keypair to write swarm feed with usernamme avatar and address
-    // const swarmFeed = yield window.fds.Account.SwarmStore.SF.set(
-    //     address,
-    //     'shortcode',
-    //     privateKey,
-    //     {
-    //         username: action.data.username,
-    //         useravatar: action.data.useravatar,
-    //         publicKey: publicKey,
-    //         address: address
-    //     })
-
-    // Set short code in redux
     let result;
     let accountObj;
 
     result = await getFeed('shortcode', address)
     console.log(result)
     if (result.code == 200) {
-        // now let's also get the balances and user verification 
         let balances = await fetchBalance(result.res.useraddress)
         let veracity = await checkVerification(result.res.useraddress)
 
@@ -473,7 +421,6 @@ export const resolveShortcode = async (shortcode) => {
         console.log('error in resolving shortcode')
         return "error"
     }
-
 }
 
 export const verifyUser = async (address, dataObject, cb) => {
@@ -491,19 +438,11 @@ export const verifyUser = async (address, dataObject, cb) => {
     var contractAddress = "0x0dF4981120e9cEeD5f95e2bF7618BB78fB3EC8f0"
     var contract = new window.myWeb3.eth.Contract(registryAbi, contractAddress);
 
-    // first check if user exists
     const res = await contract.methods.readUser(address).call()
 
-    console.log(res)
-    // create user
-    // address userAddress,
-    // string memory publicKey,
-    // string memory userName,
-    // string memory userAvatar
     const addUser = contract.methods.createUser(address, dataObject.verifeePublickey, dataObject.verifeeUsername, avatarHash).encodeABI();
 
     window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
-        // Build the transaction
 
         const txObject = {
             nonce: window.myWeb3.utils.toHex(txCount),
@@ -514,13 +453,11 @@ export const verifyUser = async (address, dataObject, cb) => {
             data: addUser
         }
 
-
         window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed => {
             window.myWeb3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt', async function addVerificationAfterCreate() {
                 const myData = contract.methods.addVerification(address).encodeABI();
 
                 window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
-                    // Build the transaction
 
                     const txObject = {
                         nonce: window.myWeb3.utils.toHex(txCount),
@@ -531,7 +468,6 @@ export const verifyUser = async (address, dataObject, cb) => {
                         data: myData
                     }
 
-
                     window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed2 => {
                         window.myWeb3.eth.sendSignedTransaction(signed2.rawTransaction).on('receipt', function callBack() {
                             cb()
@@ -541,7 +477,20 @@ export const verifyUser = async (address, dataObject, cb) => {
             })
         });
     });
+}
 
-
-
+export const fetchPost = async (bzz, user) => {
+    const thisPost = await downloadData(bzz);
+    const userData = await getFeed('userdata', user);
+    const userPosts = await getFeed('userposts', user);
+    thisPost.serial = userPosts.res.posts[bzz].nft;
+    thisPost._id = thisPost.time;
+    thisPost.avatar = userData.res.useravatar;
+    thisPost.username = userData.res.username;
+    thisPost.address = userData.res.address;
+    thisPost.likes = 0;
+    thisPost.location = "Unknown";
+    thisPost.type = "post";
+    thisPost.format = "image";
+    return thisPost
 }

@@ -84,7 +84,7 @@ export function VerifyRoot() {
     useEffect(() => {
         if (shortcode) {
             h.resolveShortcode(shortcode).then(res => {
-                if (res == "error") {
+                if (res === "error") {
                     console.log('something went wrong, ')
                     setStage(errorfetchingCandidate)
                 } else {
@@ -101,7 +101,7 @@ export function VerifyRoot() {
 
         }
 
-    }, [params.shortcode])
+    }, [shortcode])
 
 
     // Router

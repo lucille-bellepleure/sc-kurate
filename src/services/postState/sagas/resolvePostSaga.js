@@ -1,7 +1,7 @@
-import { call, delay, put, select, fork } from "redux-saga/effects"
+import { put, select } from "redux-saga/effects"
 import { getAccount } from "services/account/selectors"
 import * as s from "../selectors"
-import { setFeed, getFeed, downloadData, uploadData } from "helpers/swarmFeed"
+import { setFeed, getFeed, downloadData } from "helpers/swarmFeed"
 
 window.getFeed = getFeed
 window.setFeed = setFeed
@@ -12,7 +12,6 @@ export default function* resolvePostSaga(
 
     //console.log("Resolve Post Saga", action)
 
-    const account = yield select(getAccount)
 
     // First resolve my posts
     const postId = action.postId
@@ -25,7 +24,7 @@ export default function* resolvePostSaga(
         if (!cachedPosts[postId]) {
             const thisPost = yield downloadData(postId);
             console.log(serial)
-            debugger
+
             const userData = yield getFeed('userdata', userAddress);
             //console.log(userData)
             thisPost._id = thisPost.time;

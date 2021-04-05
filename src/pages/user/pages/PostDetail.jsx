@@ -21,7 +21,7 @@ import ActionButton from "components/ActionButton"
 
 import { Avatar, Divider } from "@material-ui/core";
 import sortByProp from "helpers/sortByProp";
-import { deletePost } from "helpers/instaSwarm.js";
+import { deletePost, fetchPost } from "helpers/instaSwarm.js";
 
 const theme = createMuiTheme({
   // Style sheet name ⚛️
@@ -69,18 +69,18 @@ export function PostDetail({
   const [post, setPost] = useState({ id: 0, address: '0x0', avatar: 'a', username: 'waiting', caption: 'waiting', location: 'unknown', time: '' })
 
   useEffect(() => {
-    console.log(bzzPost)
-    // const getPostContent = async () => {
-    //   post = posts[bzzPost]
-    //   console.log(posts)
-    // }
-    // getPostContent(bzzPost)
-    dispatch({ type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress } })
-    if (posts[bzzPost]) {
-      setPost(posts[bzzPost])
-      console.log(post)
+    //console.log(bzzPost)
+    const getPostContent = async (post1) => {
+      const fetchedPost = await fetchPost(bzzPost, userAddress)
+      setPost(fetchedPost)
     }
-  })
+    getPostContent()
+    // dispatch({ type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress } })
+    // if (posts[bzzPost]) {
+    //   setPost(posts[bzzPost])
+    //   console.log(post)
+    // }
+  }, [])
 
   const deletePostAction = () => {
     if (!system.passWord) {
@@ -106,7 +106,7 @@ export function PostDetail({
     <div className={main.container}>
       <div className={main.header}>
         <div>
-          <NavLink className={main.textbutton} to={"/user/" + post.address}>
+          <NavLink className={main.textbutton} to={"/user/" + userAddress}>
             <ArrowBackIos color="primary"></ArrowBackIos>
           </NavLink>
         </div>
@@ -124,7 +124,7 @@ export function PostDetail({
       </div> */}
       <div className={main.scroller}>
         <div className={main.postHead}>
-          <NavLink to={"/user/" + post.address}><Avatar src={post.avatar} className={main.avatar}></Avatar></NavLink>
+          <NavLink to={"/user/" + userAddress}><Avatar src={post.avatar} className={main.avatar}></Avatar></NavLink>
           <div>
             <div className={main.postUsername}><b>{post.username}</b></div>
             <div className={main.postLocation}>{post.location}</div>
