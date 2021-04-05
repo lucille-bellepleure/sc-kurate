@@ -11,7 +11,7 @@ export default function* resolveAccountSaga(
     let subscribers = yield getFeed('usersubscriptions', account.address)
     console.log(subscribers)
     let accountObj = {
-        subscribers: subscribers
+        subscribers: subscribers.res
     }
 
     yield put({ type: "SET_ACCOUNT", data: accountObj })

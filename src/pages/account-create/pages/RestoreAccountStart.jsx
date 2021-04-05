@@ -40,11 +40,6 @@ export function RestoreAccountStart({
         setMnemonicInput(e.target.value)
     }
 
-    /*
-    PhoneX Account
-    price drum choose pluck dust weekend story cruel library photo crack bundle
-    */
-
     const restoreMnemonic = async () => {
 
         let wallet = {}

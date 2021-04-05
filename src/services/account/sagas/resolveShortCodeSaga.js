@@ -50,9 +50,9 @@ export default function* resolveShortCodeSaga(
     console.log(result)
 
     const accountObj = {
-        peerAvatar: result.useravatar,
-        peerUsername: result.username,
-        peerAddress: result.address
+        peerAvatar: result.res.useravatar,
+        peerUsername: result.res.username,
+        peerAddress: result.res.address
     };
 
     console.log(accountObj);

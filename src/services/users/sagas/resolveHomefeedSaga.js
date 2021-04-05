@@ -15,7 +15,6 @@ export default function* resolveHomefeedSaga(
         posts: {},
     };
 
-
     // Resolve me
     const account = yield select(getAccount)
     const userData = yield getFeed('userdata', account.address);
@@ -33,7 +32,7 @@ export default function* resolveHomefeedSaga(
     yield put({ type: "SET_HOMEFEED", data: personPosts.res.posts })
 
     let userObject = {
-        subscriptions: personSubs
+        subscriptions: personSubs.res
     }
 
     yield put({ type: "SET_ACCOUNT", data: userObject })
