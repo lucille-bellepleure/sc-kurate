@@ -157,10 +157,10 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
       <div className={styles.usersection}>
         <img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
         <div className={styles.followingContainer}>
-          <div className={styles.followingItem}>
+          {/* <div className={styles.followingItem}>
             <div className={styles.followingNumber}>{user.balances.kuraBalance}</div>
             <div className={styles.followingLabel}>KURA</div>
-          </div>
+          </div> */}
           <div className={styles.followingItem}>
             <div className={styles.followingNumber}>{userfeed.length}</div>
             <div className={styles.followingLabel}>Posts</div>

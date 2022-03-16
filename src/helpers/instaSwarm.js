@@ -267,7 +267,7 @@ export const storePost = async (dataObject, cb) => {
     const postObject = dataObject;
     const userObject = dataObject.user;
 
-    window.myWeb3.eth.defaultAccount = userObject.address;
+    //window.myWeb3.eth.defaultAccount = userObject.address;
 
     let decryptedPrivateKey
     try {
@@ -278,32 +278,32 @@ export const storePost = async (dataObject, cb) => {
 
 
 
-    var contractAddress = "0x3487D9fD4eAD3bf081a679176E1Eaff91eCD95fF"
-    var contract = new window.myWeb3.eth.Contract(tokenAbi, contractAddress);
-    var res = await contract.methods.symbol().call()
+    // var contractAddress = "0x3487D9fD4eAD3bf081a679176E1Eaff91eCD95fF"
+    // var contract = new window.myWeb3.eth.Contract(tokenAbi, contractAddress);
+    // var res = await contract.methods.symbol().call()
 
     var serial = Date.now();
 
     const storedPost = await uploadData(postObject.post)
     const testPost = await downloadData(storedPost)
 
-    const myData = contract.methods.mintToken(userObject.address, serial, storedPost).encodeABI();
+    //const myData = contract.methods.mintToken(userObject.address, serial, storedPost).encodeABI();
 
-    window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
+    //window.myWeb3.eth.getTransactionCount(userObject.address, (err, txCount) => {
 
-        const txObject = {
-            nonce: window.myWeb3.utils.toHex(txCount),
-            to: contractAddress,
-            value: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('0', 'ether')),
-            gasLimit: window.myWeb3.utils.toHex(2100000),
-            gasPrice: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('6', 'gwei')),
-            data: myData
-        }
+        // const txObject = {
+        //     nonce: window.myWeb3.utils.toHex(txCount),
+        //     to: contractAddress,
+        //     value: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('0', 'ether')),
+        //     gasLimit: window.myWeb3.utils.toHex(2100000),
+        //     gasPrice: window.myWeb3.utils.toHex(window.myWeb3.utils.toWei('6', 'gwei')),
+        //     data: myData
+        // }
 
 
-        window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed => {
-            window.myWeb3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt',
-                async function updateFeed() {
+        //window.myWeb3.eth.accounts.signTransaction(txObject, decryptedPrivateKey.privateKey).then(signed => {
+            //window.myWeb3.eth.sendSignedTransaction(signed.rawTransaction).on('receipt',
+                //async function updateFeed() {
 
                     try {
                         var oldPosts = await getFeed('userposts', userObject.address);
@@ -315,19 +315,19 @@ export const storePost = async (dataObject, cb) => {
                             oldPosts.res,
                             decryptedPrivateKey.privateKey
                         )
-                        cb()
+                        //cb()
 
                         return true
                     } catch (error) {
                         console.log('ERR', error.message)
                         return error
                     }
-                }
-            )
+                //}
+            //)
 
 
-        });
-    });
+        //});
+    //});
 
 
 }

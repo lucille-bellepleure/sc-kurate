@@ -7,7 +7,7 @@ export default function* fetchSubscriberSaga(
     action
 ) {
     console.log("Fetch Subscribers Posts Saga", action)
-    debugger
+    
     let initialState = {
         posts: {},
     };

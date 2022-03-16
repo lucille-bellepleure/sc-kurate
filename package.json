@@ -60,7 +60,7 @@
   "homepage": ".",
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -83,7 +83,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "chai": "^4.3.4",
-    "eslint": "^8.11.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-react": "^7.29.4",
     "ethereum-waffle": "^3.3.0",
     "ethers": "^5.0.32",
