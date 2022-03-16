@@ -11,7 +11,8 @@ jobs:
       REACT_APP_BEE_API: https://api.gateway.ethswarm.org
       REACT_APP_BEE_DEBUG_API: https://api.gateway.ethswarm.org
       REACT_APP_BEE_GATEWAY_MODE: true
-
+      DISABLE_ESLINT_PLUGIN: true
+      
     steps:
       - uses: actions/checkout@v2
         with:

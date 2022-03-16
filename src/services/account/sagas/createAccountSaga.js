@@ -26,10 +26,11 @@ export default function* createAccountSaga(
 
     try {
 
-        const checkExisitingPosts = yield getFeed('userposts', userObject.address)
-        if (!checkExisitingPosts.res) {
+        //const checkExisitingPosts = yield getFeed('userposts', userObject.address)
+        
+        //if (checkExisitingPosts.code === 500) {
             yield setFeed('userposts', { posts: {} }, userObject.privateKey)
-        }
+       // }
     } catch (error) {
         console.error(error)
     }
@@ -37,12 +38,12 @@ export default function* createAccountSaga(
     // Here we create empty userSubs feed
 
     try {
-        const checkExistingSubscriptions = yield getFeed('usersubscriptions', userObject.address)
-        if (!checkExistingSubscriptions.res) {
+       // const checkExistingSubscriptions = yield getFeed('usersubscriptions', userObject.address)
+       // if (checkExistingSubscriptions.code === 500) {
             yield setFeed('usersubscriptions',
                 {},
                 userObject.privateKey)
-        }
+       // }
 
     } catch (error) {
         console.error(error)
