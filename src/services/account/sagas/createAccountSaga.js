@@ -40,6 +40,8 @@ export default function* createAccountSaga(
     try {
        // const checkExistingSubscriptions = yield getFeed('usersubscriptions', userObject.address)
        // if (checkExistingSubscriptions.code === 500) {
+
+       // Swarm city official 0xA15413eec51773e94a1f294B02Fd826B0A4774af
             yield setFeed('usersubscriptions',
                 {},
                 userObject.privateKey)

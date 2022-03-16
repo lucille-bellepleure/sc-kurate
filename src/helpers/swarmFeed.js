@@ -11,16 +11,27 @@ function hex_to_ascii(str1) {
 }
 
 export const uploadData = async (data) => {
-    const dataObject = Utils.Data.prepareData(JSON.stringify(data))
-    const reference = await bee.uploadData(dataObject)
-    return reference
+
+    const postageBatchId = process.env.REACT_APP_POSTAGE_BATCH_ID
+    const swarmReference = await bee.uploadData(postageBatchId, JSON.stringify(data))
+
+    //const dataObject = Utils.Data.prepareData(JSON.stringify(data))
+    //const reference = await bee.uploadData(dataObject)
+    return swarmReference.reference
 }
 
 export const downloadData = async (ref) => {
+
     const retrievedData = await bee.downloadData(ref)
-    const hexData = await Utils.Hex.bytesToHex(retrievedData)
-    const stringData = hex_to_ascii(hexData)
-    const readObject = JSON.parse(stringData)
+    // const hexData = await Utils.Hex.bytesToHex(retrievedData)
+     //const stringData = hex_to_ascii(hexData)
+     const readObject =  retrievedData.json()
+
+
+    //const retrievedData = await bee.downloadData(ref)
+    //const hexData = await Utils.Hex.bytesToHex(retrievedData)
+    //const stringData = hex_to_ascii(hexData)
+    //const readObject = JSON.parse(stringData)
     return readObject
 }
 
@@ -39,7 +50,7 @@ export const setFeed = async (topic, value, pk) => {
         
         const postageBatchId = process.env.REACT_APP_POSTAGE_BATCH_ID
         const swarmReference = await bee.uploadData(postageBatchId, JSON.stringify(value))
-debugger
+
         const feedWriter = await bee.makeFeedWriter('sequence', encodedTopic, pk)
 
         const response = await feedWriter.upload(postageBatchId, swarmReference.reference)
@@ -60,7 +71,7 @@ export const getFeed = async (topic, address) => {
         const feedReader = bee.makeFeedReader('sequence', encodedTopic, address)
         const feedUpdate = await feedReader.download()
         //console.log(feedUpdate)
-        debugger
+        
        const retrievedData = await bee.downloadData(feedUpdate.reference)
        // const hexData = await Utils.Hex.bytesToHex(retrievedData)
         //const stringData = hex_to_ascii(hexData)
