@@ -31,9 +31,19 @@ export const setFeed = async (topic, value, pk) => {
     const dataObject = Utils.Data.prepareData(JSON.stringify(value))
 
     try {
+
+        const postageBatchId = await bee.createPostageBatch("100", 17)
+        //const data = new Uint8Array([1, 2, 3])
+        //const reference = await bee.uploadData(data)
+        //const topic = '0000000000000000000000000000000000000000000000000000000000000000'
+        //const signer = '0x634fb5a872396d9693e5c9f9d7233cfa93f395c093371017ff44aa9ae6564cdd'
+        //const feedWriter = bee.makeFeedWriter('sequence', topic, signer)
+
         const swarmReference = await bee.uploadData(dataObject)
         const feedWriter = bee.makeFeedWriter('sequence', encodedTopic, pk)
-        const response = await feedWriter.upload(swarmReference)
+        const response = await feedWriter.upload(postageBatchId, swarmReference)
+
+        //const response = await feedWriter.upload(swarmReference)
         return response
     } catch (error) {
         console.error(error)

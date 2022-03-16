@@ -1,5 +1,5 @@
-import { BeeDebug, Bee, Utils } from "@ethersphere/bee-js";
-
-const beeUrl = "https://bee-gateway.duckdns.org";
-
+import { Bee } from "@ethersphere/bee-js";
+const beeUrl = process.env.REACT_APP_BEE_GATEWAY
+//debugger
+window.bee = new Bee(beeUrl);
 export const bee = new Bee(beeUrl);
