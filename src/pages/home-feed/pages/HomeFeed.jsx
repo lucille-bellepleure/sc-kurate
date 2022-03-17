@@ -9,6 +9,7 @@ import ActionButton from "components/ActionButton"
 import PosterChild from "components/PosterChild"
 import sortByProp from "helpers/sortByProp";
 import moment from "moment"
+import Logo from "images/logo-transparent-D.png"
 
 // import AccountUnlock from "components/AccountUnlock"
 
@@ -92,8 +93,8 @@ export function HomeFeed({ nextStage, homefeed }) {
         <ThemeProvider theme={theme}>
             <div className={main.container}>
                 <div className={main.headerwithlogo}>
-                    <img src={require("../../../images/logo-transparent-D.png")}></img>
-                    {/* <div className={main.logo}></div> */}
+                     <img src={Logo} />
+                     {/* <div className={main.logo}></div>  */}
                 </div>
                 <div className={main.scroller}>
                     {homefeed

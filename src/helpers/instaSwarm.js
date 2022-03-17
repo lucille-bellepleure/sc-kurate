@@ -315,7 +315,7 @@ export const storePost = async (dataObject, cb) => {
                             oldPosts.res,
                             decryptedPrivateKey.privateKey
                         )
-                        //cb()
+                        cb()
 
                         return true
                     } catch (error) {
@@ -403,16 +403,16 @@ export const resolveShortcode = async (shortcode) => {
     result = await getFeed('shortcode', address)
     console.log(result)
     if (result.code == 200) {
-        let balances = await fetchBalance(result.res.useraddress)
-        let veracity = await checkVerification(result.res.useraddress)
+        // let balances = await fetchBalance(result.res.useraddress)
+        // let veracity = await checkVerification(result.res.useraddress)
 
         accountObj = {
             peerAvatar: result.res.useravatar,
             peerUsername: result.res.username,
             peerAddress: result.res.useraddress,
-            peerPublickey: result.res.userpublickkey,
-            peerBalances: balances,
-            peerVeracity: veracity
+            peerPublickey: result.res.userpublickkey
+            // peerBalances: balances,
+            // peerVeracity: veracity
         };
 
         console.log(accountObj);
