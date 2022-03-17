@@ -1,26 +1,23 @@
-import * as t from "./actionTypes";
-import { persistentReducer } from "redux-pouchdb-plus";
+import * as t from './actionTypes'
+import { persistentReducer } from 'redux-pouchdb-plus'
 
 // Service > user
 
-const initialState = {
-};
+const initialState = {}
 
 function users(state = initialState, action) {
-    switch (action.type) {
-        case t.SET_USER:
-            return {
-                ...state,
-                ...action.data
-            };
+	switch (action.type) {
+		case t.SET_USER:
+			return {
+				...state,
+				...action.data,
+			}
 
-        default:
-            return state;
-    }
+		default:
+			return state
+	}
 }
 
-const usersPersist = persistentReducer(users, {
-    users
-});
+persistentReducer(users, { users })
 
 export default users

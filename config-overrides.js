@@ -1,25 +1,25 @@
-const path = require('path');
+const { ProvidePlugin } = require('webpack')
 
-module.exports = function override(config, env) {
-    const wasmExtensionRegExp = /\.wasm$/;
+module.exports = function override(config) {
+	config.resolve.fallback = {
+		...config.resolve.fallback,
+		crypto: require.resolve('crypto-browserify'),
+		http: require.resolve('stream-http'),
+		https: require.resolve('https-browserify'),
+		assert: require.resolve('assert'),
+		os: require.resolve('os-browserify/browser'),
+		stream: require.resolve('stream-browserify'),
+		buffer: require.resolve('buffer'),
+	}
 
-    config.resolve.extensions.push('.wasm');
+	config.resolve.extensions = [...config.resolve.extensions, '.js', '.jsx', '.ts', '.tsx']
 
-    config.module.rules.forEach(rule => {
-        (rule.oneOf || []).forEach(oneOf => {
-            if (oneOf.loader && oneOf.loader.indexOf('file-loader') >= 0) {
-                // Make file-loader ignore WASM files
-                oneOf.exclude.push(wasmExtensionRegExp);
-            }
-        });
-    });
+	config.plugins.push(
+		new ProvidePlugin({
+			process: 'process/browser',
+			Buffer: ['buffer', 'Buffer'],
+		})
+	)
 
-    // Add a dedicated loader for WASM
-    config.module.rules.push({
-        test: wasmExtensionRegExp,
-        include: path.resolve(__dirname, 'src'),
-        use: [{ loader: require.resolve('wasm-loader'), options: {} }]
-    });
-
-    return config;
-};
+	return config
+}

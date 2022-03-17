@@ -1,10 +1,12 @@
-import saga from "./sagas";
+import saga from './sagas'
 
 // Service > system
 
-export const mountPoint = "postitem";
+export const mountPoint = 'postitem'
 
-export default {
-    mountPoint,
-    saga
-};
+const service = {
+	mountPoint,
+	saga,
+}
+
+export default service

@@ -1,114 +1,101 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Form, FormProvider, setErrors } from 'react-advanced-form';
-import { TextField } from "@material-ui/core";
-import styles from "styles.module.css";
-import createAccount from "../account-create.module.css";
-import { setFeed, getFeed } from "helpers/swarmFeed"
+import React, { useState, useRef } from 'react'
+import { Form, FormProvider } from 'react-advanced-form'
+import { TextField } from '@material-ui/core'
+import styles from 'styles.module.css'
+import createAccount from '../account-create.module.css'
+import { getFeed } from 'helpers/swarmFeed'
 
-import { ethers } from 'ethers';
-import { useDispatch } from "react-redux";
+import { ethers } from 'ethers'
+import { useDispatch } from 'react-redux'
 
-window.ethers = ethers;
+window.ethers = ethers
 
+export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvatar }) {
+	let refText = useRef(null)
 
-export function RestoreAccountStart({
-    nextStage,
-    exitStage,
-    setUsername,
-    setAvatar
-}) {
+	let [error, setError] = useState()
 
-    let refForm = useRef(null)
-    let refText = useRef(null)
+	const [mnemonicInput, setMnemonicInput] = useState('')
 
-    let [error, setError] = useState();
+	const validationRules = {}
 
-    const [mnemonicInput, setMnemonicInput] = useState("")
+	const handleSubmit = () => {
+		nextStage()
+	}
 
-    const validationRules = {
+	const dispatch = useDispatch()
 
-    }
+	const handleChange = (e) => {
+		console.log(e.target.value)
+		setMnemonicInput(e.target.value)
+	}
 
-    const handleSubmit = () => {
-        nextStage()
-    }
+	const restoreMnemonic = async () => {
+		let wallet = {}
+		try {
+			wallet = ethers.Wallet.fromMnemonic(mnemonicInput)
+			console.log(wallet)
 
-    const dispatch = useDispatch()
+			await getFeed('userdata', wallet.address)
+				.then((result) => {
+					const accountObj = {
+						address: wallet.address,
+						publicKey: wallet.publicKey,
+						privateKey: wallet.privateKey,
+						mnemonic: wallet.mnemonic,
+					}
 
-    const handleChange = (e) => {
-        console.log(e.target.value)
-        setMnemonicInput(e.target.value)
-    }
+					setAvatar(result.res.useravatar)
+					setUsername(result.res.username)
+					dispatch({ type: 'SET_ACCOUNT', data: accountObj })
+					nextStage()
+				})
+				.catch((e) => {
+					console.log(e)
+					setError(e.message)
+				})
+		} catch (e) {
+			setError(e.message)
+		}
+	}
 
-    const restoreMnemonic = async () => {
+	return (
+		<div className={createAccount.formcontainer}>
+			<FormProvider>
+				<Form rules={validationRules} action={handleSubmit}>
+					<div className={createAccount.closeButton} onClick={exitStage}>
+						<div className={styles.exitgrayicon} />
+					</div>
+					<div className={createAccount.formtitle}>Restore your account</div>
+					<div className={createAccount.mnemoniccheck}>
+						<div>
+							<TextField
+								className={createAccount.textField}
+								ref={refText}
+								onChange={(e) => handleChange(e)}
+								id="outlined-multiline-static"
+								label="Wordlist backup"
+								multiline
+								rows={6}
+								placeholder="12 Word mnemonic"
+								variant="outlined"
+							/>
+						</div>
+					</div>
+					<div>{error}</div>
+					<div className={createAccount.dialogiconbox}>
+						<div
+							tabIndex="2"
+							className={[styles.iconbuttonbig, createAccount.confirm].join(' ')}
+							onClick={() => restoreMnemonic()}
+						>
+							<div className={styles.nextblueicon} />
+						</div>
+					</div>
+				</Form>
+			</FormProvider>
+		</div>
+	)
+}
 
-        let wallet = {}
-        try {
-            wallet = ethers.Wallet.fromMnemonic(mnemonicInput)
-            console.log(wallet)
-
-            await getFeed('userdata', wallet.address).then((result) => {
-                const accountObj = {
-                    address: wallet.address,
-                    publicKey: wallet.publicKey,
-                    privateKey: wallet.privateKey,
-                    mnemonic: wallet.mnemonic,
-
-                }
-
-                setAvatar(result.res.useravatar);
-                setUsername(result.res.username)
-                dispatch({ type: 'SET_ACCOUNT', data: accountObj });
-                nextStage();
-            }).catch((e) => { console.log(e); setError(e.message); })
-        } catch (e) {
-            setError(e.message);
-        }
-    }
-
-    return (
-        <div className={createAccount.formcontainer}>
-            <FormProvider>
-
-                <Form rules={validationRules} ref={form => refForm = form} action={handleSubmit}>
-
-                    <div className={createAccount.closeButton} onClick={exitStage}>
-                        <div className={styles.exitgrayicon} />
-                    </div>
-                    <div className={createAccount.formtitle}>
-                        Restore your account
-    </div>
-                    <div className={createAccount.mnemoniccheck}>
-
-                        <div>
-                            <TextField
-                                className={createAccount.textField}
-                                ref={refText}
-                                onChange={(e) => handleChange(e)}
-                                id="outlined-multiline-static"
-                                label="Wordlist backup"
-                                multiline
-                                rows={6}
-                                placeholder="12 Word mnemonic"
-                                variant="outlined"
-                            />
-                        </div>
-                    </div>
-                    <div>{error}</div>
-                    <div className={createAccount.dialogiconbox}>
-
-                        <div
-                            tabIndex="2"
-                            className={[styles.iconbuttonbig, createAccount.confirm].join(" ")}
-                            onClick={() => restoreMnemonic()}
-                        >
-                            <div className={styles.nextblueicon} />
-                        </div>
-                    </div>
-                </Form>
-            </FormProvider>
-        </div >
-    );
-};
-
-export default RestoreAccountStart;
+export default RestoreAccountStart

@@ -1,12 +1,14 @@
-import reducer from "./reducer";
-import saga from "./sagas";
+import reducer from './reducer'
+import saga from './sagas'
 
 // Service > system
 
-export const mountPoint = "postState";
+export const mountPoint = 'postState'
 
-export default {
-    mountPoint,
-    reducer,
-    saga
-};
+const service = {
+	mountPoint,
+	reducer,
+	saga,
+}
+
+export default service

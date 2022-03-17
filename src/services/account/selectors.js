@@ -1,7 +1,7 @@
-import { mountPoint } from "./";
-import { createSelector } from "reselect";
+import { mountPoint } from './'
+import { createSelector } from 'reselect'
 
 export const getAccount = createSelector(
-    (state) => state[mountPoint],
-    (account) => account
-);
+	(state) => state[mountPoint],
+	(account) => account
+)
