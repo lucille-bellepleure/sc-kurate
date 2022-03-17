@@ -56,7 +56,7 @@ export function PostItemRoot() {
 	const [photo, setPhoto] = useState()
 	const [filteredPhoto, setFilteredPhoto] = useState()
 
-	const [statusState, setStatusState] = useState(1)
+	const [statusState] = useState(1)
 
 	async function sharePost(post) {
 		console.log('sharing post')

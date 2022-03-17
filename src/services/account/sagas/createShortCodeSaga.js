@@ -1,15 +1,13 @@
-import { delay, put, select, fork } from 'redux-saga/effects'
+import { put, select } from 'redux-saga/effects'
 import { createKeyPair } from '@erebos/secp256k1'
 import { pubKeyToAddress } from '@erebos/keccak256'
-import { toHex, hexToByteArray, byteArrayToHex, numbersToByteArray, stringToUint8Array } from 'helpers/conversion'
-import { hexValue } from '@erebos/hex'
+import { toHex, hexToByteArray, byteArrayToHex, stringToUint8Array } from 'helpers/conversion'
 import { setFeed, getFeed } from 'helpers/swarmFeed'
 import { getAccount } from 'services/account/selectors'
 
 export default function* createShortCodeSaga(action) {
 	const PRIVATE_KEY_BYTES_LENGTH = 32
 	const PUBLIC_KEY_BYTES_LENGTH = 33
-	const ADDRESS_BYTES_LENGTH = 20
 
 	const account = yield select(getAccount)
 
@@ -36,7 +34,7 @@ export default function* createShortCodeSaga(action) {
 	console.log('address: ', address, 'private: ', privateKey, 'public: ', publicKey)
 
 	// Use keypair to write swarm feed with usernamme avatar and address
-	const swarmFeed = yield setFeed(
+	yield setFeed(
 		'shortcode',
 		{
 			username: action.data.username,

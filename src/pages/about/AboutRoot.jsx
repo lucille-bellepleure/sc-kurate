@@ -9,7 +9,7 @@ const aboutKurate = 'aboutKurate'
 
 export function AboutRoot() {
 	const navigate = useNavigate()
-	const [stage, setStage] = useState(aboutKurate)
+	const [stage] = useState(aboutKurate)
 
 	// Router
 	switch (stage) {

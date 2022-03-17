@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styles from 'styles.module.css'
 import createAccount from '../account.module.css'
-import QRCode from 'react-qr-code'
 
-export function ResolveShort({ nextStage, exitStage, peerAvatar, peerUsername, peerAddress, resolveShortcode }) {
+export function ResolveShort({ exitStage, peerAvatar, peerUsername, peerAddress, resolveShortcode }) {
 	const [shortcode, setShortcode] = useState()
 
 	const handleResolveShort = () => {

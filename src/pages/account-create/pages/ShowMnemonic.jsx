@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import styles from 'styles.module.css'
 import createAccount from '../account-create.module.css'
@@ -9,13 +9,17 @@ function getMnemonic(state) {
 	return state.account.mnemonic
 }
 
-export function ShowMnemonic({ nextStage, exitStage, avatarStage, username, setUsername, avatar }) {
+export function ShowMnemonic({ nextStage, exitStage }) {
 	const mnemonic = useSelector((state) => getMnemonic(state))
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		dispatch(createMnemonic())
-	}, [])
+	useEffect(
+		() => {
+			dispatch(createMnemonic())
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	)
 
 	return (
 		<div className={createAccount.formcontainer}>

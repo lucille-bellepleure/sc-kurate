@@ -1,14 +1,10 @@
-import { all, call, delay, put, select, fork } from 'redux-saga/effects'
+import { all, call, put, select } from 'redux-saga/effects'
 import resolvePostSaga from '../../postState/sagas/resolvePostSaga'
 import { getAccount } from 'services/account/selectors'
-import { setFeed, getFeed, downloadData, uploadData } from 'helpers/swarmFeed'
+import { getFeed } from 'helpers/swarmFeed'
 
 export default function* fetchSubscriberSaga(action) {
 	console.log('Fetch Subscribers Posts Saga', action)
-
-	let initialState = {
-		posts: {},
-	}
 
 	// Resolve subscriber
 	const account = yield select(getAccount)

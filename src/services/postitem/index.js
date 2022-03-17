@@ -4,7 +4,9 @@ import saga from './sagas'
 
 export const mountPoint = 'postitem'
 
-export default {
+const service = {
 	mountPoint,
 	saga,
 }
+
+export default service

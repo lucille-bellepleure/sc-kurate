@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects'
-import { setFeed, getFeed } from 'helpers/swarmFeed'
+import { setFeed } from 'helpers/swarmFeed'
 
 export default function* createAccountSaga(action) {
 	console.log('CreateAccount Saga', action.data)

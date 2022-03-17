@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import sortByProp from 'helpers/sortByProp'
 
 // Sub-pages
@@ -36,12 +36,16 @@ export function PostItemRoot() {
 
 	const user = useSelector((state) => getUserFromState(state, address))
 
-	useEffect(() => {
-		if (address) {
-			dispatch({ type: 'GET_USER', data: address })
-			setStage(userFetching)
-		}
-	}, [params.userAddress])
+	useEffect(
+		() => {
+			if (address) {
+				dispatch({ type: 'GET_USER', data: address })
+				setStage(userFetching)
+			}
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[params.userAddress]
+	)
 
 	useEffect(() => {
 		if (user) {
@@ -60,7 +64,6 @@ export function PostItemRoot() {
 				<UserHome
 					account={account}
 					user={user}
-					account={account}
 					userfeed={userfeed}
 					usersubs={usersubs}
 					nextStage={() => setStage(userFollowing)}
@@ -71,7 +74,6 @@ export function PostItemRoot() {
 				<UserFollowing
 					account={account}
 					user={user}
-					account={account}
 					userfeed={userfeed}
 					usersubs={usersubs}
 					nextStage={() => setStage()}

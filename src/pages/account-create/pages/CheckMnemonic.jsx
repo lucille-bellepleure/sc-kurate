@@ -1,21 +1,23 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from 'styles.module.css'
 import createAccount from '../account-create.module.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { Button, InputAdornment, TextField } from '@material-ui/core'
+import { useSelector } from 'react-redux'
 import { Check } from '@material-ui/icons'
 
 function getMnemonic(state) {
 	return state.account.mnemonic
 }
 
-export function CheckMnemonic({ nextStage, exitStage, prevStage, avatarStage, username, setUsername, avatar }) {
+export function CheckMnemonic({ nextStage, exitStage, prevStage }) {
 	const mnemonic = useSelector((state) => getMnemonic(state))
-	const dispatch = useDispatch()
 
-	useEffect(() => {
-		console.log(mnemonic[2], mnemonic[4], mnemonic[8], mnemonic[10])
-	}, [])
+	useEffect(
+		() => {
+			console.log(mnemonic[2], mnemonic[4], mnemonic[8], mnemonic[10])
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	)
 
 	const [word0Validity, setWord0Validity] = useState(false)
 	const [word1Validity, setWord1Validity] = useState(false)

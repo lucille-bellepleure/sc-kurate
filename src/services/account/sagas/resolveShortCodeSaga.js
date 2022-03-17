@@ -1,13 +1,12 @@
-import { delay, put, select, fork } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 import { createKeyPair } from '@erebos/secp256k1'
 import { pubKeyToAddress } from '@erebos/keccak256'
-import { toHex, hexToByteArray, byteArrayToHex, numbersToByteArray, stringToUint8Array } from 'helpers/conversion'
-import { setFeed, getFeed } from 'helpers/swarmFeed'
+import { toHex, hexToByteArray, byteArrayToHex, stringToUint8Array } from 'helpers/conversion'
+import { getFeed } from 'helpers/swarmFeed'
 
 export default function* resolveShortCodeSaga(action) {
 	const PRIVATE_KEY_BYTES_LENGTH = 32
 	const PUBLIC_KEY_BYTES_LENGTH = 33
-	const ADDRESS_BYTES_LENGTH = 20
 
 	console.log('ResolveShortCode Saga', action.data)
 	// Get timestamp

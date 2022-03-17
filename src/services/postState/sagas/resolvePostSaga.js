@@ -1,5 +1,4 @@
 import { put, select } from 'redux-saga/effects'
-import { getAccount } from 'services/account/selectors'
 import * as s from '../selectors'
 import { setFeed, getFeed, downloadData } from 'helpers/swarmFeed'
 

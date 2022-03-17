@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import main from 'styles.module.css'
-import { Route, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
-	let myCaman = null
 	const [thumbs, setThumbs] = useState([
 		{
 			filter: 'vintage',
@@ -12,11 +11,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 	])
 	console.log(thumbs)
 
-	const [img, setImg] = useState()
 	const canvasRef = useRef(null)
-	const thumbCanvasRef = useRef(null)
-	const [currentFilter, setCurrentFilter] = useState('vintage')
-
 	const filterMap = [
 		{
 			filter: 'lofi',
@@ -112,31 +107,35 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 		}
 	}
 
-	useEffect(() => {
-		console.log(canvasRef.current)
-		let ctx = canvasRef.current.getContext('2d')
-		let img = new Image()
-		img.src = image
-		canvasRef.current.width = img.width
-		canvasRef.current.height = img.height
-		ctx.drawImage(img, 0, 0, img.width, img.height)
+	useEffect(
+		() => {
+			console.log(canvasRef.current)
+			let ctx = canvasRef.current.getContext('2d')
+			let img = new Image()
+			img.src = image
+			canvasRef.current.width = img.width
+			canvasRef.current.height = img.height
+			ctx.drawImage(img, 0, 0, img.width, img.height)
 
-		// myCaman = window.Caman(canvasRef.current, img, function () {
-		//   this.render(function () {
-		//     setImg(this.toBase64());
-		//   });
-		// });
-		// console.log(myCaman);
+			// myCaman = window.Caman(canvasRef.current, img, function () {
+			//   this.render(function () {
+			//     setImg(this.toBase64());
+			//   });
+			// });
+			// console.log(myCaman);
 
-		// Filter the image
-		//window.photon.filter(photonImage, "islands");
-		//window.photon.transform.resize(photonImage, 10, 10, 4);
+			// Filter the image
+			//window.photon.filter(photonImage, "islands");
+			//window.photon.transform.resize(photonImage, 10, 10, 4);
 
-		// Replace the current canvas' ImageData with the new image's ImageData.
-		//window.photon.putImageData(canvasRef.current, ctx, photonImage);
+			// Replace the current canvas' ImageData with the new image's ImageData.
+			//window.photon.putImageData(canvasRef.current, ctx, photonImage);
 
-		createThumbs()
-	}, [canvasRef])
+			createThumbs()
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[canvasRef]
+	)
 
 	return (
 		<div className={main.container}>

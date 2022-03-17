@@ -1,21 +1,9 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 import main from 'styles.module.css'
 import styles from '../user.module.css'
-import { useParams, Route, NavLink } from 'react-router-dom'
-import {
-	Home,
-	AddCircle,
-	ArrowBackIos,
-	ArrowForwardIos,
-	Favorite,
-	FavoriteBorder,
-	Person,
-	PlayCircleFilledWhite,
-} from '@material-ui/icons'
+import { NavLink } from 'react-router-dom'
+import { Home, AddCircle, ArrowBackIos } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-import { Avatar, Divider } from '@material-ui/core'
-import sortByProp from 'helpers/sortByProp'
 
 const theme = createTheme({
 	// Style sheet name ⚛️
@@ -25,7 +13,7 @@ const theme = createTheme({
 	},
 })
 
-export function UserFollowing({ nextStage, exitStage, user, userfeed, usersubs, account }) {
+export function UserFollowing({ exitStage, user, usersubs, account }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>

@@ -5,7 +5,9 @@ import reducer from './reducer'
 
 export const mountPoint = 'homefeed'
 
-export default {
+const service = {
 	mountPoint,
 	reducer,
 }
+
+export default service

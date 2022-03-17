@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Form, FormProvider, setErrors } from 'react-advanced-form'
+import React, { useState, useRef } from 'react'
+import { Form, FormProvider } from 'react-advanced-form'
 import { TextField } from '@material-ui/core'
 import styles from 'styles.module.css'
 import createAccount from '../account-create.module.css'
-import { setFeed, getFeed } from 'helpers/swarmFeed'
+import { getFeed } from 'helpers/swarmFeed'
 
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux'
 window.ethers = ethers
 
 export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvatar }) {
-	let refForm = useRef(null)
 	let refText = useRef(null)
 
 	let [error, setError] = useState()
@@ -63,7 +62,7 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 	return (
 		<div className={createAccount.formcontainer}>
 			<FormProvider>
-				<Form rules={validationRules} ref={(form) => (refForm = form)} action={handleSubmit}>
+				<Form rules={validationRules} action={handleSubmit}>
 					<div className={createAccount.closeButton} onClick={exitStage}>
 						<div className={styles.exitgrayicon} />
 					</div>

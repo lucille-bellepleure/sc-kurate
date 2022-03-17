@@ -1,5 +1,5 @@
-import { delay, put, select, fork } from 'redux-saga/effects'
-import { setFeed, getFeed, downloadData, uploadData } from 'helpers/swarmFeed'
+import { put, select } from 'redux-saga/effects'
+import { getFeed } from 'helpers/swarmFeed'
 import { getAccount } from '../../account/selectors'
 
 export default function* resolveAccountSaga(action) {

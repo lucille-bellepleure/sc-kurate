@@ -5,8 +5,10 @@ import saga from './sagas'
 
 export const mountPoint = 'users'
 
-export default {
+const service = {
 	mountPoint,
 	reducer,
 	saga,
 }
+
+export default service

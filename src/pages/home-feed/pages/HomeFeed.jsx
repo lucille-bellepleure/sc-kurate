@@ -1,18 +1,10 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
-import { Route, NavLink } from 'react-router-dom'
-import {
-	Home,
-	AddCircle,
-	ArrowForwardIos,
-	Favorite,
-	FavoriteBorder,
-	Person,
-	PlayCircleFilledWhite,
-} from '@material-ui/icons'
+import { NavLink } from 'react-router-dom'
+import { Home, AddCircle } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-import { Avatar, Divider } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 import ActionButton from 'components/ActionButton'
 import PosterChild from 'components/PosterChild'
 import sortByProp from 'helpers/sortByProp'
@@ -37,15 +29,10 @@ function getPosts(state) {
 	return state.postState
 }
 
-export function HomeFeed({ nextStage, homefeed }) {
+export function HomeFeed({ homefeed }) {
 	const account = useSelector((state) => getUser(state))
 	const posts = useSelector((state) => getPosts(state))
 	const dispatch = useDispatch()
-	const accountUnlock = useState(null)
-
-	const Collect = (serial) => {
-		return <a className={main.blueLink}>Collect this post {serial}</a>
-	}
 
 	const getPost = (bzz) => {
 		const item = posts[bzz]
@@ -99,11 +86,15 @@ export function HomeFeed({ nextStage, homefeed }) {
 		}
 	}
 
-	useEffect(() => {
-		if (account.address) {
-			dispatch({ type: 'RES_HOMEFEED' })
-		}
-	}, [account.address])
+	useEffect(
+		() => {
+			if (account.address) {
+				dispatch({ type: 'RES_HOMEFEED' })
+			}
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[account.address]
+	)
 
 	//console.log(homefeed)
 

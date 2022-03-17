@@ -12,9 +12,6 @@ import ChooseAvatar from './pages/ChooseAvatar'
 import ChoosePassword from './pages/ChoosePassword'
 import SuccessEnter from './pages/SuccessEnter'
 import RestoreAccountStart from './pages/RestoreAccountStart'
-import RestoreAccountCheck from './pages/RestoreAccountCheck'
-
-import { createAccount } from 'services/account/actions'
 
 // Ids
 const createOrRestore = 'createOrRestore'
@@ -26,7 +23,6 @@ const choosePassword = 'choosePassword'
 const successStage = 'successStage'
 
 const restoreAccountStart = 'restoreAccountStart'
-const restoreAccountCheck = 'restoreAccountCheck'
 
 function getAccount(state) {
 	return state.account

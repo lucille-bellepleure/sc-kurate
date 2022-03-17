@@ -1,22 +1,11 @@
-import { all, call, delay, put, select, fork } from 'redux-saga/effects'
-import fetchPosts from '../fetchFunctions/fetchPosts.js'
+import { all, call, put } from 'redux-saga/effects'
 import resolvePostSaga from '../../postState/sagas/resolvePostSaga'
-import * as s from '../selectors'
-import { setFeed, getFeed, downloadData, uploadData } from 'helpers/swarmFeed'
-import * as h from 'helpers/instaSwarm'
+import { getFeed } from 'helpers/swarmFeed'
 
 export default function* resolveUserSaga(action) {
 	console.log('Resolve Posts Saga', action.data)
 
-	let initialState = {
-		account: { username: 'fetching' },
-		posts: {},
-		subs: {},
-	}
-
 	const address = action.data
-
-	const cachedUsers = yield select(s.getUsers)
 
 	// Resolve user
 	const userData = yield getFeed('userdata', address)

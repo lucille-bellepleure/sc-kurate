@@ -1,20 +1,14 @@
-import { all, call, put, select, fork } from 'redux-saga/effects'
+import { all, call, put, select } from 'redux-saga/effects'
 import resolvePostSaga from '../../postState/sagas/resolvePostSaga'
 import { getAccount } from '../../account/selectors'
-import { resPost } from '../../postState/actions'
 import fetchSubscriberSaga from './fetchSubscriberSaga'
-import { setFeed, getFeed, uploadData } from 'helpers/swarmFeed'
+import { getFeed } from 'helpers/swarmFeed'
 
-export default function* resolveHomefeedSaga(action) {
+export default function* resolveHomefeedSaga() {
 	console.log('Resolve Posts Saga')
-
-	let initialState = {
-		posts: {},
-	}
 
 	// Resolve me
 	const account = yield select(getAccount)
-	const userData = yield getFeed('userdata', account.address)
 	const personPosts = yield getFeed('userposts', account.address)
 	const postsArray = Object.keys(personPosts.res.posts)
 

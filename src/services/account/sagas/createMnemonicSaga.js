@@ -1,4 +1,4 @@
-import { delay, put, select } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 import { ethers } from 'ethers'
 
 export default function* createMnemonicSaga(action) {

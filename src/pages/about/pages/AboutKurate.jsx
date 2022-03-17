@@ -1,17 +1,6 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
 import main from 'styles.module.css'
-import { useParams, Route, NavLink } from 'react-router-dom'
-import {
-	Home,
-	AddCircle,
-	ArrowBackIos,
-	ArrowForwardIos,
-	Favorite,
-	FavoriteBorder,
-	Person,
-	PlayCircleFilledWhite,
-} from '@material-ui/icons'
+
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import logo from 'images/logo-transparent-Y.png'
 const theme = createTheme({

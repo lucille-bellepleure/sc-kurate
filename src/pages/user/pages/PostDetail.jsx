@@ -23,10 +23,6 @@ const theme = createTheme({
 	},
 })
 
-function getPosts(state) {
-	return state.postState
-}
-
 function getSystem(state) {
 	return state.system
 }
@@ -35,11 +31,7 @@ function getAccount(state) {
 	return state.account
 }
 
-function getUserFromState(state, address) {
-	return state.users[address]
-}
-
-export function PostDetail({ nextStage }) {
+export function PostDetail() {
 	const dispatch = useDispatch()
 	const params = useParams()
 	const bzzPost = params.bzzPost
@@ -49,8 +41,6 @@ export function PostDetail({ nextStage }) {
 
 	const system = useSelector((state) => getSystem(state))
 	const account = useSelector((state) => getAccount(state))
-	const posts = useSelector((state) => getPosts(state))
-	const user = useSelector((state) => getUserFromState(state, userAddress))
 
 	const [post, setPost] = useState({
 		id: 0,
@@ -62,19 +52,23 @@ export function PostDetail({ nextStage }) {
 		time: '',
 	})
 
-	useEffect(() => {
-		//console.log(bzzPost)
-		const getPostContent = async (post1) => {
-			const fetchedPost = await fetchPost(bzzPost, userAddress)
-			setPost(fetchedPost)
-		}
-		getPostContent()
-		// dispatch({ type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress } })
-		// if (posts[bzzPost]) {
-		//   setPost(posts[bzzPost])
-		//   console.log(post)
-		// }
-	}, [])
+	useEffect(
+		() => {
+			//console.log(bzzPost)
+			const getPostContent = async (post1) => {
+				const fetchedPost = await fetchPost(bzzPost, userAddress)
+				setPost(fetchedPost)
+			}
+			getPostContent()
+			// dispatch({ type: 'RES_POST', data: { postId: bzzPost, userAddress: userAddress } })
+			// if (posts[bzzPost]) {
+			//   setPost(posts[bzzPost])
+			//   console.log(post)
+			// }
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	)
 
 	const deletePostAction = () => {
 		if (!system.passWord) {
@@ -91,9 +85,6 @@ export function PostDetail({ nextStage }) {
 			})
 		}
 	}
-
-	const [followButtonState, setFollowButtonState] = useState('isme')
-	const JSONFetcher = (url) => fetch(url).then((r) => r.text())
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -155,6 +146,7 @@ export function PostDetail({ nextStage }) {
 							className={main.blueLink}
 							href={'https://goerli.etherscan.io/token/0x3487d9fd4ead3bf081a679176e1eaff91ecd95ff?a=' + post.serial}
 							target="_blank"
+							rel="noreferrer"
 						>
 							NFT on Etherscan
 						</a>

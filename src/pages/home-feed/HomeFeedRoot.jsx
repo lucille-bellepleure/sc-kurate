@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 // Sub-pages
 import HomeFeed from './pages/HomeFeed'
@@ -12,8 +12,6 @@ function getHomefeed(state) {
 }
 
 export function HomeFeedRoot() {
-	const dispatch = useDispatch()
-
 	const [stage, setStage] = useState(homeFeed)
 	const homefeedObject = useSelector((state) => getHomefeed(state))
 	const homefeed = Object.values(homefeedObject)

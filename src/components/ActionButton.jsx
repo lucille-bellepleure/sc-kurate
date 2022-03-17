@@ -1,6 +1,6 @@
 import React from 'react'
 import main from '../styles.module.css'
-import { Home, Add, ArrowForwardIos, FavoriteBorder, Person, PlayCircleFilledWhite } from '@material-ui/icons'
+import { ArrowForwardIos } from '@material-ui/icons'
 
 function ActionButton(props) {
 	//console.log(props)

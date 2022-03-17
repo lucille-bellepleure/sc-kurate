@@ -1,10 +1,8 @@
-import React, { useState, useRef, useCallback } from 'react'
-import Cropper from 'react-cropper'
+import React, { useState } from 'react'
 import 'cropperjs/dist/cropper.css'
 import main from 'styles.module.css'
-import { Route, NavLink } from 'react-router-dom'
-import Placeholder from 'images/placeholder.png'
-export function MetaDataPhoto({ nextStage, sharePost, image, accountUnlock }) {
+import { NavLink } from 'react-router-dom'
+export function MetaDataPhoto({ sharePost, image, accountUnlock }) {
 	const [textInput, setTextInput] = useState()
 
 	const handlePost = () => {

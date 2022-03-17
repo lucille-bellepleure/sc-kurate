@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from 'styles.module.css'
 import createAccount from 'pages/account/account.module.css'
 
-const RestoreAccountCheck = ({ nextStage, exitStage, avatar, userName }) => (
+const RestoreAccountCheck = ({ exitStage, avatar, userName }) => (
 	<div className={createAccount.formcontainer}>
 		<div className={createAccount.closeButton} onClick={exitStage}>
 			<div className={styles.exitgrayicon} />

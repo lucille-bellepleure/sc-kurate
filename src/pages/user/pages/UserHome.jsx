@@ -1,22 +1,10 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import styles from '../user.module.css'
-import { useParams, Route, NavLink } from 'react-router-dom'
-import {
-	Home,
-	AddCircle,
-	ArrowBackIos,
-	ArrowForwardIos,
-	Favorite,
-	FavoriteBorder,
-	Person,
-	PlayCircleFilledWhite,
-} from '@material-ui/icons'
+import { NavLink } from 'react-router-dom'
+import { Home, AddCircle, ArrowBackIos } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-
-import { Avatar, Divider } from '@material-ui/core'
-import sortByProp from 'helpers/sortByProp'
 
 const theme = createTheme({
 	// Style sheet name ⚛️
@@ -44,25 +32,28 @@ function getAccount(state) {
 
 export function UserHome({ nextStage, user, userfeed, usersubs }) {
 	const [followButtonState, setFollowButtonState] = useState('isme')
-	const JSONFetcher = (url) => fetch(url).then((r) => r.text())
 	const system = useSelector((state) => getSystem(state))
 	const account = useSelector((state) => getAccount(state))
 
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		console.log(account.subscriptions)
-		if (user.account.address === account.address) {
-			setFollowButtonState('isme')
-			console.log('this user is me')
-		} else if (account.subscriptions[user.account.address]) {
-			setFollowButtonState('isfollow')
-			console.log('this user is a sub')
-		} else {
-			setFollowButtonState('canfollow')
-			console.log('this user can be a sub')
-		}
-	}, [user.subs])
+	useEffect(
+		() => {
+			console.log(account.subscriptions)
+			if (user.account.address === account.address) {
+				setFollowButtonState('isme')
+				console.log('this user is me')
+			} else if (account.subscriptions[user.account.address]) {
+				setFollowButtonState('isfollow')
+				console.log('this user is a sub')
+			} else {
+				setFollowButtonState('canfollow')
+				console.log('this user can be a sub')
+			}
+		},
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[user.subs]
+	)
 
 	const handleUnFollow = () => {
 		console.log('unfollow')

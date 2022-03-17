@@ -13,7 +13,7 @@ export function SimpleChecklist({ title, titleDone, titleError, successStage, er
 	}, [status])
 
 	const StatusButton = () => {
-		if (statusState == 1) {
+		if (statusState === 1) {
 			return (
 				<div className={styles.containergreen}>
 					<div className={styles.title}>{dialogTitle}</div>
@@ -28,7 +28,7 @@ export function SimpleChecklist({ title, titleDone, titleError, successStage, er
 					</div>
 				</div>
 			)
-		} else if (statusState == 2) {
+		} else if (statusState === 2) {
 			return (
 				<div className={styles.containergreen}>
 					<div className={styles.title}>{dialogDoneTitle}</div>
@@ -41,7 +41,7 @@ export function SimpleChecklist({ title, titleDone, titleError, successStage, er
 					</div>
 				</div>
 			)
-		} else if (statusState == 3) {
+		} else if (statusState === 3) {
 			return (
 				<div className={styles.containerred}>
 					<div className={styles.title}>{dialogErrorTitle}</div>

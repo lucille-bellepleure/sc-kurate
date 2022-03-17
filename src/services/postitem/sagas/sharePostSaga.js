@@ -1,10 +1,8 @@
-import { delay, put, select, fork } from 'redux-saga/effects'
-import { setFeed, getFeed, uploadData } from 'helpers/swarmFeed'
+import { uploadData } from 'helpers/swarmFeed'
 
 export default function* sharePostSaga(action) {
 	console.log('Share Post Saga', action.data)
 	const postObject = action.data
-	const userObject = action.data.user
 	let decryptedPrivateKey
 	try {
 		decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(action.data.user.privateKey, postObject.password)

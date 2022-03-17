@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from 'styles.module.css'
 import createAccount from '../account.module.css'
-import QRCode from 'react-qr-code'
 
-const ShortCode = ({ nextStage, exitStage, shortcode = { code: '' }, newShort }) => (
+const ShortCode = ({ exitStage, shortcode = { code: '' }, newShort }) => (
 	<div className={createAccount.formcontainer}>
 		<div className={createAccount.closeButton} onClick={exitStage}>
 			<div className={styles.exitgrayicon} />

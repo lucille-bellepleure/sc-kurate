@@ -1,4 +1,4 @@
-import { call, put, select, fork } from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 
 function delay(duration) {
 	const promise = new Promise((resolve) => {

@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from 'styles.module.css'
 import createAccount from '../account.module.css'
-import QRCode from 'react-qr-code'
 import { AccountCircle, AccountBalanceWallet, Loyalty, VerifiedUser } from '@material-ui/icons'
-import { Route, NavLink } from 'react-router-dom'
 
-const AccountHome = ({ nextStage, exitStage, avatar, username, myIdentityStage, shortCodeStage, resolveStage }) => (
+const AccountHome = ({ nextStage, exitStage, myIdentityStage, shortCodeStage, resolveStage }) => (
 	<div className={createAccount.formcontainer}>
 		<div className={createAccount.closeButton} onClick={exitStage}>
 			<div className={styles.exitgrayicon} />

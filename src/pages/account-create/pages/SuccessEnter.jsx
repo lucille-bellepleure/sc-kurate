@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import styles from 'styles.module.css'
+import React from 'react'
 import createAccount from '../account-create.module.css'
 import { NavLink } from 'react-router-dom'
 
-const SuccessEnter = ({}) => (
+const SuccessEnter = () => (
 	<div className={createAccount.formcontainer}>
 		<div className={createAccount.titleblue}>Success!</div>
 		<div className={createAccount.formsubtitle}>You created an account.</div>

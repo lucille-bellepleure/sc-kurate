@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useRef } from 'react'
 import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css'
 import main from 'styles.module.css'
-import { Route, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Placeholder from 'images/dummy_kev.png'
 export function UploadPhoto({ nextStage, setPhoto }) {
 	const [filesState, setFilesState] = useState({ filedata: Placeholder })
 
-	const fileUploadRef = useRef(null)
 	let cropperRef = useRef(null)
 
 	console.log(filesState)
@@ -17,7 +16,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 		const reader = new FileReader()
 		reader.onabort = () => console.log('file reading was aborted')
 		reader.onerror = () => console.log('file reading has failed')
-		reader.onload = (file) => {
+		reader.onload = () => {
 			const binaryStr = reader.result
 			const _id = new Date().toISOString()
 			const fileTemp = {
@@ -64,13 +63,6 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 		setPhoto(photo)
 		nextStage()
 	}
-
-	const [crop, setCrop] = useState({ x: 0, y: 0 })
-	const [position, setPosistion] = useState({ x: 0.5, y: 0.5 })
-
-	const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-		console.log(croppedArea, croppedAreaPixels)
-	}, [])
 
 	const rotateImage = () => {
 		cropperRef.cropper.rotate(90)

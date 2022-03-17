@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import styles from 'styles.module.css'
 import createAccountStyles from '../account-create.module.css'
 import { Form, FormProvider } from 'react-advanced-form'

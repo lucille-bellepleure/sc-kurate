@@ -1,6 +1,5 @@
 import React from 'react'
 import AvatarEditor from 'react-avatar-editor'
-import defaultAvatar from 'images/defaultAvatar.png'
 import styles from 'styles.module.css'
 import createAccount from '../account-create.module.css'
 import PropTypes from 'prop-types'
