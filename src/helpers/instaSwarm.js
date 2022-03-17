@@ -315,7 +315,7 @@ export const storePost = async (dataObject, cb) => {
                             oldPosts.res,
                             decryptedPrivateKey.privateKey
                         )
-                        //cb()
+                        cb()
 
                         return true
                     } catch (error) {
