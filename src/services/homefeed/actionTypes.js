@@ -1,1 +1,1 @@
-export const SET_HOMEFEED = "SET_HOMEFEED"
+export const SET_HOMEFEED = 'SET_HOMEFEED'

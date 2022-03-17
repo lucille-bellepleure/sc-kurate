@@ -1,1 +1,1 @@
-export const SHARE_POST = "SHARE_POST"
+export const SHARE_POST = 'SHARE_POST'

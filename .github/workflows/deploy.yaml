@@ -1,4 +1,4 @@
-name: "build-test"
+name: 'build-test'
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ jobs:
       REACT_APP_BEE_DEBUG_API: https://api.gateway.ethswarm.org
       REACT_APP_BEE_GATEWAY_MODE: true
       DISABLE_ESLINT_PLUGIN: true
-      
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -41,7 +41,7 @@ jobs:
         id: feed
         with:
           reference: ${{ steps.upload.outputs.reference }}
-          topic: "kurate"
+          topic: 'kurate'
           postage-batch-id: ${{ secrets.POSTAGE_BATCH_ID }}
           bee-url: ${{ secrets.BEE_URL }}
           signer: ${{ secrets.SIGNER }}
