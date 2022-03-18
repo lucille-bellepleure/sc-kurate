@@ -21,5 +21,21 @@ module.exports = function override(config) {
 		})
 	)
 
+	config.experiments = {
+		syncWebAssembly: true,
+	}
+
+	// Enable WASM
+	const wasmExtensionRegExp = /\.wasm$/
+	config.resolve.extensions.push('.wasm')
+
+	for (const rule of config.module.rules) {
+		for (const oneOf of rule.oneOf || []) {
+			if (oneOf.type === 'asset/resource') {
+				oneOf.exclude.push(wasmExtensionRegExp)
+			}
+		}
+	}
+
 	return config
 }
