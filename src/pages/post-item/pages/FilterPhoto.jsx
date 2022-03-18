@@ -88,7 +88,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 	const createThumbs = async () => {
 		let ctx = canvasRef.current.getContext('2d')
 		let photonImage = window.photon.open_image(canvasRef.current, ctx)
-		let scaledCanvas = window.photon.resize(photonImage, 100, 100, 2)
+		let scaledCanvas = window.photon.resize_img_browser(photonImage, 100, 100, 2)
 		let ctx2 = scaledCanvas.getContext('2d')
 
 		for (let index = 0; index < filterMap.length; index++) {
@@ -164,7 +164,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 						<img src={image} width={100} height={100} onClick={() => resetEffect()}></img>
 					</div>
 					{thumbs.map((item) => (
-						<div className={main.filteritem}>
+						<div key={item.filter} className={main.filteritem}>
 							<div>{item.filter}</div>
 							<img src={item.src} width={100} height={100} onClick={() => changeEffect(item.filter)}></img>
 						</div>
