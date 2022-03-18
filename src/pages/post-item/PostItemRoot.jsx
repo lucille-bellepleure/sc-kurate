@@ -44,6 +44,7 @@ export function PostItemRoot() {
 
 	useEffect(() => loadWasm(), [])
 
+
 	const dispatch = useDispatch()
 	const account = useSelector((state) => getUser(state))
 	const system = useSelector((state) => getSystem(state))
