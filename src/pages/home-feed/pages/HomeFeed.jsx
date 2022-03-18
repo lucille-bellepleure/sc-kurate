@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import { NavLink } from 'react-router-dom'
-import { Home, Add, AddBox, AddCircle, HomeRounded } from '@material-ui/icons'
+import { Add } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Avatar } from '@material-ui/core'
 import ActionButton from 'components/ActionButton'
 import PosterChild from 'components/PosterChild'
 import sortByProp from 'helpers/sortByProp'
 import moment from 'moment'
-import Logo from 'images/logo-transparent-D.png'
 
 // import AccountUnlock from "components/AccountUnlock"
 
