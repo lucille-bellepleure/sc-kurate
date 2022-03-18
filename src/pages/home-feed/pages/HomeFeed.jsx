@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import { NavLink } from 'react-router-dom'
-import { Home, AddCircle } from '@material-ui/icons'
+import { Add, HomeRounded } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Avatar } from '@material-ui/core'
 import ActionButton from 'components/ActionButton'
 import PosterChild from 'components/PosterChild'
 import sortByProp from 'helpers/sortByProp'
 import moment from 'moment'
-import Logo from 'images/logo-transparent-D.png'
 
 // import AccountUnlock from "components/AccountUnlock"
 
@@ -101,10 +100,10 @@ export function HomeFeed({ homefeed }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
-				<div className={main.headerwithlogo}>
+				{/* <div className={main.headerwithlogo}>
 					<img src={Logo} />
-					{/* <div className={main.logo}></div>  */}
-				</div>
+					{/* <div className={main.logo}></div> 
+				</div>  */}
 				<div className={main.scroller}>
 					{homefeed.sort(sortByProp('time', 'desc')).map((item, index) => getPost(item.bzz))}
 
@@ -118,20 +117,20 @@ export function HomeFeed({ homefeed }) {
 				<div className={main.footer}>
 					<div className={main.textbutton}>
 						<NavLink to="/home">
-							<Home color="primary" fontSize="large"></Home>
+							<HomeRounded color="primary" fontSize="large"></HomeRounded>
 						</NavLink>
 					</div>
 					<div className={main.textbutton}>
 						{account.status === 'noAccount' ? (
 							<NavLink to="/create-account">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
+								<Add color="primary" fontSize="large"></Add>
 								{/* <div className={main.iconbuttonbig}>
                                 <div className={main.plusicon}></div>
                             </div> */}
 							</NavLink>
 						) : (
 							<NavLink to="/post-item">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
+								<Add color="primary" fontSize="large"></Add>
 								{/* <div className={main.iconbuttonbig}>
                                 <div className={main.plusicon}></div>
                             </div> */}
@@ -140,11 +139,11 @@ export function HomeFeed({ homefeed }) {
 					</div>
 					<div className={main.textbutton}>
 						{account.status === 'noAccount' ? (
-							<NavLink to="create-account">
+							<NavLink to="/create-account">
 								<img className={main.avatarImage} src={account.avatar}></img>
 							</NavLink>
 						) : (
-							<NavLink to="account">
+							<NavLink to="/account">
 								<img className={main.avatarImage} src={account.avatar}></img>
 							</NavLink>
 						)}

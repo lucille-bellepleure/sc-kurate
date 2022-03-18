@@ -84,7 +84,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 		const item = posts[bzz]
 		if (item) {
 			return (
-				<NavLink to={'/post/' + bzz + '/' + item.address} className={styles.thumbNavlink}>
+				<NavLink to={'/post/' + bzz + '/' + item.address} className={main.thumbNavlink}>
 					<img className={styles.postImage} src={item.image}></img>
 				</NavLink>
 			)
@@ -102,6 +102,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 				return (
 					<div
 						onClick={() => {
+							
 							if (!system.passWord) {
 								console.log(account.subscriptions)
 								console.log('i dont haz pass')

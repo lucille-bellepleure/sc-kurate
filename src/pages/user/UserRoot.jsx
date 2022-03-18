@@ -22,6 +22,10 @@ function getUser(state) {
 	return state.account
 }
 
+function getSystem(state) {
+	return state.system
+}
+
 export function PostItemRoot() {
 	const dispatch = useDispatch()
 	const [stage, setStage] = useState(userFetching)
@@ -30,6 +34,7 @@ export function PostItemRoot() {
 	const [usersubs, setUsersubs] = useState([])
 
 	const account = useSelector((state) => getUser(state))
+	const system = useSelector((state) => getSystem(state))
 
 	const params = useParams()
 	const address = params.userAddress
@@ -67,6 +72,7 @@ export function PostItemRoot() {
 					userfeed={userfeed}
 					usersubs={usersubs}
 					nextStage={() => setStage(userFollowing)}
+					accountUnlock={system.passWord}	
 				/>
 			)
 		case userFollowing:
