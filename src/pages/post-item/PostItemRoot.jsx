@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { storePost } from 'helpers/instaSwarm.js'
@@ -17,18 +17,17 @@ const metadataPhoto = 'metadataPhoto'
 const simpleDialog = 'simpleDialog'
 const simpleChecklist = 'simpleChecklist'
 
-/*
-async function loadWasm() {
-  try {
-    console.log("trying to load wasm");
-    const photon = await import("@silvia-odwyer/photon");
-    window.photon = photon;
-  } finally {
-    console.log("loaded wasm successfully");
-    //this.loadedWasm = true;
-  }
-}
-*/
+
+// async function loadWasm() {
+//   try {
+//     console.log("trying to load wasm");
+//     const photon = await import("@silvia-odwyer/photon");
+//     window.photon = photon;
+//   } finally {
+//     console.log("loaded wasm successfully");
+//     //this.loadedWasm = true;
+//   }
+// }
 
 function getUser(state) {
 	return state.account
@@ -41,12 +40,12 @@ function getSystem(state) {
 export function PostItemRoot() {
 	const navigate = useNavigate()
 
-	/*
-  useEffect(() => {
-    console.log("load wasm");
-    loadWasm();
-  }, []);
-  */
+	
+//   useEffect(() => {
+//     console.log("load wasm");
+//     loadWasm();
+//   }, []);
+  
 
 	const dispatch = useDispatch()
 	const account = useSelector((state) => getUser(state))

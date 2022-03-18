@@ -101,10 +101,10 @@ export function HomeFeed({ homefeed }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
-				<div className={main.headerwithlogo}>
+				{/* <div className={main.headerwithlogo}>
 					<img src={Logo} />
-					{/* <div className={main.logo}></div>  */}
-				</div>
+					{/* <div className={main.logo}></div> 
+				</div>  */}
 				<div className={main.scroller}>
 					{homefeed.sort(sortByProp('time', 'desc')).map((item, index) => getPost(item.bzz))}
 
