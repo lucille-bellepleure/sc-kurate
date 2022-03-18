@@ -92,6 +92,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 					className={main.cropper}
 					viewMode={1}
 					modal={false}
+					zoomTo={0.3}
 					autoCrop={true}
 					background={false}
 					initialAspectRatio={1 / 1}
