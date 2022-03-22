@@ -133,6 +133,13 @@ a {
 	border-bottom: 2px dotted var(--sc-blue);
 }
 
+.redLink {
+	composes: smallBold;
+	cursor: pointer;
+	color: var(--sc-red);
+	margin-top: 5px;
+}
+
 /*
 .greyLink: {
 composes: smallLight from './styles.module.css';
@@ -182,8 +189,10 @@ code {
 	height: 100vh;
 	max-width: 520px;
 	width: 100vw;
-	background-color: #222222;
+	background-color: white;
+	overflow: hidden;
 }
+
 
 .hashtagName {
 	composes: mainTitle1;
@@ -751,9 +760,9 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 
 .scroller {
 	background-color: white;
-	composes: backgroundImg;
 	width: 100%;
 	margin-bottom: 52px;
+	overflow: scroll;
 }
 
 .footer {

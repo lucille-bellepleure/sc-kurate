@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import { useParams, useNavigate, NavLink } from 'react-router-dom'
 
-import { Home, AddCircle, ArrowBackIos } from '@material-ui/icons'
+import { Home, AddCircle, ArrowBackIos, Favorite, FavoriteBorder } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import PosterChild from 'components/PosterChild'
 import moment from 'moment'
@@ -91,23 +91,6 @@ export function PostDetail() {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
-				<div className={main.header}>
-					<div>
-						<NavLink className={main.textbutton} to={'/user/' + userAddress}>
-							<ArrowBackIos color="primary"></ArrowBackIos>
-						</NavLink>
-					</div>
-					<div className={[main.textbutton, main.bodyDefault, main.blue].join()}>
-						{/* {user.account.username} */}
-						{/* {post.caption} */}
-					</div>
-					<div>&nbsp;</div>
-				</div>
-
-				{/* 
-      <div className={styles.scroller}>
-        {userfeed.map(item => getPost(item.bzz))}
-      </div> */}
 				<div className={main.scroller}>
 					<div className={main.postHead}>
 						<NavLink to={'/user/' + userAddress}>
@@ -132,16 +115,16 @@ export function PostDetail() {
 					></PosterChild>
 
 					<div className={main.postFooter}>
-						{/* <div citemlassName={main.likes}>
-                            {item.ilike
+						<div className={main.likes}>
+                            {post.ilike
                                 ? <Favorite
-                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
+                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
                                 : <FavoriteBorder
-                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
+                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post._id, ilike: true } })}
                                     color="primary" fontSize="small"></FavoriteBorder>
                             }
                                     &nbsp;
-                                    <b>{item.likes}</b></div> */}
+                                    <b>{post.likes}</b></div>
 						<div className={main.smallestBold}>{moment(post.time).fromNow()}</div>
 						<div>{post.caption}</div>
 						<a
@@ -157,7 +140,7 @@ export function PostDetail() {
 							onClick={() => {
 								deletePostAction()
 							}}
-						>
+						 className={main.redLink}>
 							Delete this post
 						</div>
 					</div>

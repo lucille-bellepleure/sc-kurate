@@ -146,15 +146,6 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
-				<div className={main.header}>
-					<div>
-						<NavLink className={main.textbutton} to="/">
-							<ArrowBackIos color="primary"></ArrowBackIos>
-						</NavLink>
-					</div>
-					<div className={[main.textbutton, main.bodyDefault, main.blue].join()}>{user.account.username}</div>
-					<div>&nbsp;</div>
-				</div>
 				<div className={styles.usersection}>
 					<img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
 					<div className={styles.followingContainer}>
