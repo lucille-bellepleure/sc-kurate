@@ -11,6 +11,8 @@ import moment from 'moment'
 import { Avatar } from '@material-ui/core'
 import { deletePost, fetchPost } from 'helpers/instaSwarm.js'
 
+import FooterBar from 'components/FooterBar'
+
 const theme = createTheme({
 	// Style sheet name ⚛️
 	palette: {
@@ -161,42 +163,8 @@ export function PostDetail() {
 					</div>
 				</div>
 
-				<div className={main.footer}>
-					<div className={main.textbutton}>
-						<NavLink to="/home">
-							<Home color="primary" fontSize="large"></Home>
-						</NavLink>
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						) : (
-							<NavLink to="/post-item">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						)}
-					</div>
+				<FooterBar account={account}></FooterBar>
 
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						) : (
-							<NavLink to="/account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						)}
-					</div>
-				</div>
 			</div>
 		</ThemeProvider>
 	)

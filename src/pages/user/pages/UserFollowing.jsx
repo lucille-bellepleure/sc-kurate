@@ -2,8 +2,9 @@ import React from 'react'
 import main from 'styles.module.css'
 import styles from '../user.module.css'
 import { NavLink } from 'react-router-dom'
-import { Home, AddCircle, ArrowBackIos } from '@material-ui/icons'
+import { ArrowBackIos } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import FooterBar from 'components/FooterBar'
 
 const theme = createTheme({
 	// Style sheet name ⚛️
@@ -37,41 +38,7 @@ export function UserFollowing({ exitStage, user, usersubs, account }) {
 						</NavLink>
 					))}
 				</div>
-				<div className={main.footer}>
-					<div className={main.textbutton}>
-						<NavLink to="/">
-							<Home color="primary" fontSize="large"></Home>
-						</NavLink>
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						) : (
-							<NavLink to="/post-item">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						)}
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						) : (
-							<NavLink to="/account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						)}
-					</div>
-				</div>
+						<FooterBar account={account}></FooterBar>
 			</div>
 		</ThemeProvider>
 	)

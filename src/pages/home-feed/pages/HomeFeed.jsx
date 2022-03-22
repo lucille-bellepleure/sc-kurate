@@ -9,6 +9,7 @@ import ActionButton from 'components/ActionButton'
 import PosterChild from 'components/PosterChild'
 import sortByProp from 'helpers/sortByProp'
 import moment from 'moment'
+import FooterBar from 'components/FooterBar'
 
 // import AccountUnlock from "components/AccountUnlock"
 
@@ -114,41 +115,7 @@ export function HomeFeed({ homefeed }) {
 						</div>
 					</div>
 				</div>
-				<div className={main.footer}>
-					<div className={main.textbutton}>
-						<NavLink to="/home">
-							<HomeRounded color="primary" fontSize="large"></HomeRounded>
-						</NavLink>
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<Add color="primary" fontSize="large"></Add>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						) : (
-							<NavLink to="/post-item">
-								<Add color="primary" fontSize="large"></Add>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						)}
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						) : (
-							<NavLink to="/account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						)}
-					</div>
-				</div>
+				<FooterBar account={account}></FooterBar>
 			</div>
 		</ThemeProvider>
 	)
