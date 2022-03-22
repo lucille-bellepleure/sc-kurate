@@ -7,7 +7,7 @@ export default function* fetchSubscriberSaga(action) {
 	console.log('Fetch Subscribers Posts Saga', action)
 
 	// Resolve subscriber
-	const account = yield select(getAccount)
+	// const account = yield select(getAccount)
 
 	const personPosts = yield getFeed('userposts', action.address)
 

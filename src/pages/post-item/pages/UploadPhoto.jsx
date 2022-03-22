@@ -64,9 +64,9 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 		nextStage()
 	}
 
-	const rotateImage = () => {
-		cropperRef.cropper.rotate(90)
-	}
+	// const rotateImage = () => {
+	// 	cropperRef.cropper.rotate(90)
+	// }
 
 	return (
 		<div className={main.container}>
