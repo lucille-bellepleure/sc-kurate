@@ -8,9 +8,6 @@ export default function* fetchSubscriberSaga(action) {
 
 	// Resolve subscriber
 	const account = yield select(getAccount)
-	console.log(account)
-	//const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
-	//console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
 
 	const personPosts = yield getFeed('userposts', action.address)
 

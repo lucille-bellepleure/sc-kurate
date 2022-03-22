@@ -3,7 +3,7 @@ import Cropper from 'react-cropper'
 import 'cropperjs/dist/cropper.css'
 import main from 'styles.module.css'
 import { NavLink } from 'react-router-dom'
-import Placeholder from 'images/dummy_kev.png'
+import Placeholder from 'images/placeholder_proton.png'
 export function UploadPhoto({ nextStage, setPhoto }) {
 	const [filesState, setFilesState] = useState({ filedata: Placeholder })
 
@@ -72,7 +72,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 		<div className={main.container}>
 			<div className={main.header}>
 				<div>
-					<NavLink className={[main.textbutton, main.gray].join(' ')} to="/">
+					<NavLink className={[main.textbutton, main.gray].join(' ')} to="/home">
 						Cancel
 					</NavLink>
 				</div>
@@ -80,9 +80,7 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 					Next
 				</div>
 			</div>
-			{/* <div className={main.aspectratiowrapper}>
-      <div className={main.aspectratiodiv}></div>
-    </div> */}
+			
 			<div className={main.photoplace}>
 				<Cropper
 					ref={(cropper) => {
@@ -92,11 +90,11 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 					className={main.cropper}
 					viewMode={1}
 					modal={false}
-					zoomTo={0.3}
+					zoomTo={0.5}
 					autoCrop={true}
 					background={false}
 					initialAspectRatio={1 / 1}
-					aspectRatio={1 / 1}
+					aspectRatio={1}
 					guides={true}
 					cropBoxMovable={false}
 					cropBoxResizable={false}
@@ -105,17 +103,28 @@ export function UploadPhoto({ nextStage, setPhoto }) {
 				></Cropper>
 			</div>
 
-			<div className={main.filterplace}>
-				<div onClick={() => rotateImage()}>Rotate +90</div>
+			<div className={main.newPhotoplace}>
+
+			<label htmlFor="upload-button">
+			<div className={[main.buttonBlue].join(' ')}>
+				<div className={main.buttontext}>
+				Upload a picture
+				</div>
+			</div>
+			</label>
+
+			<input type="file" id="upload-button" hidden="hidden" onChange={handleFileUpload} />
+
+			</div>
+
+			{/* <div className={main.filterplace}>
 				<label htmlFor="upload-button">
-					<div className={main.dialogiconbox}>
-						<div className={main.iconbuttonbigblue}>
-							<div className={main.plusicon}></div>
-						</div>
+					<div className={[main.blue, main.bodyBold, main.textbutton, main.dialogiconbox].join(' ')}>
+						Choose a photo
 					</div>
 				</label>
 				<input type="file" id="upload-button" hidden="hidden" onChange={handleFileUpload} />
-			</div>
+			</div> */}
 		</div>
 	)
 }

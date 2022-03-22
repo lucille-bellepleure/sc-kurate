@@ -699,7 +699,6 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 	padding: 0;
 	max-height: 520px;
 	margin-top: 56px;
-
 	max-width: 520px;
 	justify-content: center;
 	background-color: var(--sc-grey4);
@@ -715,6 +714,15 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 	background-color: var(--sc-grey4);
 }
 
+.newPhotoplace {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100vw;
+	background-color: var(--sc-white);
+}
+
 .filterplace {
 	display: flex;
 	align-items: center;
@@ -722,7 +730,6 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 	height: 100%;
 	overflow: scroll;
 	background-color: var(--sc-white);
-	composes: backgroundImg;
 }
 
 .filteritem {
@@ -732,9 +739,13 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 	margin: 10px;
 }
 
+.filterName {
+	margin-top: 15px;
+}
+
 .textbutton {
 	composes: bodyDefault;
-	margin: 10px;
+	margin: 20px;
 	cursor: pointer;
 }
 
@@ -870,7 +881,6 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 	display: flex;
 	width: 100vw;
 	padding: 20px;
-	margin-top: 60px;
 	flex-direction: row;
 	align-items: flex-start;
 	background-color: var(--sc-grey4);
@@ -979,6 +989,11 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 .buttonYellow {
 	composes: button;
 	background-color: var(--sc-yellow);
+}
+
+.buttonBlue {
+	composes: button;
+	background-color: var(--sc-blue);
 }
 
 .flip {
