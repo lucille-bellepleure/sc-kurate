@@ -445,6 +445,7 @@ var registryAbi = [
 ]
 
 export const storePost = async (dataObject, cb) => {
+	
 	const postObject = dataObject
 	const userObject = dataObject.user
 

@@ -75,11 +75,13 @@ export function PostItemRoot() {
 			}
 			try {
 				setStage(simpleChecklist)
+				
 				await storePost(dataObject, function () {
 					navigate('/home')
 				})
 				//setStatusState(1)
 			} catch (error) {
+				
 				//setStatusState(2)
 			}
 			//dispatch({type: "SHARE_POST", data: dataObject});
