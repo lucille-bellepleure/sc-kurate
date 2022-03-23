@@ -12,8 +12,6 @@ import ChooseAvatar from './pages/ChooseAvatar'
 import ChoosePassword from './pages/ChoosePassword'
 import SuccessEnter from './pages/SuccessEnter'
 import RestoreAccountStart from './pages/RestoreAccountStart'
-import account from 'services/account/reducer'
-import SimpleChecklist from 'pages/status/SimpleChecklist'
 
 // Ids
 const createOrRestore = 'createOrRestore'
@@ -23,7 +21,6 @@ const chooseUsername = 'chooseUsername'
 const chooseAvatar = 'chooseAvatar'
 const choosePassword = 'choosePassword'
 const successStage = 'successStage'
-const simpleChecklist = 'simpleChecklist'
 
 const restoreAccountStart = 'restoreAccountStart'
 
@@ -35,7 +32,6 @@ export function AccountCreateRoot() {
 	const [stage, setStage] = useState(createOrRestore)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const [statusState, setStatusState] = useState(1)
 
 
 	// User Creation state
@@ -52,7 +48,6 @@ export function AccountCreateRoot() {
 	}
 
 	const createAccount = (password) => {
-		setStage(simpleChecklist)
 		const accountObj = {
 			avatar: avatar,
 			username: username,
@@ -134,21 +129,7 @@ export function AccountCreateRoot() {
 					setUsername={setUsername}
 				></RestoreAccountStart>
 			)
-		case simpleChecklist:
-			return (
-				<SimpleChecklist
-					title="Setting up account"
-					titleDone="Account setup complete."
-					titleError="Something went wrong."
-					status={statusState}
-					successStage={() => {
-						navigate('/home')
-					}}
-					cancel={() => {
-						navigate(-1)
-					}}
-				></SimpleChecklist>
-			)
+
 		default:
 			return <h1>Oops...</h1>
 	}

@@ -4,7 +4,6 @@ import { TextField } from '@material-ui/core'
 import styles from 'styles.module.css'
 import createAccount from '../account-create.module.css'
 import { getFeed } from 'helpers/swarmFeed'
-import {restoreAccount } from 'helpers/instaSwarm'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import StatusProgress from 'pages/status/StatusProgress'
@@ -13,8 +12,6 @@ window.ethers = ethers
 
 export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvatar }) {
 	let refText = useRef(null)
-
-	let [error, setError] = useState()
 
 	let [showProgress, setShowProgress] = useState(false)
 
@@ -54,39 +51,6 @@ setShowProgress(true)
 		nextStage()
 	}
 
-// 	const restoreMnemonic = async () => {
-// 		let wallet = {}
-// 		try {
-// 			wallet = ethers.Wallet.fromMnemonic(mnemonicInput)
-// 			console.log(wallet)
-// 			await getFeed('userdata', wallet.address)
-// 				.then((result) => {
-// 					const accountObj = {
-// 						address: wallet.address,
-// 						publicKey: wallet.publicKey,
-// 						privateKey: wallet.privateKey,
-// 						mnemonic: wallet.mnemonic,
-// 					}
-
-// debugger
-
-// 					setAvatar(result.res.useravatar)
-// 					setUsername(result.res.username)
-
-// debugger
-
-// 					dispatch({ type: 'SET_ACCOUNT', data: accountObj })
-// 					nextStage()
-// 				})
-// 				.catch((e) => {
-// 					console.log(e)
-// 					setError(e.message)
-// 				})
-// 		} catch (e) {
-// 			setError(e.message)
-// 		}
-// 	}
-
 	return (
 		<div className={createAccount.formcontainer}>
 			<FormProvider>
@@ -110,7 +74,7 @@ setShowProgress(true)
 							/>
 						</div>
 					</div>
-					<div>{error}</div>
+				
 					{ showProgress ? <StatusProgress />
 					 
 					: 

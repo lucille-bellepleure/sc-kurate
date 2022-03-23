@@ -667,12 +667,11 @@ export const fetchPost = async (bzz, user) => {
 }
 
 export const restoreAccount = async (mnemonic, password) => {
-	debugger
+	
 	let wallet = ethers.Wallet.fromMnemonic(mnemonic)
 	const userData = await getFeed('userdata', wallet.address)
 	const userPosts = await getFeed('userposts', wallet.address)
 	const userSubscriptions = await getFeed('usersubscriptions', wallet.address)
-	const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(wallet.privateKey, password)
 	const accountObj = 	{
 		address: wallet.address,
 		publicKey: wallet.publicKey,
@@ -681,7 +680,6 @@ export const restoreAccount = async (mnemonic, password) => {
 		posts: userPosts.res,
 		avatar: userData.res.useravatar,
 		username: userData.res.username,
-		privateKey: encryptedPrivateKey
 	}		
 	//setAvatar(result.res.useravatar)
 	//setUsername(result.res.username)
