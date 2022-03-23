@@ -4,51 +4,63 @@ import { NavLink } from 'react-router-dom'
 
 export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 	const [thumbs, setThumbs] = useState([
-		{
-			filter: 'vintage',
-			src: image,
-		},
+	
 	])
 	console.log(thumbs)
 
 	const canvasRef = useRef(null)
 	const filterMap = [
 		{
+		filter: 'dramatic',
+			aka: 'Gavin',
+		},
+		{
 			filter: 'lofi',
-		},
-		{
-			filter: 'dramatic',
-		},
-		{
-			filter: 'cali',
-		},
-		{
-			filter: 'firenze',
-		},
-		{
-			filter: 'obsidian',
-		},
-		{
-			filter: 'oceanic',
-		},
-		{
-			filter: 'islands',
-		},
-		{
-			filter: 'marine',
-		},
-		{
-			filter: 'diamante',
-		},
-		{
-			filter: 'perfume',
-		},
-		{
-			filter: 'golden',
+			aka: 'Viktor'
 		},
 		{
 			filter: 'pastel_pink',
+			aka: 'Dmitry'
 		},
+		{
+			filter: 'diamante',
+			aka: 'Silvia'
+		},
+		
+		
+		{
+			filter: 'cali',
+			aka: 'Kevin'
+		},
+		{
+			filter: 'firenze',
+			aka: 'Taylor'
+		},
+		{
+			filter: 'obsidian',
+			aka: 'Lorelei'
+		},
+		{
+			filter: 'oceanic',
+			aka: 'Eve'
+		},
+		{
+			filter: 'islands',
+			aka: 'Lindsay'
+		},
+		{
+			filter: 'marine',
+			aka: 'Kiki'
+		},
+		{
+			filter: 'perfume',
+			aka: 'Sophie'
+		},
+		{
+			filter: 'golden',
+			aka: 'Joannes'
+		},
+		
 	]
 
 	const handleFilteredPhoto = () => {
@@ -88,6 +100,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 	const createThumbs = async () => {
 		let ctx = canvasRef.current.getContext('2d')
 		let photonImage = window.photon.open_image(canvasRef.current, ctx)
+		window.photonImage = photonImage
 		let scaledCanvas = window.photon.resize_img_browser(photonImage, 100, 100, 2)
 		let ctx2 = scaledCanvas.getContext('2d')
 
@@ -101,10 +114,12 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 				...thumbs,
 				{
 					filter: filter.filter,
+					aka: filter.aka,
 					src: file,
 				},
 			])
 		}
+		
 	}
 
 	useEffect(
@@ -141,7 +156,7 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 		<div className={main.container}>
 			<div className={main.header}>
 				<div>
-					<NavLink className={[main.textbutton, main.gray].join(' ')} to="/">
+					<NavLink className={[main.textbutton, main.gray].join(' ')} to="/home">
 						Cancel
 					</NavLink>
 				</div>
@@ -160,13 +175,14 @@ export function FilterPhoto({ nextStage, setFilteredPhoto, image }) {
 			{thumbs.length >= 0 ? (
 				<div className={main.filterplace}>
 					<div className={main.filteritem}>
-						<div>original</div>
 						<img src={image} width={100} height={100} onClick={() => resetEffect()}></img>
+						<div className={[main.smallBold, main.filterName].join(' ')}>Original</div>
+
 					</div>
 					{thumbs.map((item) => (
 						<div key={item.filter} className={main.filteritem}>
-							<div>{item.filter}</div>
 							<img src={item.src} width={100} height={100} onClick={() => changeEffect(item.filter)}></img>
+							<div className={[main.smallBold, main.filterName].join(' ')}>{item.aka}</div>
 						</div>
 					))}
 				</div>

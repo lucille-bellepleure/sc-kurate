@@ -14,7 +14,7 @@ export function MetaDataPhoto({ sharePost, image, accountUnlock }) {
 		<div className={main.container}>
 			<div className={main.header}>
 				<div>
-					<NavLink className={[main.textbutton, main.gray].join(' ')} to="/">
+					<NavLink className={[main.textbutton, main.gray].join(' ')} to="/home">
 						Cancel
 					</NavLink>
 				</div>

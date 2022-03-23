@@ -2,13 +2,14 @@ import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import { NavLink } from 'react-router-dom'
-import { Add, HomeRounded } from '@material-ui/icons'
+import { Favorite, FavoriteBorder } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { Avatar } from '@material-ui/core'
 import ActionButton from 'components/ActionButton'
 import PosterChild from 'components/PosterChild'
 import sortByProp from 'helpers/sortByProp'
 import moment from 'moment'
+import FooterBar from 'components/FooterBar'
 
 // import AccountUnlock from "components/AccountUnlock"
 
@@ -62,7 +63,7 @@ export function HomeFeed({ homefeed }) {
 
 					<ActionButton type={item.type}></ActionButton>
 					<div className={main.postFooter}>
-						{/* <div className={main.likes}>
+						<div className={main.likes}>
                             {item.ilike
                                 ? <Favorite
                                     onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
@@ -71,7 +72,7 @@ export function HomeFeed({ homefeed }) {
                                     color="primary" fontSize="small"></FavoriteBorder>
                             }
                                     &nbsp;
-                                    <b>{item.likes}</b></div> */}
+                                    <b>{item.likes}</b></div>
 						<div className={main.smallestBold}>{moment(item.time).fromNow()}</div>
 
 						<div>{item.caption}</div>
@@ -95,18 +96,12 @@ export function HomeFeed({ homefeed }) {
 		[account.address]
 	)
 
-	//console.log(homefeed)
 
 	return (
 		<ThemeProvider theme={theme}>
-			<div className={main.container}>
-				{/* <div className={main.headerwithlogo}>
-					<img src={Logo} />
-					{/* <div className={main.logo}></div> 
-				</div>  */}
+			<div className={main.container}>			
 				<div className={main.scroller}>
 					{homefeed.sort(sortByProp('time', 'desc')).map((item, index) => getPost(item.bzz))}
-
 					<div>
 						<div className={main.feedEnd}>
 							<div>You're all caught up.</div>
@@ -114,41 +109,7 @@ export function HomeFeed({ homefeed }) {
 						</div>
 					</div>
 				</div>
-				<div className={main.footer}>
-					<div className={main.textbutton}>
-						<NavLink to="/home">
-							<HomeRounded color="primary" fontSize="large"></HomeRounded>
-						</NavLink>
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<Add color="primary" fontSize="large"></Add>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						) : (
-							<NavLink to="/post-item">
-								<Add color="primary" fontSize="large"></Add>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						)}
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						) : (
-							<NavLink to="/account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						)}
-					</div>
-				</div>
+				<FooterBar account={account}></FooterBar>
 			</div>
 		</ThemeProvider>
 	)

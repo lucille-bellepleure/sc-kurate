@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import styles from '../user.module.css'
 import { NavLink } from 'react-router-dom'
-import { Home, AddCircle, ArrowBackIos } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+
+import FooterBar from 'components/FooterBar'
 
 const theme = createTheme({
 	// Style sheet name ⚛️
@@ -144,15 +145,6 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 	return (
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
-				<div className={main.header}>
-					<div>
-						<NavLink className={main.textbutton} to="/">
-							<ArrowBackIos color="primary"></ArrowBackIos>
-						</NavLink>
-					</div>
-					<div className={[main.textbutton, main.bodyDefault, main.blue].join()}>{user.account.username}</div>
-					<div>&nbsp;</div>
-				</div>
 				<div className={styles.usersection}>
 					<img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
 					<div className={styles.followingContainer}>
@@ -179,41 +171,8 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 
 				<div className={styles.scroller}>{userfeed.map((item) => getPost(item.bzz))}</div>
 
-				<div className={main.footer}>
-					<div className={main.textbutton}>
-						<NavLink to="/">
-							<Home color="primary" fontSize="large"></Home>
-						</NavLink>
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						) : (
-							<NavLink to="/post-item">
-								<AddCircle color="primary" fontSize="large"></AddCircle>
-								{/* <div className={main.iconbuttonbig}>
-                                <div className={main.plusicon}></div>
-                            </div> */}
-							</NavLink>
-						)}
-					</div>
-					<div className={main.textbutton}>
-						{account.status === 'noAccount' ? (
-							<NavLink to="/create-account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						) : (
-							<NavLink to="/account">
-								<img className={main.avatarImage} src={account.avatar}></img>
-							</NavLink>
-						)}
-					</div>
-				</div>
+				<FooterBar account={account}></FooterBar>
+
 			</div>
 		</ThemeProvider>
 	)

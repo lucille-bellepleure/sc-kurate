@@ -1,16 +1,12 @@
-import { all, call, put, select } from 'redux-saga/effects'
+import { all, call, put } from 'redux-saga/effects'
 import resolvePostSaga from '../../postState/sagas/resolvePostSaga'
-import { getAccount } from 'services/account/selectors'
 import { getFeed } from 'helpers/swarmFeed'
 
 export default function* fetchSubscriberSaga(action) {
 	console.log('Fetch Subscribers Posts Saga', action)
 
 	// Resolve subscriber
-	const account = yield select(getAccount)
-	console.log(account)
-	//const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, '1234');
-	//console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)
+	// const account = yield select(getAccount)
 
 	const personPosts = yield getFeed('userposts', action.address)
 

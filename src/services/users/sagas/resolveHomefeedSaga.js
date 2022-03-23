@@ -9,6 +9,7 @@ export default function* resolveHomefeedSaga() {
 
 	// Resolve me
 	const account = yield select(getAccount)
+	
 	const personPosts = yield getFeed('userposts', account.address)
 	const postsArray = Object.keys(personPosts.res.posts)
 
