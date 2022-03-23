@@ -65,7 +65,7 @@
 	"resolutions": {
 		"leveldown": "5.0.2"
 	},
-	"homepage": ".",
+	"homepage": "https://bah5acgzavznvtekid47bjrqobawxdzb52p76ptnmgjvyitg2iexjtbxj5ngq.bzz.link/",
 	"scripts": {
 		"start": "react-app-rewired start",
 		"build": "react-app-rewired build && exit 0",
