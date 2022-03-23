@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import { useParams, useNavigate, NavLink } from 'react-router-dom'
 
-import { Home, AddCircle, ArrowBackIos, Favorite, FavoriteBorder } from '@material-ui/icons'
+import { Favorite, FavoriteBorder } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import PosterChild from 'components/PosterChild'
 import moment from 'moment'

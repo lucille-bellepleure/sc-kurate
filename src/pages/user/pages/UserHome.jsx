@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import styles from '../user.module.css'
 import { NavLink } from 'react-router-dom'
-import { Home, AddCircle, ArrowBackIos } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 
 import FooterBar from 'components/FooterBar'
