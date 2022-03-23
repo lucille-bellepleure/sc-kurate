@@ -33,20 +33,23 @@ export function AccountCreateRoot() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
+
 	// User Creation state
 	const [username, setUsername] = useState('')
 	const [avatar, setAvatar] = useState(defaultAvatar)
 	const [password, setPassword] = useState('')
 
 	const accountData = useSelector((state) => getAccount(state))
-	console.log(accountData)
+	//console.log(accountData)
 
 	if (accountData.status === 'accountSet') {
-		navigate('/account')
+		navigate('/home')
+		//setStatusState(2)
 	}
 
 	const createAccount = (password) => {
 		const accountObj = {
+			type: accountData.type,
 			avatar: avatar,
 			username: username,
 			password: password,
@@ -57,6 +60,9 @@ export function AccountCreateRoot() {
 
 		dispatch({ type: 'CREATE_ACCOUNT', data: accountObj })
 	}
+	
+
+
 
 	// Router
 	switch (stage) {

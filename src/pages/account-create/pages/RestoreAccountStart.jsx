@@ -4,16 +4,16 @@ import { TextField } from '@material-ui/core'
 import styles from 'styles.module.css'
 import createAccount from '../account-create.module.css'
 import { getFeed } from 'helpers/swarmFeed'
-
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
+import StatusProgress from 'pages/status/StatusProgress'
 
 window.ethers = ethers
 
 export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvatar }) {
 	let refText = useRef(null)
 
-	let [error, setError] = useState()
+	let [showProgress, setShowProgress] = useState(false)
 
 	const [mnemonicInput, setMnemonicInput] = useState('')
 
@@ -31,32 +31,24 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 	}
 
 	const restoreMnemonic = async () => {
-		let wallet = {}
-		try {
-			wallet = ethers.Wallet.fromMnemonic(mnemonicInput)
-			console.log(wallet)
+setShowProgress(true)
+		const wallet = await ethers.Wallet.fromMnemonic(mnemonicInput)
+		const userdata = await getFeed('userdata', wallet.address)
+		setAvatar(userdata.res.useravatar)
+		setUsername(userdata.res.username)
 
-			await getFeed('userdata', wallet.address)
-				.then((result) => {
-					const accountObj = {
-						address: wallet.address,
-						publicKey: wallet.publicKey,
-						privateKey: wallet.privateKey,
-						mnemonic: wallet.mnemonic,
-					}
-
-					setAvatar(result.res.useravatar)
-					setUsername(result.res.username)
-					dispatch({ type: 'SET_ACCOUNT', data: accountObj })
-					nextStage()
-				})
-				.catch((e) => {
-					console.log(e)
-					setError(e.message)
-				})
-		} catch (e) {
-			setError(e.message)
+		const accountObj = {
+			type: "restore",
+			address: wallet.address,
+			publicKey: wallet.publicKey,
+			privateKey: wallet.privateKey,
+			mnemonic: wallet.mnemonic,
+			avatar: userdata.res.useravatar,
+			username: userdata.res.username
 		}
+
+		dispatch({ type: 'SET_ACCOUNT', data: accountObj })
+		nextStage()
 	}
 
 	return (
@@ -82,7 +74,10 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 							/>
 						</div>
 					</div>
-					<div>{error}</div>
+				
+					{ showProgress ? <StatusProgress />
+					 
+					: 
 					<div className={createAccount.dialogiconbox}>
 						<div
 							tabIndex="2"
@@ -92,6 +87,10 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 							<div className={styles.nextblueicon} />
 						</div>
 					</div>
+				
+					}
+				
+
 				</Form>
 			</FormProvider>
 		</div>
