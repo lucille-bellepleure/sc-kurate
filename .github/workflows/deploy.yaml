@@ -8,12 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DISABLE_ESLINT_PLUGIN: true
-      REACT_APP_BEE_GATEWAY: https://bee-api.duckdns.org/
-      REACT_APP_WEB3_GATEWAY: https://dai.poa.network/
-      REACT_APP_API_TOKEN: 32a5c36a794e22de2b5538c5bcb6ab8a4a95d823e381b90789cdceb3348ff1678446d12f74df338d4058621aa44a91b4278a
-      REACT_APP_USER_REGISTRY_ADDRESS: 0x
-      REACT_APP_KURA_NFT_ADDRESS: 0x
+GENERATE_SOURCEMAP: false
+REACT_APP_BEE_GATEWAY: https://bee-api.duckdns.org/
+REACT_APP_WEB3_GATEWAY: https://dai.poa.network/
+REACT_APP_API_TOKEN: 32a5c36a794e22de2b5538c5bcb6ab8a4a95d823e381b90789cdceb3348ff1678446d12f74df338d4058621aa44a91b4278a
+REACT_APP_USER_REGISTRY_ADDRESS: 0x
+REACT_APP_KURA_NFT_ADDRESS: 0x
+REACT_APP_VERSION: 0.1.0
+REACT_APP_POSTAGE_BATCH_ID: 4963fa02eb78dc4cd22008df7e326095bffc23e4be90be360a61aec9a1c100ca
     steps:
       - uses: actions/checkout@v2
         with:
