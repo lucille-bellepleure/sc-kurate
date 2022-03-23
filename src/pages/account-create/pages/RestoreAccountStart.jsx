@@ -7,6 +7,7 @@ import { getFeed } from 'helpers/swarmFeed'
 import {restoreAccount } from 'helpers/instaSwarm'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
+import StatusProgress from 'pages/status/StatusProgress'
 
 window.ethers = ethers
 
@@ -14,6 +15,8 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 	let refText = useRef(null)
 
 	let [error, setError] = useState()
+
+	let [showProgress, setShowProgress] = useState(false)
 
 	const [mnemonicInput, setMnemonicInput] = useState('')
 
@@ -31,6 +34,7 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 	}
 
 	const restoreMnemonic = async () => {
+setShowProgress(true)
 		const wallet = await ethers.Wallet.fromMnemonic(mnemonicInput)
 		const userdata = await getFeed('userdata', wallet.address)
 		setAvatar(userdata.res.useravatar)
@@ -107,6 +111,9 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 						</div>
 					</div>
 					<div>{error}</div>
+					{ showProgress ? <StatusProgress />
+					 
+					: 
 					<div className={createAccount.dialogiconbox}>
 						<div
 							tabIndex="2"
@@ -116,6 +123,10 @@ export function RestoreAccountStart({ nextStage, exitStage, setUsername, setAvat
 							<div className={styles.nextblueicon} />
 						</div>
 					</div>
+				
+					}
+				
+
 				</Form>
 			</FormProvider>
 		</div>

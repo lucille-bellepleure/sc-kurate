@@ -13,6 +13,7 @@ import ChoosePassword from './pages/ChoosePassword'
 import SuccessEnter from './pages/SuccessEnter'
 import RestoreAccountStart from './pages/RestoreAccountStart'
 import account from 'services/account/reducer'
+import SimpleChecklist from 'pages/status/SimpleChecklist'
 
 // Ids
 const createOrRestore = 'createOrRestore'
@@ -22,6 +23,7 @@ const chooseUsername = 'chooseUsername'
 const chooseAvatar = 'chooseAvatar'
 const choosePassword = 'choosePassword'
 const successStage = 'successStage'
+const simpleChecklist = 'simpleChecklist'
 
 const restoreAccountStart = 'restoreAccountStart'
 
@@ -33,6 +35,8 @@ export function AccountCreateRoot() {
 	const [stage, setStage] = useState(createOrRestore)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const [statusState, setStatusState] = useState(1)
+
 
 	// User Creation state
 	const [username, setUsername] = useState('')
@@ -43,10 +47,12 @@ export function AccountCreateRoot() {
 	//console.log(accountData)
 
 	if (accountData.status === 'accountSet') {
-		navigate('/account')
+		navigate('/home')
+		//setStatusState(2)
 	}
 
 	const createAccount = (password) => {
+		setStage(simpleChecklist)
 		const accountObj = {
 			avatar: avatar,
 			username: username,
@@ -60,6 +66,9 @@ export function AccountCreateRoot() {
 
 		dispatch({ type: 'CREATE_ACCOUNT', data: accountObj })
 	}
+	
+
+
 
 	// Router
 	switch (stage) {
@@ -125,7 +134,21 @@ export function AccountCreateRoot() {
 					setUsername={setUsername}
 				></RestoreAccountStart>
 			)
-
+		case simpleChecklist:
+			return (
+				<SimpleChecklist
+					title="Setting up account"
+					titleDone="Account setup complete."
+					titleError="Something went wrong."
+					status={statusState}
+					successStage={() => {
+						navigate('/home')
+					}}
+					cancel={() => {
+						navigate(-1)
+					}}
+				></SimpleChecklist>
+			)
 		default:
 			return <h1>Oops...</h1>
 	}
