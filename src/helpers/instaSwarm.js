@@ -2,6 +2,7 @@ import { setFeed, getFeed, downloadData, uploadData } from 'helpers/swarmFeed'
 import { createKeyPair } from '@erebos/secp256k1'
 import { pubKeyToAddress } from '@erebos/keccak256'
 import { toHex, hexToByteArray, byteArrayToHex, stringToUint8Array } from 'helpers/conversion'
+import { ethers } from 'ethers'
 
 var tokenAbi = [
 	{ inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
@@ -663,4 +664,26 @@ export const fetchPost = async (bzz, user) => {
 	thisPost.type = 'post'
 	thisPost.format = 'image'
 	return thisPost
+}
+
+export const restoreAccount = async (mnemonic, password) => {
+	debugger
+	let wallet = ethers.Wallet.fromMnemonic(mnemonic)
+	const userData = await getFeed('userdata', wallet.address)
+	const userPosts = await getFeed('userposts', wallet.address)
+	const userSubscriptions = await getFeed('usersubscriptions', wallet.address)
+	const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(wallet.privateKey, password)
+	const accountObj = 	{
+		address: wallet.address,
+		publicKey: wallet.publicKey,
+		privateKey: wallet.privateKey,
+		subscriptions: userSubscriptions.res,
+		posts: userPosts.res,
+		avatar: userData.res.useravatar,
+		username: userData.res.username,
+		privateKey: encryptedPrivateKey
+	}		
+	//setAvatar(result.res.useravatar)
+	//setUsername(result.res.username)
+	return accountObj
 }

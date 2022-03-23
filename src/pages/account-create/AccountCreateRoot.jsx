@@ -12,6 +12,7 @@ import ChooseAvatar from './pages/ChooseAvatar'
 import ChoosePassword from './pages/ChoosePassword'
 import SuccessEnter from './pages/SuccessEnter'
 import RestoreAccountStart from './pages/RestoreAccountStart'
+import account from 'services/account/reducer'
 
 // Ids
 const createOrRestore = 'createOrRestore'
@@ -39,7 +40,7 @@ export function AccountCreateRoot() {
 	const [password, setPassword] = useState('')
 
 	const accountData = useSelector((state) => getAccount(state))
-	console.log(accountData)
+	//console.log(accountData)
 
 	if (accountData.status === 'accountSet') {
 		navigate('/account')
@@ -53,6 +54,8 @@ export function AccountCreateRoot() {
 			address: accountData.address,
 			publicKey: accountData.publicKey,
 			privateKey: accountData.privateKey,
+			subscriptions: accountData.subscriptions,
+			posts: accountData.posts
 		}
 
 		dispatch({ type: 'CREATE_ACCOUNT', data: accountObj })

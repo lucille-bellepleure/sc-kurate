@@ -7,8 +7,8 @@ export default function* createAccountSaga(action) {
 
 	const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(userObject.privateKey, userObject.password)
 
+	if(!userObject.type === "restore") {
 	// Here we set the user data object to a feed
-
 	try {
 		yield setFeed(
 			'userdata',
@@ -48,7 +48,7 @@ export default function* createAccountSaga(action) {
 	} catch (error) {
 		console.error(error)
 	}
-
+}
 	const accountObj = {
 		address: userObject.address,
 		avatar: userObject.avatar,
@@ -57,7 +57,8 @@ export default function* createAccountSaga(action) {
 		mnemonic: null,
 		privateKey: encryptedPrivateKey,
 		publicKey: userObject.publicKey,
-		subscriptions: {},
+		subscriptions: userObject.subscriptions,
+		posts: userObject.posts
 	}
 
 	console.log(accountObj)
