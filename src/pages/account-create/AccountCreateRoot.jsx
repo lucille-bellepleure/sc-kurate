@@ -49,14 +49,13 @@ export function AccountCreateRoot() {
 
 	const createAccount = (password) => {
 		const accountObj = {
+			type: accountData.type,
 			avatar: avatar,
 			username: username,
 			password: password,
 			address: accountData.address,
 			publicKey: accountData.publicKey,
 			privateKey: accountData.privateKey,
-			subscriptions: accountData.subscriptions,
-			posts: accountData.posts
 		}
 
 		dispatch({ type: 'CREATE_ACCOUNT', data: accountObj })
