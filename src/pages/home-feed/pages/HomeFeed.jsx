@@ -88,7 +88,7 @@ export function HomeFeed({ homefeed }) {
 
 	useEffect(
 		() => {
-			if (account.address) {
+			if (account) {
 				dispatch({ type: 'RES_HOMEFEED' })
 			}
 		},
