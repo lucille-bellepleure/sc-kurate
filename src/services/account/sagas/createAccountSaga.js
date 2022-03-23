@@ -6,7 +6,7 @@ export default function* createAccountSaga(action) {
 	const userObject = action.data
 
 	const encryptedPrivateKey = window.myWeb3.eth.accounts.encrypt(userObject.privateKey, userObject.password)
-debugger
+
 	if(userObject.type === "create") {
 	// Here we set the user data object to a feed
 	try {
