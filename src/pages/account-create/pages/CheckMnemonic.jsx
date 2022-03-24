@@ -120,7 +120,7 @@ export function CheckMnemonic({ nextStage, exitStage, prevStage }) {
 				<div className={createAccount.mnemonicinputbox}>
 					<input
 						className={createAccount.mnemonicinput}
-						placeholder="word 8"
+						placeholder="word 9"
 						autoCorrect="off"
 						autoCapitalize="none"
 						data-lpignore="true"
