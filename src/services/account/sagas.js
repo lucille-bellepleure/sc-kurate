@@ -4,7 +4,6 @@ import * as t from './actionTypes'
 import createAccountSaga from './sagas/createAccountSaga'
 import createMnemonicSaga from './sagas/createMnemonicSaga'
 import createShortCodeSaga from './sagas/createShortCodeSaga'
-import resolveShortCodeSaga from './sagas/resolveShortCodeSaga'
 import resolveAccountSaga from './sagas/resolveAccountSaga'
 
 /******************************* Watchers *************************************/
@@ -13,6 +12,5 @@ export default function* accountRootSaga() {
 	yield takeEvery(t.CREATE_ACCOUNT, createAccountSaga)
 	yield takeEvery(t.CREATE_MNEMONIC, createMnemonicSaga)
 	yield takeEvery(t.CREATE_SHORTCODE, createShortCodeSaga)
-	yield takeEvery(t.RESOLVE_SHORTCODE, resolveShortCodeSaga)
 	yield takeEvery(t.RESOLVE_ACCOUNT, resolveAccountSaga)
 }

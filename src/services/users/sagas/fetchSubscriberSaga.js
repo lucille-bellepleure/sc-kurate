@@ -12,7 +12,7 @@ export default function* fetchSubscriberSaga(action) {
 
 	const postsArray = Object.keys(personPosts.res.posts)
 
-	yield all(postsArray.map((x) => call(resolvePostSaga, { postId: x, userAddress: action.address })))
+	yield all(postsArray.map((x) => call(resolvePostSaga, {data: { postId: x, userAddress: action.address }})))
 
 	yield put({ type: 'SET_HOMEFEED', data: personPosts.res.posts })
 }

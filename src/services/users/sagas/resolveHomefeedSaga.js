@@ -19,7 +19,7 @@ export default function* resolveHomefeedSaga() {
 		yield all(personSubsArray.map((p) => call(fetchSubscriberSaga, { address: p })))
 		yield all(
 			postsArray.map((x) =>
-				call(resolvePostSaga, { postId: x, userAddress: account.address, serial: personPosts.res.posts[x].nft })
+				call(resolvePostSaga, {data: { postId: x, userAddress: account.address, serial: personPosts.res.posts[x].nft }})
 			)
 		)
 

@@ -82,11 +82,12 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 
 	const posts = useSelector((state) => getPosts(state))
 
+
 	const getPost = (bzz) => {
 		const item = posts[bzz]
 		if (item) {
 			return (
-				<NavLink to={'/post/' + bzz + '/' + item.address} className={main.thumbNavlink}>
+				<NavLink id={bzz} to={'/post/' + bzz + '/' + item.address} className={main.thumbNavlink}>
 					<img className={styles.postImage} src={item.image}></img>
 				</NavLink>
 			)

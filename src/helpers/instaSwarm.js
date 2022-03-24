@@ -446,7 +446,6 @@ var registryAbi = [
 ]
 
 export const storePost = async (dataObject, cb) => {
-	
 	const postObject = dataObject
 	const userObject = dataObject.user
 
@@ -667,12 +666,11 @@ export const fetchPost = async (bzz, user) => {
 }
 
 export const restoreAccount = async (mnemonic, password) => {
-	
 	let wallet = ethers.Wallet.fromMnemonic(mnemonic)
 	const userData = await getFeed('userdata', wallet.address)
 	const userPosts = await getFeed('userposts', wallet.address)
 	const userSubscriptions = await getFeed('usersubscriptions', wallet.address)
-	const accountObj = 	{
+	const accountObj = {
 		address: wallet.address,
 		publicKey: wallet.publicKey,
 		privateKey: wallet.privateKey,
@@ -680,7 +678,7 @@ export const restoreAccount = async (mnemonic, password) => {
 		posts: userPosts.res,
 		avatar: userData.res.useravatar,
 		username: userData.res.username,
-	}		
+	}
 	//setAvatar(result.res.useravatar)
 	//setUsername(result.res.username)
 	return accountObj

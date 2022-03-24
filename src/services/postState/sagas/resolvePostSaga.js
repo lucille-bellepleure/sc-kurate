@@ -9,14 +9,16 @@ export default function* resolvePostSaga(action) {
 	console.log("Resolve Post Saga", action)
 
 	// First resolve my posts
-	const postId = action.postId
-	const userAddress = action.userAddress
-	//const serial = action.serial
 
+	const postId = action.data.postId
+	const userAddress = action.data.userAddress
+	//const serial = action.serial
+console.log('resolving post ', postId, userAddress)
 	if (postId) {
 		const cachedPosts = yield select(s.getPostState)
 
 		if (!cachedPosts[postId]) {
+			
 			const thisPost = yield downloadData(postId)
 			console.log(postId)
 
@@ -31,6 +33,7 @@ export default function* resolvePostSaga(action) {
 			thisPost.location = 'Unknown'
 			thisPost.type = 'post'
 			thisPost.format = 'image'
+			console.log('Putting post in redux')
 			yield put({ type: 'ADD_POST', data: { [postId]: thisPost } })
 		} else {
 			console.log('Post in cache')
