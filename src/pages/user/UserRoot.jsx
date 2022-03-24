@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import sortByProp from 'helpers/sortByProp'
 import { fetchUser } from 'helpers/instaSwarm'
 // Sub-pages
 import UserHome from './pages/UserHome'
 import UserFollowing from './pages/UserFollowing'
 import PostDetail from './pages/PostDetail'
-import { ContactsTwoTone } from '@material-ui/icons'
 
 // Ids
 const userFetching = 'userFetching'
@@ -15,9 +13,7 @@ const userHome = 'userHome'
 const postDetail = 'postDetail'
 const userFollowing = 'userFollowing'
 
-function getUserFromState(state, address) {
-	return state.users[address]
-}
+
 
 function getUser(state) {
 	return state.account
