@@ -4,6 +4,7 @@ import main from 'styles.module.css'
 import styles from '../user.module.css'
 import { NavLink } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import sortByProp from 'helpers/sortByProp'
 
 import FooterBar from 'components/FooterBar'
 
@@ -41,16 +42,16 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 	useEffect(
 		() => {
 			console.log(account.subscriptions)
-			if (user.account.address === account.address) {
-				setFollowButtonState('isme')
-				console.log('this user is me')
-			} else if (account.subscriptions[user.account.address]) {
-				setFollowButtonState('isfollow')
-				console.log('this user is a sub')
-			} else {
-				setFollowButtonState('canfollow')
-				console.log('this user can be a sub')
-			}
+			// if (user.account.address === account.address) {
+			// 	setFollowButtonState('isme')
+			// 	console.log('this user is me')
+			// } else if (account.subscriptions[user.account.address]) {
+			// 	setFollowButtonState('isfollow')
+			// 	console.log('this user is a sub')
+			// } else {
+			// 	setFollowButtonState('canfollow')
+			// 	console.log('this user can be a sub')
+			// }
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[user.subs]
@@ -70,7 +71,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 			dispatch({
 				type: 'UNFOLLOW_USER',
 				data: {
-					address: user.account.address,
+					address: user.address,
 					currentSubs: account.subscriptions,
 					password: system.passWord,
 				},
@@ -117,7 +118,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 								dispatch({
 									type: 'FOLLOW_USER',
 									data: {
-										address: user.account.address,
+										address: user.address,
 										currentSubs: account.subscriptions,
 										password: system.passWord,
 									},
@@ -146,7 +147,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
 				<div className={styles.usersection}>
-					<img className={styles.avatarImage} src={user.account.useravatar} alt="avatar" />
+					<img className={styles.avatarImage} src={user.useravatar} alt="avatar" />
 					<div className={styles.followingContainer}>
 						{/* <div className={styles.followingItem}>
             <div className={styles.followingNumber}>{user.balances.kuraBalance}</div>
@@ -162,14 +163,16 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 						</div>
 					</div>
 					<div>
-						<div className={styles.userName}>{user.account.username}</div>
-						<div className={styles.userAddress}>{user.account.address}</div>
+						<div className={styles.userName}>{user.username}</div>
+						<div className={styles.userAddress}>{user.address}</div>
 					</div>
 
 					{followbutton(followButtonState)}
 				</div>
 
-				<div className={styles.scroller}>{userfeed.map((item) => getPost(item.bzz))}</div>
+				<div className={styles.scroller}>
+					{userfeed.sort(sortByProp('time', 'desc')).map((item, index) => getPost(item.bzz))}
+					</div>
 
 				<FooterBar account={account}></FooterBar>
 
