@@ -1,7 +1,7 @@
 import React from 'react'
 import main from 'styles.module.css'
 import styles from '../user.module.css'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ArrowBackIos } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import FooterBar from 'components/FooterBar'
