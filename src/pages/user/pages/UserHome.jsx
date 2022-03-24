@@ -42,16 +42,16 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 	useEffect(
 		() => {
 			console.log(account.subscriptions)
-			// if (user.account.address === account.address) {
-			// 	setFollowButtonState('isme')
-			// 	console.log('this user is me')
-			// } else if (account.subscriptions[user.account.address]) {
-			// 	setFollowButtonState('isfollow')
-			// 	console.log('this user is a sub')
-			// } else {
-			// 	setFollowButtonState('canfollow')
-			// 	console.log('this user can be a sub')
-			// }
+			if (user.address === account.address) {
+				setFollowButtonState('isme')
+				console.log('this user is me')
+			} else if (account.subscriptions[user.address]) {
+				setFollowButtonState('isfollow')
+				console.log('this user is a sub')
+			} else {
+				setFollowButtonState('canfollow')
+				console.log('this user can be a sub')
+			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[user.subs]
