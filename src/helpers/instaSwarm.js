@@ -691,6 +691,15 @@ export const fetchUser = async (address) => {
 	let userObject = userRes.res
 	let postRes = await getFeed('userposts', address)
 	let subRes = await getFeed('usersubscriptions', address)
+	const userSubsArray = Object.keys(subRes.res)
+
+	for (let index = 0; index < userSubsArray.length; index++) {
+		const sub = userSubsArray[index]
+		const subAccount = await getFeed('userdata', sub)
+		subRes.res[sub].avatar = subAccount.res.useravatar
+		subRes.res[sub].username = subAccount.res.username
+		subRes.res[sub].address = subAccount.res.address
+	}
 	userObject.posts = postRes.res.posts
 	userObject.subscriptions = subRes.res
 	return userObject

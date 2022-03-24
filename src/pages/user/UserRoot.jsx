@@ -6,7 +6,7 @@ import { fetchUser } from 'helpers/instaSwarm'
 import UserHome from './pages/UserHome'
 import UserFollowing from './pages/UserFollowing'
 import PostDetail from './pages/PostDetail'
-
+import StatusProgressWhite from 'pages/status/StatusProgressWhite'
 // Ids
 const userFetching = 'userFetching'
 const userHome = 'userHome'
@@ -50,6 +50,7 @@ export function PostItemRoot() {
 					let arraySubs = Object.values(fetchedUser.subscriptions)
 					setUsersubs(arraySubs)
 
+
 for (let index = 0; index < arrayPosts.length; index++) {
 	const post = arrayPosts[index];
 	dispatch({ type: 'RES_POST', data: { postId: post.bzz, userAddress: address }})
@@ -57,6 +58,7 @@ for (let index = 0; index < arrayPosts.length; index++) {
 					//arrayPosts.map((post) => dispatch({ type: 'RES_POST', data: { postId: post.bzz, userAddress: address }}))
 
 					console.log(fetchedUser)
+					console.log(JSON.stringify(arraySubs))
 					setStage(userHome)
 				}
 				getUserContent()
@@ -77,7 +79,7 @@ for (let index = 0; index < arrayPosts.length; index++) {
 	// Router
 	switch (stage) {
 		case userFetching:
-			return <div style={{ color: '#ffffff' }}> User fetching</div>
+			return <StatusProgressWhite />
 		case userHome:
 			return (
 				<UserHome
