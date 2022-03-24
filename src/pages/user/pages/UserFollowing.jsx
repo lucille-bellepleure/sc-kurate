@@ -22,7 +22,7 @@ export function UserFollowing({ exitStage, user, usersubs, account }) {
 					<div onClick={exitStage}>
 						<ArrowBackIos color="primary"></ArrowBackIos>
 					</div>
-					<div className={[main.textbutton, main.bodyDefault, main.blue].join()}>{user.account.username}</div>
+					<div className={[main.textbutton, main.bodyDefault, main.blue].join()}>{user.username}</div>
 					<div>&nbsp;</div>
 				</div>
 				<div className={styles.followingList}>

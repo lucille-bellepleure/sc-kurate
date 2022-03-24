@@ -761,7 +761,6 @@ box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
 .scroller {
 	background-color: white;
 	width: 100%;
-	margin-bottom: 52px;
 	overflow: scroll;
 }
 
