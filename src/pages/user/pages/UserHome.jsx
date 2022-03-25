@@ -42,15 +42,17 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 	useEffect(
 		() => {
 			console.log(account.subscriptions)
-			if (user.address === account.address) {
-				setFollowButtonState('isme')
-				console.log('this user is me')
-			} else if (account.subscriptions[user.address]) {
-				setFollowButtonState('isfollow')
-				console.log('this user is a sub')
-			} else {
-				setFollowButtonState('canfollow')
-				console.log('this user can be a sub')
+			if (account.subscriptions) {
+				if (user.address === account.address) {
+					setFollowButtonState('isme')
+					console.log('this user is me')
+				} else if (account.subscriptions[user.address]) {
+					setFollowButtonState('isfollow')
+					console.log('this user is a sub')
+				} else {
+					setFollowButtonState('canfollow')
+					console.log('this user can be a sub')
+				}
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -86,7 +88,7 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 		const item = posts[bzz]
 		if (item) {
 			return (
-				<NavLink to={'/post/' + bzz + '/' + item.address} className={main.thumbNavlink}>
+				<NavLink id={bzz} to={'/post/' + bzz + '/' + item.address} className={main.thumbNavlink}>
 					<img className={styles.postImage} src={item.image}></img>
 				</NavLink>
 			)
@@ -104,7 +106,6 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 				return (
 					<div
 						onClick={() => {
-							
 							if (!system.passWord) {
 								console.log(account.subscriptions)
 								console.log('i dont haz pass')
@@ -172,10 +173,9 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 
 				<div className={styles.scroller}>
 					{userfeed.sort(sortByProp('time', 'desc')).map((item, index) => getPost(item.bzz))}
-					</div>
+				</div>
 
 				<FooterBar account={account}></FooterBar>
-
 			</div>
 		</ThemeProvider>
 	)

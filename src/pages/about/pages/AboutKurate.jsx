@@ -18,7 +18,7 @@ export function AboutKurate({ nextStage, exitStage, user, userfeed, usersubs, ac
 				<div className={main.aboutContainer}>
 					<div className={main.spacer}></div>
 
-					<img className={main.offset} src={logo} />
+					<img src={logo} />
 
 					<div className={main.aboutBrand}>kurate</div>
 
@@ -30,7 +30,7 @@ export function AboutKurate({ nextStage, exitStage, user, userfeed, usersubs, ac
 					<div className={main.spacer}></div>
 
 					<div
-						className={main.buttonYellow}
+						className={[main.buttonYellow, main.offset].join(" ")}
 						onClick={() => {
 							nextStage()
 						}}
@@ -39,10 +39,10 @@ export function AboutKurate({ nextStage, exitStage, user, userfeed, usersubs, ac
 					</div>
 				</div>
 				<div className={main.aboutFooter}>
-					<div className={main.smallBold}>v0.0.1</div>
-					<div className={main.blueLink}>Join our Discord chat</div>
+					<div className={main.smallBold}>v0.0.2</div>
+					<div className={main.blueLink}>Join our Discord</div>
 					<div className={main.blueLink}>Source Code on Github</div>
-					<div className={main.blueLink}>Ethereum Swarm inside</div>
+					<div className={main.blueLink}>Swarm + Waku inside</div>
 					{/* <div className={main.smallBold}>find us on Discord</div>
                     <div className={main.smallBold}>open source on Github</div>
                     <div className={main.smallBold}>funded by Swarm</div> */}

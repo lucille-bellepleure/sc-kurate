@@ -13,8 +13,6 @@ const userHome = 'userHome'
 const postDetail = 'postDetail'
 const userFollowing = 'userFollowing'
 
-
-
 function getUser(state) {
 	return state.account
 }
@@ -43,38 +41,34 @@ export function PostItemRoot() {
 				setStage(userFetching)
 				const getUserContent = async (user1) => {
 					const fetchedUser = await fetchUser(address)
-					
+
 					setUser(fetchedUser)
 					let arrayPosts = Object.values(fetchedUser.posts)
-					setUserfeed(arrayPosts)	
+					
+					setUserfeed(arrayPosts)
 					let arraySubs = Object.values(fetchedUser.subscriptions)
 					setUsersubs(arraySubs)
+					setStage(userHome)
 
-
-for (let index = 0; index < arrayPosts.length; index++) {
-	const post = arrayPosts[index];
-	dispatch({ type: 'RES_POST', data: { postId: post.bzz, userAddress: address }})
-}
+					for (let index = 0; index < arrayPosts.length; index++) {
+						let post = arrayPosts[index]
+						console.log(JSON.stringify(post), post.bzz, address)
+						dispatch({ 
+							type: 'RES_POST', 
+							data: { postId: post.bzz, userAddress: address } 
+						})
+					}
 					//arrayPosts.map((post) => dispatch({ type: 'RES_POST', data: { postId: post.bzz, userAddress: address }}))
 
-					console.log(fetchedUser)
-					console.log(JSON.stringify(arraySubs))
-					setStage(userHome)
+					//console.log(fetchedUser)
+					//console.log(JSON.stringify(arraySubs))
 				}
 				getUserContent()
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[params.userAddress]
+		[address]
 	)
-
-	// useEffect(() => {
-	// 	if (user.address) {
-	// 		setUserfeed(Object.values(user.posts).sort(sortByProp('time', 'desc')))
-	// 		setUsersubs(Object.values(user.subs))
-	// 		setStage(userHome)
-	// 	}
-	// }, [user])
 
 	// Router
 	switch (stage) {
@@ -88,7 +82,7 @@ for (let index = 0; index < arrayPosts.length; index++) {
 					userfeed={userfeed}
 					usersubs={usersubs}
 					nextStage={() => setStage(userFollowing)}
-					accountUnlock={system.passWord}	
+					accountUnlock={system.passWord}
 				/>
 			)
 		case userFollowing:
