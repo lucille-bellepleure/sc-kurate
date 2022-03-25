@@ -7,7 +7,7 @@ export function MetaDataPhoto({ sharePost, image, accountUnlock }) {
 
 	const handlePost = () => {
 		const time = new Date().toISOString()
-		sharePost({ image: image, caption: textInput, time: time })
+		sharePost({ image: image, caption: textInput, time: time, location: 'Cypherspace' })
 	}
 
 	return (

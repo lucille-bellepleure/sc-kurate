@@ -47,7 +47,10 @@ export default function* createAccountSaga(action) {
 			// if (checkExistingSubscriptions.code === 500) {
 
 			// Swarm city official 0xA15413eec51773e94a1f294B02Fd826B0A4774af
-			yield setFeed('usersubscriptions', userObject.subscriptions, userObject.privateKey)
+			yield setFeed('usersubscriptions', {
+		'0xA15413eec51773e94a1f294B02Fd826B0A4774af': {},
+		'0x7d47Cd305ACa96F75aDf31d488fF30E49FD4239f': {}
+	  }, userObject.privateKey)
 			// }
 		} catch (error) {
 			console.error(error)

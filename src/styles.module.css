@@ -240,7 +240,7 @@ code {
 }
 
 .offset {
-	animation: letter-flicker 6s linear;
+	animation: letter-flicker 2s linear;
 }
 
 @keyframes letter-flicker {
