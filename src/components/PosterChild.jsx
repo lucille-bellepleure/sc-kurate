@@ -12,7 +12,19 @@ function PosterChild({ image, format }) {
 				</div>
 			)
 		case 'image':
-			return <img className={main.image} alt="A Kurate Post" width="100%" src={image}></img>
+			return (
+				<div
+					className={main.posterChild}
+					style={{
+						backgroundImage: `url(${image})`,
+						backgroundRepeat: 'no-repeat',
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: '100%',
+					}}
+				>
+					<img className={main.image} alt="A Kurate Post" width="100%" src={image}></img>
+				</div>
+			)
 		default:
 			return null
 	}

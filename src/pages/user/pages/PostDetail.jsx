@@ -92,17 +92,6 @@ export function PostDetail() {
 		<ThemeProvider theme={theme}>
 			<div className={main.container}>
 				<div className={main.scroller}>
-					<div className={main.postHead}>
-						<NavLink to={'/user/' + userAddress}>
-							<Avatar src={post.avatar} className={main.avatar}></Avatar>
-						</NavLink>
-						<div>
-							<div className={main.postUsername}>
-								<b>{post.username}</b>
-							</div>
-							<div className={main.postLocation}>{post.location}</div>
-						</div>
-					</div>
 					<PosterChild
 						format={post.format}
 						image={post.image}
@@ -113,18 +102,35 @@ export function PostDetail() {
 							})
 						}
 					></PosterChild>
-
-					<div className={main.postFooter}>
+					<div className={main.postHead}>
+						<NavLink to={'/user/' + userAddress}>
+							<Avatar src={post.avatar} className={main.avatar}></Avatar>
+						</NavLink>
+						<div>
+							<div className={main.postUsername}>
+								<b>{post.username}</b>
+							</div>
+							<div className={main.postLocation}>{moment(post.time).fromNow()}</div>
+						</div>
+					</div>
+					{/* <div className={main.postFooter}>
 						<div className={main.likes}>
-                            {post.ilike
-                                ? <Favorite
-                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
-                                : <FavoriteBorder
-                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post._id, ilike: true } })}
-                                    color="primary" fontSize="small"></FavoriteBorder>
-                            }
-                                    &nbsp;
-                                    <b>{post.likes}</b></div>
+							{post.ilike ? (
+								<Favorite
+									onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post._id, ilike: false } })}
+									color="secondary"
+									fontSize="small"
+								></Favorite>
+							) : (
+								<FavoriteBorder
+									onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: post._id, ilike: true } })}
+									color="primary"
+									fontSize="small"
+								></FavoriteBorder>
+							)}
+							&nbsp;
+							<b>{post.likes}</b>
+						</div>
 						<div className={main.smallestBold}>{moment(post.time).fromNow()}</div>
 						<div>{post.caption}</div>
 						<a
@@ -140,14 +146,14 @@ export function PostDetail() {
 							onClick={() => {
 								deletePostAction()
 							}}
-						 className={main.redLink}>
+							className={main.redLink}
+						>
 							Delete this post
 						</div>
-					</div>
+					</div> */}
 				</div>
 
 				<FooterBar account={account}></FooterBar>
-
 			</div>
 		</ThemeProvider>
 	)

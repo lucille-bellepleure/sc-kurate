@@ -3,7 +3,7 @@
 	grid-template-columns: auto auto;
 	grid-template-rows: auto;
 	max-width: 520px;
-	padding: 20px;
+	padding: 18px;
 	background-color: white;
 }
 
@@ -60,7 +60,6 @@
 	align-items: center;
 	justify-content: center;
 	justify-self: flex-end;
-	margin-right: 20px;
 	width: 80px;
 	text-align: center;
 	border: 0;
@@ -96,6 +95,8 @@
 	width: 100vw;
 	max-width: 520px;
 	margin-top: 56px;
+	overflow-y: scroll;
+	padding-bottom: 52px;
 }
 
 .followingListItem {

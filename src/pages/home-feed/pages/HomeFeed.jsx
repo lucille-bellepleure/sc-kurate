@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
 import { NavLink } from 'react-router-dom'
@@ -38,18 +38,7 @@ export function HomeFeed({ homefeed }) {
 		const item = posts[bzz]
 		if (item) {
 			return (
-				<div key={item._id}>
-					<div className={main.postHead}>
-						<NavLink to={'/user/' + item.address}>
-							<Avatar src={item.avatar} className={main.avatar}></Avatar>
-						</NavLink>
-						<div>
-							<div className={main.postUsername}>
-								<b>{item.username}</b>
-							</div>
-							<div className={main.postLocation}>{item.location}</div>
-						</div>
-					</div>
+				<div key={item._id} className={main.postContainer}>
 					<PosterChild
 						format={item.format}
 						image={item.image}
@@ -61,26 +50,44 @@ export function HomeFeed({ homefeed }) {
 						}
 					></PosterChild>
 
-					<ActionButton type={item.type}></ActionButton>
-					<div className={main.postFooter}>
+					<div className={main.postHead}>
+						<NavLink to={'/user/' + item.address}>
+							<Avatar src={item.avatar} className={main.avatar}></Avatar>
+						</NavLink>
+						<div>
+							<div className={main.postUsername}>
+								<b>{item.username}</b>
+							</div>
+							<div className={main.postLocation}>{moment(item.time).fromNow()}</div>
+						</div>
+					</div>
+
+					{/* <ActionButton type={item.type}></ActionButton> */}
+					{/* <div className={main.postFooter}>
 						<div className={main.likes}>
-                            {item.ilike
-                                ? <Favorite
-                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })} color="secondary" fontSize="small"></Favorite>
-                                : <FavoriteBorder
-                                    onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
-                                    color="primary" fontSize="small"></FavoriteBorder>
-                            }
-                                    &nbsp;
-                                    <b>{item.likes}</b></div>
+							{item.ilike ? (
+								<Favorite
+									onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: false } })}
+									color="secondary"
+									fontSize="small"
+								></Favorite>
+							) : (
+								<FavoriteBorder
+									onClick={() => dispatch({ type: 'SET_LIKE', data: { _id: item._id, ilike: true } })}
+									color="primary"
+									fontSize="small"
+								></FavoriteBorder>
+							)}
+							&nbsp;
+							<b>{item.likes}</b>
+						</div>
 						<div className={main.smallestBold}>{moment(item.time).fromNow()}</div>
 
 						<div>{item.caption}</div>
 						<NavLink className={main.blueLink} to={'/post/' + bzz + '/' + item.address}>
 							Post details
 						</NavLink>
-						{/* <Collect serial={if(itemLerial)}></Collect> */}
-					</div>
+					</div> */}
 				</div>
 			)
 		}
@@ -96,11 +103,10 @@ export function HomeFeed({ homefeed }) {
 		[account.address]
 	)
 
-
 	return (
 		<ThemeProvider theme={theme}>
-			<div className={main.container}>			
-				<div className={main.scroller}>
+			<div className={main.container}>
+				<div className={main.scroller} id="scroller">
 					{homefeed.sort(sortByProp('time', 'desc')).map((item, index) => getPost(item.bzz))}
 					<div>
 						<div className={main.feedEnd}>

@@ -13,6 +13,7 @@ const theme = createTheme({
 		secondary: { main: '#f55858' },
 	},
 })
+const scrollTop = () => {}
 
 export function UserFollowing({ exitStage, user, usersubs, account }) {
 	return (
@@ -38,7 +39,7 @@ export function UserFollowing({ exitStage, user, usersubs, account }) {
 						</Link>
 					))}
 				</div>
-						<FooterBar account={account}></FooterBar>
+				<FooterBar account={account} scrollTop={scrollTop}></FooterBar>
 			</div>
 		</ThemeProvider>
 	)
