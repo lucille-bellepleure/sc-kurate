@@ -18,7 +18,6 @@ function PosterChild({ image, format }) {
 					style={{
 						backgroundImage: `url(${image})`,
 						backgroundRepeat: 'no-repeat',
-						backgroundRepeat: 'no-repeat',
 						backgroundSize: '100%',
 					}}
 				>

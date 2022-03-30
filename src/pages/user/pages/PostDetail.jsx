@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import main from 'styles.module.css'
-import { useParams, useNavigate, NavLink } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 
-import { Favorite, FavoriteBorder } from '@material-ui/icons'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import PosterChild from 'components/PosterChild'
 import moment from 'moment'
 
 import { Avatar } from '@material-ui/core'
-import { deletePost, fetchPost } from 'helpers/instaSwarm.js'
+import { fetchPost } from 'helpers/instaSwarm.js'
 
 import FooterBar from 'components/FooterBar'
 
@@ -25,10 +24,6 @@ const theme = createTheme({
 	},
 })
 
-function getSystem(state) {
-	return state.system
-}
-
 function getAccount(state) {
 	return state.account
 }
@@ -39,9 +34,6 @@ export function PostDetail() {
 	const bzzPost = params.bzzPost
 	const userAddress = params.userAddress
 
-	const navigate = useNavigate()
-
-	const system = useSelector((state) => getSystem(state))
 	const account = useSelector((state) => getAccount(state))
 
 	const [post, setPost] = useState({
@@ -71,22 +63,6 @@ export function PostDetail() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[]
 	)
-
-	const deletePostAction = () => {
-		if (!system.passWord) {
-			console.log('unlock first')
-			dispatch({
-				type: 'SET_SYSTEM',
-				data: {
-					showPasswordUnlock: true,
-				},
-			})
-		} else {
-			deletePost(account, system.passWord, bzzPost, post.serial, function () {
-				navigate('/user/' + account.address)
-			})
-		}
-	}
 
 	return (
 		<ThemeProvider theme={theme}>
