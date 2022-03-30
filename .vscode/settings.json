@@ -4,5 +4,11 @@
 	},
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"editor.formatOnPaste": true,
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	}
 }
