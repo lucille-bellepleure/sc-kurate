@@ -12,7 +12,7 @@ import ChooseAvatar from './pages/ChooseAvatar'
 import ChoosePassword from './pages/ChoosePassword'
 import SuccessEnter from './pages/SuccessEnter'
 import RestoreAccountStart from './pages/RestoreAccountStart'
-
+import StatusProgressWhite from 'pages/status/StatusProgressWhite'
 // Ids
 const createOrRestore = 'createOrRestore'
 const showMnemonic = 'showMnemonic'
@@ -24,6 +24,8 @@ const successStage = 'successStage'
 
 const restoreAccountStart = 'restoreAccountStart'
 
+const statusStage = 'statusStage'
+
 function getAccount(state) {
 	return state.account
 }
@@ -32,7 +34,6 @@ export function AccountCreateRoot() {
 	const [stage, setStage] = useState(createOrRestore)
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-
 
 	// User Creation state
 	const [username, setUsername] = useState('')
@@ -60,9 +61,6 @@ export function AccountCreateRoot() {
 
 		dispatch({ type: 'CREATE_ACCOUNT', data: accountObj })
 	}
-	
-
-
 
 	// Router
 	switch (stage) {
@@ -115,6 +113,7 @@ export function AccountCreateRoot() {
 					exitStage={() => setStage(createOrRestore)}
 					setPassword={setPassword}
 					password={password}
+					toProgress={() => setStage(statusStage)}
 				/>
 			)
 		case successStage:
@@ -128,6 +127,9 @@ export function AccountCreateRoot() {
 					setUsername={setUsername}
 				></RestoreAccountStart>
 			)
+
+		case statusStage:
+			return <StatusProgressWhite />
 
 		default:
 			return <h1>Oops...</h1>

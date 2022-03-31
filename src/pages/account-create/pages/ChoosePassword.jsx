@@ -4,7 +4,7 @@ import createAccountStyles from '../account-create.module.css'
 import { Form, FormProvider } from 'react-advanced-form'
 import { Input } from 'react-advanced-form-addons'
 
-export function ChoosePassword({ createAccount, exitStage, setPassword, password }) {
+export function ChoosePassword({ createAccount, exitStage, setPassword, password, toProgress }) {
 	let refForm = useRef(null)
 
 	const validationRules = {
@@ -16,8 +16,9 @@ export function ChoosePassword({ createAccount, exitStage, setPassword, password
 	}
 
 	const handleSubmit = ({ fields }) => {
+		toProgress()
 		// Make sure to return a Promise here
-		console.log('hello form', fields)
+		//console.log('hello form', fields)
 		createAccount(fields.password.value)
 	}
 
