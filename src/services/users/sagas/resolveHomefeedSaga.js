@@ -10,6 +10,15 @@ export default function* resolveHomefeedSaga() {
 	// Resolve me
 	const account = yield select(getAccount)
 	if(account.address){
+		const personData = yield getFeed('userdata', account.address)
+
+		let personObject = {
+			username: personData.res.username,
+			avatar: personData.res.useravatar
+		}
+		
+		yield put({ type: 'SET_ACCOUNT', data: personObject })
+
 		const personPosts = yield getFeed('userposts', account.address)
 		const postsArray = Object.keys(personPosts.res.posts)
 		

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchUser } from 'helpers/instaSwarm'
+import { fetchUser, fetchAvatar } from 'helpers/instaSwarm'
 // Sub-pages
 import UserHome from './pages/UserHome'
 import UserFollowing from './pages/UserFollowing'
@@ -29,6 +29,8 @@ export function PostItemRoot() {
 	const [usersubs, setUsersubs] = useState([])
 	const [user, setUser] = useState()
 
+	const [userAvatar, setUserAvatar] = useState('')
+
 	const account = useSelector((state) => getUser(state))
 	const system = useSelector((state) => getSystem(state))
 
@@ -38,24 +40,32 @@ export function PostItemRoot() {
 	useEffect(
 		() => {
 			if (address) {
+				const getAvatar = async (address) => {
+					const avatar = await fetchAvatar(address)
+					setUserAvatar(avatar)
+					console.log(avatar)
+				}
+
 				setStage(userFetching)
+
 				const getUserContent = async (user1) => {
 					const fetchedUser = await fetchUser(address)
 
 					setUser(fetchedUser)
+					setStage(userHome)
+
 					let arrayPosts = Object.values(fetchedUser.posts)
-					
+
 					setUserfeed(arrayPosts)
 					let arraySubs = Object.values(fetchedUser.subscriptions)
 					setUsersubs(arraySubs)
-					setStage(userHome)
 
 					for (let index = 0; index < arrayPosts.length; index++) {
 						let post = arrayPosts[index]
 						console.log(JSON.stringify(post), post.bzz, address)
-						dispatch({ 
-							type: 'RES_POST', 
-							data: { postId: post.bzz, userAddress: address } 
+						dispatch({
+							type: 'RES_POST',
+							data: { postId: post.bzz, userAddress: address },
 						})
 					}
 					//arrayPosts.map((post) => dispatch({ type: 'RES_POST', data: { postId: post.bzz, userAddress: address }}))
@@ -63,6 +73,7 @@ export function PostItemRoot() {
 					//console.log(fetchedUser)
 					//console.log(JSON.stringify(arraySubs))
 				}
+				getAvatar(address)
 				getUserContent()
 			}
 		},
@@ -73,7 +84,7 @@ export function PostItemRoot() {
 	// Router
 	switch (stage) {
 		case userFetching:
-			return <StatusProgressWhite />
+			return <StatusProgressWhite avatar={userAvatar} />
 		case userHome:
 			return (
 				<UserHome
