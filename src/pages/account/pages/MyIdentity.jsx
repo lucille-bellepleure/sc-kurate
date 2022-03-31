@@ -3,7 +3,16 @@ import styles from 'styles.module.css'
 import createAccount from '../account.module.css'
 import QRCode from 'react-qr-code'
 
-const MyIdentity = ({ nextStage, exitStage, avatarStage, avatar, username, setUsername, address = '' }) => (
+const MyIdentity = ({
+	nextStage,
+	setUpdateUser,
+	exitStage,
+	avatarStage,
+	avatar,
+	username,
+	setUsername,
+	address = '',
+}) => (
 	<div className={createAccount.formcontainer}>
 		<div className={createAccount.closeButton} onClick={exitStage}>
 			<div className={styles.exitgrayicon} />
@@ -24,8 +33,14 @@ const MyIdentity = ({ nextStage, exitStage, avatarStage, avatar, username, setUs
 				onChange={(e) => setUsername(e.target.value)}
 			/>
 		</div>
+		<div className={styles.blueLink} onClick={setUpdateUser}>
+			Update user on Swarm
+		</div>
+		<div className={createAccount.flexer} />
+		<div className={createAccount.flexer} />
+
 		<div>
-			<QRCode size="128" value={address}></QRCode>
+			<QRCode size="128" value={`https://kurate.netlify.app/#/user/` + address}></QRCode>
 		</div>
 		{/* <div onClick={() => } className={createAccount.showkeystoggle}>show publicKey</div> */}
 		<div className={createAccount.flexer} />
