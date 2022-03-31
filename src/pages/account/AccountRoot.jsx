@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import { updateUser } from 'helpers/instaSwarm'
 // Sub-pages
 import AccountHome from './pages/AccountHome'
 import MyIdentity from './pages/MyIdentity'
@@ -22,14 +22,50 @@ function getAccount(state) {
 	return state.account
 }
 
+function getSystem(state) {
+	return state.system
+}
+
 export function AccountRoot() {
 	const [stage, setStage] = useState(myIdentity)
 	const account = useSelector((state) => getAccount(state))
+	const system = useSelector((state) => getSystem(state))
 
 	const dispatch = useDispatch()
 
 	const setUsername = (username) => dispatch({ type: 'SET_ACCOUNT', data: { username: username } })
 	const setAvatar = (avatar) => dispatch({ type: 'SET_ACCOUNT', data: { avatar: avatar } })
+
+	async function doUpdateUser() {
+		console.log('updating user')
+		if (!system.passWord) {
+			console.log('unlock first')
+			dispatch({
+				type: 'SET_SYSTEM',
+				data: {
+					showPasswordUnlock: true,
+				},
+			})
+		} else {
+			//setStage(SimpleChecklist)
+			console.log('trying to save user')
+			const dataObject = {
+				user: account,
+				password: system.passWord,
+			}
+			try {
+				//setStage(simpleChecklist)
+
+				await updateUser(dataObject, function () {
+					//navigate('/home')
+				})
+				//setStatusState(1)
+			} catch (error) {
+				//setStatusState(2)
+			}
+			//dispatch({type: "SHARE_POST", data: dataObject});
+		}
+	}
 
 	const removeAccountDef = () => {
 		dispatch({
@@ -86,6 +122,7 @@ export function AccountRoot() {
 					exitStage={() => setStage(accountHome)}
 					shortCode={handleShortcode}
 					resolveShort={() => setStage(resolveShort)}
+					setUpdateUser={() => doUpdateUser()}
 				/>
 			)
 		case removeAccount:

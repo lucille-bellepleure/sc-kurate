@@ -507,6 +507,35 @@ export const storePost = async (dataObject, cb) => {
 	//});
 }
 
+export const updateUser = async (userObject) => {
+	console.log('updating user from helper')
+	let decryptedPrivateKey
+	try {
+		decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.user.privateKey, userObject.password)
+	} catch (error) {
+		console.log(error)
+	}
+
+	try {
+		var oldUser = await getFeed('userdata', userObject.user.address)
+		console.log(userObject.user, oldUser.res)
+		var newUser = {
+			username: userObject.user.username,
+			useravatar: userObject.user.avatar,
+			publicKey: userObject.user.publicKey,
+			address: userObject.user.address
+		}
+		await setFeed('userdata', newUser, decryptedPrivateKey.privateKey)
+
+		var checkUser = await getFeed('userdata', userObject.user.address)
+		console.log(checkUser.res)
+
+	} catch (error) {
+		console.log(error)
+	}
+	return true
+}
+
 export const deletePost = async (userObject, password, bzz, serial, cb) => {
 	let decryptedPrivateKey
 	try {

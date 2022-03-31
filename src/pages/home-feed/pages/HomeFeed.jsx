@@ -47,18 +47,18 @@ export function HomeFeed({ homefeed }) {
 							})
 						}
 					></PosterChild>
-
-					<div className={main.postHead}>
-						<NavLink to={'/user/' + item.address}>
+					{item.caption ? <div className={main.postCaption}>{item.caption}</div> : null}
+					<NavLink to={'/user/' + item.address}>
+						<div className={main.postHead}>
 							<Avatar src={item.avatar} className={main.avatar}></Avatar>
-						</NavLink>
-						<div>
-							<div className={main.postUsername}>
-								<b>{item.username}</b>
+							<div>
+								<div className={main.postUsername}>
+									<b>{item.username}</b>
+								</div>
+								<div className={main.postLocation}>{moment(item.time).fromNow()}</div>
 							</div>
-							<div className={main.postLocation}>{moment(item.time).fromNow()}</div>
 						</div>
-					</div>
+					</NavLink>
 
 					{/* <ActionButton type={item.type}></ActionButton> */}
 					{/* <div className={main.postFooter}>
