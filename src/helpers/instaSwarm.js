@@ -713,6 +713,12 @@ export const restoreAccount = async (mnemonic, password) => {
 	return accountObj
 }
 
+export const fetchAvatar = async (address) => {
+	console.log('fetch avatar')
+		let userRes = await getFeed('userdata', address)
+		return userRes.res.useravatar
+}
+
 export const fetchUser = async (address) => {
 	let userRes = await getFeed('userdata', address)
 	let userObject = userRes.res
@@ -727,6 +733,7 @@ export const fetchUser = async (address) => {
 		subRes.res[sub].username = subAccount.res.username
 		subRes.res[sub].address = subAccount.res.address
 	}
+
 	userObject.posts = postRes.res.posts
 	userObject.subscriptions = subRes.res
 	return userObject
