@@ -62,11 +62,14 @@ export function HomeFeed({ homefeed, rePost }) {
 								<div className={main.postLocation}>{moment(item.time).fromNow()}</div>
 							</NavLink>
 						</div>
-						{item.address === account.address ? null : (
-							<div className={main.postRepostIcon}>
-								<RepeatRounded onClick={() => rePost(item)}></RepeatRounded>
-							</div>
-						)}
+						{
+							(item.address === account.address,
+							item.type === 'repost' ? null : (
+								<div className={main.postRepostIcon}>
+									<RepeatRounded onClick={() => rePost(item)}></RepeatRounded>
+								</div>
+							))
+						}
 					</div>
 
 					{/* <ActionButton type={item.type}></ActionButton> */}
