@@ -540,7 +540,8 @@ _id: "2022-03-31T00:53:58.651Z"
 		address: userObject.address,
 		avatar: userObject.avatar,
 		username: userObject.username,
-		location: 'Unknown'
+		location: 'Unknown',
+		caption: dataObject.post.caption
 	}
 
 	let decryptedPrivateKey
