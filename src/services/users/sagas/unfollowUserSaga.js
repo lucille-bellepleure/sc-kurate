@@ -3,7 +3,7 @@ import { getAccount } from 'services/account/selectors'
 import { setFeed } from 'helpers/swarmFeed'
 
 export default function* unfollowUserSaga(action) {
-	console.log('unfollow u ser saga', action.data)
+	console.log('unfollow user saga', action.data)
 	const account = yield select(getAccount)
 	const decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(account.privateKey, action.data.password)
 	console.log(decryptedPrivateKey.address, decryptedPrivateKey.privateKey)

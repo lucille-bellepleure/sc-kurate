@@ -507,6 +507,73 @@ export const storePost = async (dataObject, cb) => {
 	//});
 }
 
+
+export const rePost = async (dataObject, cb) => {
+	console.log('reposting: ', dataObject)
+	const userObject = dataObject.user
+
+	/*
+	address: "0xAE89c70e0fb9cc2DCD31b6C7c18adb4f6Bfb6313"
+avatar: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAA
+format: "image"
+image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlg
+likes: 0
+location: "Unknown"
+time: "2022-03-31T00:53:58.651Z"
+type: "post"
+username: "Michelle Plur"
+_id: "2022-03-31T00:53:58.651Z"
+	*/
+	var serial = Date.now()
+	var time = new Date().toISOString()
+
+	const rePostObject = {
+		type: 'repost',
+		originalUsername: dataObject.post.username,
+		originalAvatar: dataObject.post.avatar,
+		originalAddress: dataObject.post.address,
+		format: 'image',
+		likes: 0,
+		time: time,
+		_id: serial,
+		image: dataObject.post.image,
+		address: userObject.address,
+		avatar: userObject.avatar,
+		username: userObject.username,
+		location: 'Unknown',
+		caption: dataObject.post.caption
+	}
+
+	let decryptedPrivateKey
+	try {
+		decryptedPrivateKey = window.myWeb3.eth.accounts.decrypt(userObject.privateKey, dataObject.password)
+	} catch (error) {
+		console.log(error)
+	}
+
+
+	const storedPost = await uploadData(rePostObject)
+
+	try {
+		var oldPosts = await getFeed('userposts', userObject.address)
+		let time = new Date().toISOString()
+		oldPosts.res.posts[storedPost] = {
+			time: time,
+			bzz: storedPost,
+			nft: serial,
+		}
+
+		await setFeed('userposts', oldPosts.res, decryptedPrivateKey.privateKey)
+		cb()
+
+		return true
+	} catch (error) {
+		console.log('ERR', error.message)
+		return error
+	}
+
+}
+
 export const updateUser = async (userObject) => {
 	console.log('updating user from helper')
 	let decryptedPrivateKey
@@ -689,7 +756,6 @@ export const fetchPost = async (bzz, user) => {
 	thisPost.address = userData.res.address
 	thisPost.likes = 0
 	thisPost.location = 'Unknown'
-	thisPost.type = 'post'
 	thisPost.format = 'image'
 	return thisPost
 }

@@ -31,12 +31,14 @@ console.log('resolving post ', postId, userAddress)
 			thisPost.address = userData.res.address
 			thisPost.likes = 0
 			thisPost.location = 'Unknown'
-			thisPost.type = 'post'
 			thisPost.format = 'image'
+			if(!thisPost.type) {
+				thisPost.type= 'post'
+			}
 			console.log('Putting post in redux')
 			yield put({ type: 'ADD_POST', data: { [postId]: thisPost } })
 		} else {
-			console.log('Post in cache')
+			console.log(postId, ' - Post in cache')
 		}
 	}
 }

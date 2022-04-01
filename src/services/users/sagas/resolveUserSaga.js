@@ -3,7 +3,7 @@ import resolvePostSaga from '../../postState/sagas/resolvePostSaga'
 import { getFeed } from 'helpers/swarmFeed'
 
 export default function* resolveUserSaga(action) {
-	console.log('Resolve Posts Saga', action.data)
+	console.log('Resolve User Saga', action.data)
 
 	const address = action.data
 
