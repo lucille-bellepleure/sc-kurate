@@ -510,7 +510,6 @@ export const storePost = async (dataObject, cb) => {
 
 export const rePost = async (dataObject, cb) => {
 	console.log('reposting: ', dataObject)
-	const postObject = dataObject
 	const userObject = dataObject.user
 
 	/*
