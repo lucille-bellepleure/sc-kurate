@@ -10,7 +10,7 @@
 		"@material-ui/icons": "^4.9.1",
 		"@material-ui/lab": "^4.0.0-alpha.50",
 		"@material-ui/pickers": "^3.3.10",
-		"@openzeppelin/contracts": "^4.5.0",
+		"@openzeppelin/contracts": "^4.7.3",
 		"@reduxjs/toolkit": "^1.8.0",
 		"@silvia-odwyer/photon": "^0.3.11",
 		"@testing-library/jest-dom": "^5.16.2",
