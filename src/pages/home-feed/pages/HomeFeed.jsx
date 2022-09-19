@@ -35,9 +35,13 @@ export function HomeFeed({ homefeed, rePost }) {
 
 	const getPost = (bzz) => {
 		const item = posts[bzz]
-		if (item) {
+		let counter = 0
+
+		if (item && counter <= 10) {
+			console.log(counter)
+			counter++
 			return (
-				<div key={item._id} className={main.postContainer}>
+				<div key={Math.floor(Math.random() * 1100000)} className={main.postContainer}>
 					<PosterChild
 						type={item.type}
 						image={item.image}

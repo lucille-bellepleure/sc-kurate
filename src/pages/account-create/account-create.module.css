@@ -64,6 +64,8 @@
 	text-align: center;
 	margin: 20px 0px 60px 0px;
 	line-height: 18px;
+	word-break: break-all;
+
 }
 
 .link {
@@ -357,6 +359,7 @@ input[type='range']::-moz-range-track {
 	cursor: pointer;
 	background: var(--sc-grey2);
 }
+
 input[type='range']::-moz-range-thumb {
 	border: 1px solidar(--sc-grey2);
 	height: 18px;

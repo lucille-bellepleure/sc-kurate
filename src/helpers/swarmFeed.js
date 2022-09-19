@@ -1,18 +1,26 @@
 import { bee } from 'bee.js'
 
 export const uploadData = async (data) => {
-	const swarmReference = await bee.uploadData(process.env.REACT_APP_POSTAGE_BATCH_ID, JSON.stringify(data))
+	try {
+		const swarmReference = await bee.uploadData(process.env.REACT_APP_POSTAGE_BATCH_ID, JSON.stringify(data))
 	return swarmReference.reference
+	} catch (error) {
+		console.log('Error when trying to upload to swarm: ', error)
+	}
+	
 }
 
 export const downloadData = async (ref) => {
-	const retrievedData = await bee.downloadData(ref)
-	return retrievedData.json()
+	try {
+		const retrievedData = await bee.downloadData(ref)
+		return retrievedData.json()
+	} catch (error) {
+		console.log(error)
+	}
 }
 
 export const setFeed = async (topic, value, pk) => {
-	const encodedTopic = await bee.makeFeedTopic(topic)
-
+	const encodedTopic = await bee.makeFeedTopic(topic)	
 	try {
 		const swarmReference = await bee.uploadData(process.env.REACT_APP_POSTAGE_BATCH_ID, JSON.stringify(value))
 		const feedWriter = await bee.makeFeedWriter('sequence', encodedTopic, pk)

@@ -44,6 +44,8 @@ export function PostDetail() {
 		caption: 'waiting',
 		location: 'unknown',
 		time: '',
+		image: '',
+		type: 'post',
 	})
 
 	useEffect(
@@ -71,6 +73,7 @@ export function PostDetail() {
 					<PosterChild
 						format={post.format}
 						image={post.image}
+						type={post.type}
 						onDoubleClick={() =>
 							dispatch({
 								type: 'SET_LIKE',

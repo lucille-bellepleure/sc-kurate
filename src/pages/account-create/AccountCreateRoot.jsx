@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import defaultAvatar from 'images/defaultAvatar.png'
+import typedDataV4 from './typedDataV4'
 
 // Sub-pages
 import CreateOrRestore from './pages/CreateOrRestore'
@@ -13,6 +14,7 @@ import ChoosePassword from './pages/ChoosePassword'
 import SuccessEnter from './pages/SuccessEnter'
 import RestoreAccountStart from './pages/RestoreAccountStart'
 import StatusProgressWhite from 'pages/status/StatusProgressWhite'
+
 // Ids
 const createOrRestore = 'createOrRestore'
 const showMnemonic = 'showMnemonic'
@@ -40,12 +42,108 @@ export function AccountCreateRoot() {
 	const [avatar, setAvatar] = useState(defaultAvatar)
 	const [password, setPassword] = useState('')
 
+	const [feedback, setFeedback] = useState('No feedback')
+
 	const accountData = useSelector((state) => getAccount(state))
 	//console.log(accountData)
 
 	if (accountData.status === 'accountSet') {
 		navigate('/home')
 		//setStatusState(2)
+	}
+
+	const domain = [
+		{ name: 'name', type: 'string' },
+		{ name: 'version', type: 'string' },
+		{ name: 'chainId', type: 'uint256' },
+		{ name: 'verifyingContract', type: 'address' },
+	]
+
+	const unit = [
+		{ name: 'actionType', type: 'string' },
+		{ name: 'timestamp', type: 'uint256' },
+		{ name: 'authorizer', type: 'string' },
+	]
+
+	//    const chainId = 42;
+	const chainId = 5 // goerli testnet
+
+	const domainData = {
+		name: 'VerifierApp101',
+		version: '1',
+		chainId: chainId,
+		verifyingContract: '0x8c1eD7e19abAa9f23c476dA86Dc1577F1Ef401f5',
+	}
+
+	var message = {
+		actionType: 'Action7440',
+		timestamp: 1570112162,
+		authorizer: 'auth239430',
+	} // order of the fields is is important. Should correspond to the tuple type expected on the contract.
+
+	const data = JSON.stringify({
+		types: {
+			EIP712Domain: domain,
+			Unit: unit,
+		},
+		domain: domainData,
+		primaryType: 'Unit',
+		message: message,
+	})
+
+	function parseSignature(signature) {
+		var r = signature.substring(0, 64)
+		var s = signature.substring(64, 128)
+		var v = signature.substring(128, 130)
+
+		return {
+			r: '0x' + r,
+			s: '0x' + s,
+			v: parseInt(v, 16),
+		}
+	}
+
+	const getWallet = async () => {
+		try {
+			// Will open the MetaMask UI
+			// You should disable this button while the request is pending!
+			console.log('initialize wallet')
+			//const isMetaMaskInstalled = () => {
+			//Have to check the ethereum binding on the window object to see if it's installed
+			const { ethereum } = window
+			console.log(ethereum)
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+			console.log(accounts)
+
+			//const message = JSON.stringify('hi')
+
+			//alert(JSON.stringify(signed.result))
+			//setFeedback(signed.result)
+
+			//const signature = parseSignature(signed.result.substring(2))
+			//console.log(accounts)
+			//alert(signature)
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	const doSignMessage = async () => {
+		try {
+			const { ethereum } = window
+			const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+
+			const signed = await ethereum
+				.request({
+					method: 'keycard_signTypedData',
+					params: [accounts[0], data],
+				})
+				.then((err, res) => {
+					setFeedback(err)
+				})
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	const createAccount = (password) => {
@@ -69,7 +167,10 @@ export function AccountCreateRoot() {
 				<CreateOrRestore
 					createStage={() => setStage(showMnemonic)}
 					restoreStage={() => setStage(restoreAccountStart)}
+					connectWallet={() => getWallet()}
+					signMessage={() => doSignMessage()}
 					exitStage={() => navigate(-1)}
+					feedback={feedback}
 				/>
 			)
 		case showMnemonic:

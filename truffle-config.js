@@ -25,7 +25,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider')
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 const fs = require('fs')
-const mnemonic = fs.readFileSync('.secret').toString().trim()
+//const mnemonic = fs.readFileSync('.secret').toString().trim()
 // const mnemonicMainnet = fs.readFileSync(".mainnetSecret").toString().trim();
 
 module.exports = {
@@ -53,7 +53,7 @@ module.exports = {
 		},
 
 		goerli: {
-			provider: () => new HDWalletProvider(mnemonic, `https://goerli.infura.io/v3/e6e863fb88144b7eb815693dd028cd4b`),
+      provider: () => new HDWalletProvider("0x24937ade2aeb72fc034b7e136174c67c4a223d97e89516e2049c35d369103293", `https://goerli.infura.io/v3/e6e863fb88144b7eb815693dd028cd4b`),
 			network_id: '5', // Any network (default: none)
 		},
 
@@ -94,7 +94,7 @@ module.exports = {
 	// Configure your compilers
 	compilers: {
 		solc: {
-			version: '0.8.0', // Fetch exact version from solc-bin (default: truffle's version)
+			version: '0.8.11', // Fetch exact version from solc-bin (default: truffle's version)
 			// docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
 			// settings: {          // See the solidity docs for advice about optimization and evmVersion
 			//  optimizer: {

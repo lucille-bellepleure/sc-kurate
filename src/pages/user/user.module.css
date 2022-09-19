@@ -1,6 +1,6 @@
 .usersection {
 	display: grid;
-	grid-template-columns: auto auto;
+	grid-template-columns: 70% auto;
 	grid-template-rows: auto;
 	max-width: 520px;
 	padding: 18px;
@@ -27,7 +27,7 @@
 	color: var(--sc-grey4);
 	margin-top: 5px;
 	text-overflow: ellipsis;
-	width: 150px;
+	width: 200px;
 	overflow: hidden;
 }
 
@@ -75,8 +75,7 @@
 	composes: bodyBold from '../../styles.module.css';
 }
 
-.followButtonText {
-}
+.followButtonText {}
 
 .scroller {
 	display: grid;

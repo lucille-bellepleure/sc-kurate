@@ -41,18 +41,22 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 
 	useEffect(
 		() => {
-			console.log(account.subscriptions)
-			if (account.subscriptions) {
-				if (user.address === account.address) {
-					setFollowButtonState('isme')
-					console.log('this user is me')
-				} else if (account.subscriptions[user.address]) {
-					setFollowButtonState('isfollow')
-					console.log('this user is a sub')
-				} else {
-					setFollowButtonState('canfollow')
-					console.log('this user can be a sub')
+			try {
+				console.log(account.subscriptions)
+				if (account.subscriptions) {
+					if (user.address === account.address) {
+						setFollowButtonState('isme')
+						console.log('this user is me')
+					} else if (account.subscriptions[user.address]) {
+						setFollowButtonState('isfollow')
+						console.log('this user is a sub')
+					} else {
+						setFollowButtonState('canfollow')
+						console.log('this user can be a sub')
+					}
 				}
+			} catch (error) {
+				console.log(error)
 			}
 		},
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -149,6 +153,11 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 			<div className={main.container}>
 				<div className={styles.usersection}>
 					<img className={styles.avatarImage} src={user.useravatar} alt="avatar" />
+					<div></div>
+					<div>
+						<div className={styles.userName}>{user.username}</div>
+						<div className={styles.userAddress}>{user.address}</div>
+					</div>
 					<div className={styles.followingContainer}>
 						{/* <div className={styles.followingItem}>
             <div className={styles.followingNumber}>{user.balances.kuraBalance}</div>
@@ -162,10 +171,6 @@ export function UserHome({ nextStage, user, userfeed, usersubs }) {
 							<div className={styles.followingNumber}>{usersubs.length}</div>
 							<div className={styles.followingLabel}>Subs</div>
 						</div>
-					</div>
-					<div>
-						<div className={styles.userName}>{user.username}</div>
-						<div className={styles.userAddress}>{user.address}</div>
 					</div>
 
 					{followbutton(followButtonState)}

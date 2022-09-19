@@ -2,9 +2,6 @@ import { put, select } from 'redux-saga/effects'
 import * as s from '../selectors'
 import { setFeed, getFeed, downloadData } from 'helpers/swarmFeed'
 
-window.getFeed = getFeed
-window.setFeed = setFeed
-
 export default function* resolvePostSaga(action) {
 	console.log("Resolve Post Saga", action)
 
@@ -14,17 +11,19 @@ export default function* resolvePostSaga(action) {
 	const userAddress = action.data.userAddress
 	//const serial = action.serial
 console.log('resolving post ', postId, userAddress)
-	if (postId) {
+
+if (postId) {
 		const cachedPosts = yield select(s.getPostState)
 
 		if (!cachedPosts[postId]) {
-			
-			const thisPost = yield downloadData(postId)
-			console.log(postId)
+			try {
+				const thisPost = yield downloadData(postId)
+				console.log(postId)
 
 			const userData = yield getFeed('userdata', userAddress)
+			//console.log(thisPost._id, " : ", thisPost)
 			//console.log(userData)
-			thisPost._id = thisPost.time
+			//thisPost._id = thisPost.time
 			//thisPost.serial = serial
 			thisPost.avatar = userData.res.useravatar
 			thisPost.username = userData.res.username
@@ -35,8 +34,14 @@ console.log('resolving post ', postId, userAddress)
 			if(!thisPost.type) {
 				thisPost.type= 'post'
 			}
-			console.log('Putting post in redux')
+			//console.log('Putting post in redux')
 			yield put({ type: 'ADD_POST', data: { [postId]: thisPost } })
+
+			} catch (error) {
+				console.log(error)
+			}
+
+			
 		} else {
 			console.log(postId, ' - Post in cache')
 		}

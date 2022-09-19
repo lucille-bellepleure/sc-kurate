@@ -458,6 +458,7 @@ export const storePost = async (dataObject, cb) => {
 		console.log(error)
 	}
 
+
 	// var contractAddress = "0x3487D9fD4eAD3bf081a679176E1Eaff91eCD95fF"
 	// var contract = new window.myWeb3.eth.Contract(tokenAbi, contractAddress);
 	// var res = await contract.methods.symbol().call()
@@ -757,6 +758,8 @@ export const fetchPost = async (bzz, user) => {
 	thisPost.likes = 0
 	thisPost.location = 'Unknown'
 	thisPost.format = 'image'
+	thisPost.type = 'post'
+console.log(thisPost)
 	return thisPost
 }
 

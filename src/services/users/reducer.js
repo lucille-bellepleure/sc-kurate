@@ -18,6 +18,13 @@ function users(state = initialState, action) {
 	}
 }
 
-persistentReducer(users, { users })
+//persistentReducer(users, { users })
 
-export default users
+//export default users
+
+
+const usersPersisted = persistentReducer(users, {
+	name: 'users',
+})
+
+export default usersPersisted

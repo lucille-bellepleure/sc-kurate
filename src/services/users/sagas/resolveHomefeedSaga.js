@@ -19,7 +19,7 @@ export default function* resolveHomefeedSaga() {
 		
 		yield put({ type: 'SET_ACCOUNT', data: personObject })
 
-		const personPosts = yield getFeed('userposts', account.address)
+			const personPosts = yield getFeed('userposts', account.address)
 		const postsArray = Object.keys(personPosts.res.posts)
 		
 		const personSubs = yield getFeed('usersubscriptions', account.address)

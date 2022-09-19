@@ -49,25 +49,30 @@ export function PostItemRoot() {
 				setStage(userFetching)
 
 				const getUserContent = async (user1) => {
-					const fetchedUser = await fetchUser(address)
+					try {
+						const fetchedUser = await fetchUser(address)
 
-					setUser(fetchedUser)
-					setStage(userHome)
+						setUser(fetchedUser)
+						setStage(userHome)
 
-					let arrayPosts = Object.values(fetchedUser.posts)
+						let arrayPosts = Object.values(fetchedUser.posts)
 
-					setUserfeed(arrayPosts)
-					let arraySubs = Object.values(fetchedUser.subscriptions)
-					setUsersubs(arraySubs)
+						setUserfeed(arrayPosts)
+						let arraySubs = Object.values(fetchedUser.subscriptions)
+						setUsersubs(arraySubs)
 
-					for (let index = 0; index < arrayPosts.length; index++) {
-						let post = arrayPosts[index]
-						console.log(JSON.stringify(post), post.bzz, address)
-						dispatch({
-							type: 'RES_POST',
-							data: { postId: post.bzz, userAddress: address },
-						})
+						for (let index = 0; index < arrayPosts.length; index++) {
+							let post = arrayPosts[index]
+							console.log(JSON.stringify(post), post.bzz, address)
+							dispatch({
+								type: 'RES_POST',
+								data: { postId: post.bzz, userAddress: address },
+							})
+						}
+					} catch (error) {
+						console.log(error)
 					}
+
 					//arrayPosts.map((post) => dispatch({ type: 'RES_POST', data: { postId: post.bzz, userAddress: address }}))
 
 					//console.log(fetchedUser)

@@ -21,7 +21,7 @@
 
 .formcontainer {
 	composes: container;
-	composes: backgroundImg from '../../styles.module.css' !important;
+	background-color: #ffffff;
 }
 
 .closeButton {
@@ -330,6 +330,7 @@ input[type='range']::-moz-range-track {
 	cursor: pointer;
 	background: var(--sc-grey2);
 }
+
 input[type='range']::-moz-range-thumb {
 	border: 1px solidar(--sc-grey2);
 	height: 18px;
